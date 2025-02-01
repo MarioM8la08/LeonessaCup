@@ -39,9 +39,9 @@ nav{
     font-weight: 400;
 }
 .logo img{
-    height: 100px;
+    height: 120px;
     z-index: 2;
-    margin-top: 50px;
+    margin-top: 69px;
 }
 .navigation{
     position: fixed;
@@ -56,14 +56,31 @@ nav{
     list-style: none;
     display: flex;
     gap: 30px;
-    padding-left: 100px;
+    padding-left: 123px;
 }
 .navigation ul li a{
     color: aliceblue;
     text-decoration: none;
     font-size: larger;
     padding: 20px;
-    display: block;
+    position: relative;
+    display: inline-block;
+}
+.navigation ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 8px;
+    left: 0;
+    background-color: #194896;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.navigation ul li a:hover::after {
+    visibility: visible;
+    width: 100%;
 }
 nav .social{
     display: flex;
@@ -86,7 +103,24 @@ nav .social{
     color: #194896;
     text-decoration: none;
     font-size: medium;
-    display: block;
+    position: relative;
+    display: inline-block;
+}
+.Navfirst ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -8px;
+    left: 0;
+    background-color: #194896;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.Navfirst ul li a:hover::after {
+    visibility: visible;
+    width: 100%;
 }
 .fa-facebook{
     font-size: 20px;
@@ -121,6 +155,11 @@ nav .social{
     border-radius: 10px;
     cursor: pointer;
     background-color: rgba(76, 76, 76, 0.7);
+    transition: 0.7s;
+}
+.joinMatch a:hover{
+    transition: 0.7s;
+    background-color: rgba(76, 76, 76);
 }
 main{
     display: flex;
