@@ -1,6 +1,7 @@
 *{
     border: 0;
     margin: 0;
+    padding: 0;
 }
 body{
     background: rgb(2,0,36);
@@ -8,18 +9,22 @@ body{
     background: -webkit-linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(25,72,150,1) 80%);
     background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(25,72,150,1) 80%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#194896",GradientType=1);
-    font-family: 'Roboto', sans-serif;
     font-size: 16px;
     line-height: 1.5;
     height: 100vh;
+    font-family: "Oswald", serif;
 }
 nav{
     width: 100%;
-    height: 70px;
+    position: fixed;
+    top: 0;
+    z-index: 3;
+    height: 55px;
     backdrop-filter: blur(5px);
-    background-color: rgba(51, 51, 51, 0.5);
+    background-color:   aliceblue;
     display: flex;
 }
+
 .logo {
     display: flex;
     height: 100%;
@@ -29,12 +34,29 @@ nav{
 }
 .logo h4{
     color: white;
+    font-family: "Oswald", serif;
+    font-size: 20px;
+    font-weight: 400;
 }
-
+.logo img{
+    height: 100px;
+    z-index: 2;
+    margin-top: 50px;
+}
+.navigation{
+    position: fixed;
+    top: 55px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+    background-color: #252525;
+}
 .navigation ul{
     list-style: none;
     display: flex;
     gap: 30px;
+    padding-left: 100px;
 }
 .navigation ul li a{
     color: aliceblue;
@@ -43,15 +65,66 @@ nav{
     padding: 20px;
     display: block;
 }
+nav .social{
+    display: flex;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    align-items: center;
+    padding: 0 20px;
+    gap: 10px;
+}
 .Navfirst ul{
     list-style: none;
     display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
     gap: 30px;
 }
 .Navfirst ul li a{
-    color: aliceblue;
+    color: #194896;
     text-decoration: none;
-    font-size: larger;
-    padding: 20px;
+    font-size: medium;
     display: block;
+}
+.fa-facebook{
+    font-size: 20px;
+    color: #3b5998;
+}
+.fa-twitter{
+    font-size: 23px;
+    color: #00acee;
+}
+.fa-instagram{
+    font-size: 23px;
+    color: #e4405f;
+}
+.joinMatch a{
+    text-decoration: none;
+    color: aliceblue;
+    font-size: 23px;
+}
+.joinMatch{
+    position: absolute;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+.joinMatch a{
+    display: flex;
+    font-family: "Quicksand", serif;
+    gap: 5px;
+    padding: 5px;
+    font-size: medium;
+    align-items: baseline;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgba(76, 76, 76, 0.7);
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
