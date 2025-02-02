@@ -30,3 +30,37 @@ function menuHamb() {
 buttonHamb.addEventListener('click', function(){
     menuHamb();
 });
+
+// SPA routes
+const routes = {
+    '/home': 'home.html',
+    '/partite': 'partite.html',
+    '/calendario': 'calendario.html',
+    '/classifica': 'classifica.html',
+    '/squadre': 'squadre.html',
+    '/regolamento': 'regolamento.html'
+};
+
+function loadContent(url) {
+    const mainContent = document.getElementById('main-content');
+    fetch(url)
+        .then(response => response.text())
+        .then(html => {
+            mainContent.innerHTML = html;
+        })
+        .catch(err => console.error('Error loading content:', err));
+}
+function navigate(event) {
+    event.preventDefault();
+    const path = event.target.getAttribute('href');
+    window.history.pushState({}, path, window.location.origin + path);
+    loadContent(routes[path]);
+}
+window.onpopstate = () => {
+    loadContent(routes[window.location.pathname]);
+};
+document.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', navigate);
+    console.log(link);
+});
+loadContent(routes[window.location.pathname] || routes['/']);
