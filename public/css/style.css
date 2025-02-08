@@ -48,6 +48,7 @@ nav{
     position: fixed;
     top: 55px;
     display: flex;
+    box-shadow: 0 0 20px #252525;
     width: 100%;
     align-items: center;
     z-index: 9;
@@ -307,15 +308,15 @@ main{
 }
 /*home*/
 .ImgName h1{
-    font-size: 70px;
+    font-size: 3em;
     color: aliceblue;
-    font-family: "Major Mono Display", serif;
-    font-weight: 400;
+    font-family: "Righteous", serif;
+    font-weight: 200;
     margin-left: 19px;
     text-shadow: 0 5px 30px #194896;
 }
 main{
-    background-image: url(../img/wow.jpg);
+    background-image: url(../img/brescia.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -331,19 +332,313 @@ main{
     height: 100px;
     justify-content: flex-start;
 }
-main::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Colore nero con opacità del 50% */
-    z-index: 0;
-}
 .ImgName h1 {
     position: relative;
     z-index: 2;
+}
+.contentPresentazione{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-content: stretch;
+}
+.presentazioneDiv{
+    border-radius: 20px;
+    background-color: rgba(240, 248, 255, 0.8);
+    padding: 20px;
+    z-index: 3;
+}
+.presentazioneDiv h1 {
+    font-size: 2em;
+    color: #194896;
+    font-family: "Righteous", serif;
+    font-weight: 400;
+    margin-left: 19px;
+    text-shadow: 0 5px 30px #194896;
+}
+.lineaOrizzonatalePr{
+    height: 2px;
+    background-color: #194896;
+    width: 8vw;
+}
+.presentazioneDiv p{
+    font-size: 1.5em;
+    color: #194896;
+    font-family: "Quicksand", serif;
+    font-weight: 400;
+    margin-left: 19px;
+    text-shadow: 0 5px 30px #194896;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+
+}
+.contornopresentazioneDiv{
+    margin: 20px;
+    border-radius: 20px;
+    background-color: rgba(25, 72, 150, 0.4);
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    min-width: 30vw;
+    max-width: 40vw;
+    height: fit-content;
+}
+.main{
+    background-color: aliceblue;
+    height: 200vh;
+}
+.strutturadiv{
+    padding: 50px;
+    display: flex;
+    justify-content: left;
+    align-items: stretch;
+}
+.strutturah2{
+    font-size: 2.5em;
+    color: #194896;
+    text-align: left;
+    font-family: "Righteous", serif;
+    font-weight: 400;
+    text-shadow: 0 5px 30px #194896;
+}
+.Scuoleh2 {
+    font-size: 2em;
+    color: #194896;
+    text-align: left;
+    font-family: "Righteous", serif;
+    font-weight: 400;
+    text-shadow: 0 5px 30px #194896;
+    margin-bottom: 20px;
+}
+.partite h2{
+    font-size: 2em;
+    color: #194896;
+    text-align: left;
+    font-family: "Righteous", serif;
+    font-weight: 400;
+    text-shadow: 0 5px 30px #194896;
+}
+.contentIMG{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 150px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.h2divpartite{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 50px;
+}
+.formastrana{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    rotate: 45deg;
+    background-color: #194896;
+}
+.formastrana2{
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    rotate: 45deg;
+    background-color: #194896;
+}
+.contentIMG img {
+    height: 100px;
+}
+.partite{
+    padding: 10px 80px;
+}
+.fa-people-group{
+    font-size: 50px;
+    color: #194896;
+}
+.fa-sitemap{
+    font-size: 50px;
+    color: #194896;
+}
+.fa-trophy-star{
+    font-size: 50px;
+    color: #194896;
+}
+.qualifiche p {
+    color: #252525;
+    font-size: 1em;
+    font-weight: 400;
+    width: 50%;
+    text-align: center;
+}
+.qualifiche h2{
+    font-size: 2em;
+    color: #194896;
+    text-align: center;
+    font-family: "Righteous", serif;
+    font-weight: 400;
+    text-shadow: 0 5px 30px #194896;
+}
+.fa-swords{
+    font-size: 50px;
+    color: #194896;
+}
+.schema{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.qualifiche{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+.dettagli{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 70px;
+    flex-wrap: wrap;
+}
+.dettagli .cardDett{
+    background-color: #252525;
+    border-radius: 20px;
+    min-height: 200px;
+    width: 300px;
+    padding: 20px;
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.fa-people-group{
+    font-size: 50px;
+    color: aliceblue;
+}
+.cardDett p{
+    font-size: 1em;
+    font-family: "Quicksand", serif;
+    font-weight: 400;
+    text-align: center;
+}
+.fa-shirt{
+    font-size: 50px;
+    color: aliceblue;
+}
+.testoDett{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.fa-court-sport{
+    font-size: 50px;
+    color: aliceblue;
+}
+.posCerchioDett{
+    position: relative;
+    height: 40px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.cerchioDett{
+    position: absolute;
+    width: 100px;
+    margin-top: -70px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #194896;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fa-tshirt{
+    font-size: 50px;
+    color: aliceblue;
+}
+.cardCollab{
+    width: 50%;
+    background-color: #252525;
+    border-radius: 30px;
+    display: flex;
+    color: aliceblue;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.collab{
+    margin-top: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.imgCollab{
+    position: absolute;
+    margin-top: -30px;
+    background-color: #194896;
+    padding: 10px;
+    rotate: 45deg;
+    display: flex;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #194896;
+    align-items: center;
+    justify-content: center;
+}
+.titoloCollab{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: aliceblue;
+}
+.fa-handshake{
+    font-size: 30px;
+    rotate: -45deg;
+    color: aliceblue;
+}
+.collab h2{
+    font-weight: 200;
+}
+.collab img{
+    width: 50px;
+}
+.collab .collabTeam{
+    text-decoration: none;
+    color: aliceblue;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+    min-width: 236px;
+    flex-wrap: wrap;
+}
+.collabTeam:hover{
+    background-color: #194896;
+    box-shadow: 0 0 10px #194896;
+}
+.spessoreCollab{
+    width: 100%;
+    height: 30px;
+}
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }
 /*responsive*/
 @media screen and (max-width: 1000px){
@@ -381,5 +676,10 @@ main::before {
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
+    }
+}
+@media screen and (max-width: 470px){
+    .ImgName h1 {
+        font-size: 2em;
     }
 }
