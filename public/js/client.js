@@ -40,7 +40,6 @@ const routes = {
     '/squadre': 'squadre.html',
     '/regolamento': 'regolamento.html'
 };
-
 function loadContent(url) {
     const mainContent = document.getElementById('main-content');
     fetch(url)
@@ -64,3 +63,4 @@ document.querySelectorAll('a').forEach(link => {
     console.log(link);
 });
 loadContent(routes[window.location.pathname] || routes['/']);
+// scroll verticale
