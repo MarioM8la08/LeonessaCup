@@ -8,7 +8,6 @@ body{
     background-image: url(../img/brescia.jpg);
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
     position: relative;
     height: 100vh;
     font-size: 16px;
@@ -22,7 +21,7 @@ nav{
     z-index: 10;
     height: 55px;
     backdrop-filter: blur(5px);
-    background-color:   aliceblue;
+    background-color:   #F7F2FA;
     display: flex;
 }
 
@@ -48,12 +47,12 @@ nav{
     position: fixed;
     top: 55px;
     display: flex;
-    box-shadow: 0 0 20px #252525;
+    box-shadow: 0 0 20px #141A33;
     width: 100%;
     align-items: center;
     z-index: 9;
     gap: 10px;
-    background-color: #252525;
+    background-color: #141A33;
 }
 .navigation ul{
     list-style: none;
@@ -62,7 +61,7 @@ nav{
     padding-left: 123px;
 }
 .navigation ul li a{
-    color: aliceblue;
+    color: #F7F2FA;
     text-decoration: none;
     font-size: larger;
     padding: 20px;
@@ -139,7 +138,7 @@ nav .social{
 }
 .joinMatch a{
     text-decoration: none;
-    color: aliceblue;
+    color: #F7F2FA;
     font-size: 23px;
 }
 .joinMatch{
@@ -157,12 +156,12 @@ nav .social{
     align-items: baseline;
     border-radius: 10px;
     cursor: pointer;
-    background-color: rgba(76, 76, 76, 0.7);
+    background-color: rgba(80, 114, 167, 0.5);
     transition: 0.7s;
 }
 .joinMatch a:hover{
     transition: 0.7s;
-    background-color: rgba(76, 76, 76);
+    background-color: #5072A7;
 }
 
 /*hamburger menu*/
@@ -250,7 +249,7 @@ nav .social{
     top: 70px;
     width: 100%;
     height: calc(100vh - 70px);
-    background-color: #252525;
+    background-color: #141A33;
 }
 .NavfirstDev{
     display: flex;
@@ -270,13 +269,13 @@ nav .social{
     align-items: center;
     border-radius: 10px;
     cursor: pointer;
-    background-color: rgba(76, 76, 76, 0.7);
+    background-color: #1A1256;
     transition: 0.7s;
-    color: aliceblue;
+    color: #F7F2FA;
 }
 .NavfirstDev .btn:hover{
     transition: 0.7s;
-    background-color: rgba(76, 76, 76);
+    background-color: #1A1256;
 }
 .menuDev .ulMenudev{
     list-style: none;
@@ -289,7 +288,7 @@ nav .social{
     align-items: center;
 }
 .menuDev .ulMenudev li a{
-    color: aliceblue;
+    color: #F7F2FA;
     text-decoration: none;
     font-size: 25px;
     position: relative;
@@ -304,17 +303,17 @@ nav .social{
     display: none;
 }
 main{
-    margin-top: 124px;
+    padding-top: 124px;
 }
 /*footer*/
 footer{
-    background-color: #252525;
+    background-color: #141A33;
     display: flex;
     padding: 0 20px;
     justify-content: space-evenly;
     align-items: center;
     height: 400px;
-    color: aliceblue;
+    color: #F7F2FA;
     font-family: "Quicksand", serif;
     font-weight: 400;
     flex-direction: column;
@@ -335,13 +334,13 @@ footer .footerMenu ul{
 }
 footer .footerMenu ul li a{
     text-decoration: none;
-    color: aliceblue;
+    color: #F7F2FA;
 }
 
 /*home*/
 .ImgName h1{
     font-size: 3em;
-    color: aliceblue;
+    color: #F7F2FA;
     font-family: "Righteous", serif;
     font-weight: 200;
     margin-left: 19px;
@@ -388,14 +387,14 @@ footer .footerMenu ul li a{
     width: 8vw;
 }
 .presentazioneDiv p{
-    font-size: 1.5em;
+    font-size: 1em;
     color: #194896;
-    font-family: "Quicksand", serif;
-    font-weight: 400;
+    font-weight: 300;
     margin-left: 19px;
     text-shadow: 0 5px 30px #194896;
     word-wrap: break-word;
     white-space: normal;
+    font-family: "Lexend Deca", serif;
     overflow-wrap: break-word;
 
 }
@@ -409,7 +408,7 @@ footer .footerMenu ul li a{
     max-width: 40vw;
 }
 .main{
-    background-color: aliceblue;
+    background-color: #F7F2FA;
     padding: 0 0 100px 0;
 }
 .strutturadiv{
@@ -419,6 +418,7 @@ footer .footerMenu ul li a{
     align-items: stretch;
 }
 .strutturah2{
+    text-transform: uppercase;
     font-size: 2.5em;
     color: #194896;
     text-align: left;
@@ -427,6 +427,7 @@ footer .footerMenu ul li a{
     text-shadow: 0 5px 30px #194896;
 }
 .Scuoleh2 {
+    text-transform: uppercase;
     font-size: 2em;
     color: #194896;
     text-align: left;
@@ -436,6 +437,7 @@ footer .footerMenu ul li a{
     margin-bottom: 20px;
 }
 .partite h2{
+    text-transform: uppercase;
     font-size: 2em;
     color: #194896;
     text-align: left;
@@ -452,6 +454,7 @@ footer .footerMenu ul li a{
     flex-wrap: wrap;
 }
 .h2divpartite{
+    text-transform: uppercase;
     display: flex;
     align-items: center;
     width: 100%;
@@ -490,13 +493,14 @@ footer .footerMenu ul li a{
     color: #194896;
 }
 .qualifiche p {
-    color: #252525;
+    color: #141A33;
     font-size: 1em;
     font-weight: 400;
     width: 50%;
     text-align: center;
 }
 .qualifiche h2{
+    text-transform: uppercase;
     font-size: 2em;
     color: #194896;
     text-align: center;
@@ -530,19 +534,19 @@ footer .footerMenu ul li a{
     flex-wrap: wrap;
 }
 .dettagli .cardDett{
-    background-color: #252525;
+    background-color: #141A33;
     border-radius: 20px;
     min-height: 200px;
     width: 300px;
     padding: 20px;
-    color: aliceblue;
+    color: #F7F2FA;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .fa-people-group{
     font-size: 50px;
-    color: aliceblue;
+    color: #F7F2FA;
 }
 .cardDett p{
     font-size: 1em;
@@ -552,7 +556,7 @@ footer .footerMenu ul li a{
 }
 .fa-shirt{
     font-size: 50px;
-    color: aliceblue;
+    color: #F7F2FA;
 }
 .testoDett{
     display: flex;
@@ -563,7 +567,7 @@ footer .footerMenu ul li a{
 }
 .fa-court-sport{
     font-size: 50px;
-    color: aliceblue;
+    color: #F7F2FA;
 }
 .posCerchioDett{
     position: relative;
@@ -585,14 +589,14 @@ footer .footerMenu ul li a{
 }
 .fa-tshirt{
     font-size: 50px;
-    color: aliceblue;
+    color: #F7F2FA;
 }
 .cardCollab{
     width: 50%;
-    background-color: #252525;
+    background-color: #141A33;
     border-radius: 30px;
     display: flex;
-    color: aliceblue;
+    color: #F7F2FA;
     flex-wrap: wrap;
     justify-content: space-around;
 }
@@ -623,14 +627,15 @@ footer .footerMenu ul li a{
     justify-content: center;
     align-items: center;
     gap: 10px;
-    color: aliceblue;
+    color: #F7F2FA;
 }
 .fa-handshake{
     font-size: 30px;
     rotate: -45deg;
-    color: aliceblue;
+    color: #F7F2FA;
 }
 .collab h2{
+    text-transform: uppercase;
     font-weight: 200;
 }
 .collab img{
@@ -638,7 +643,7 @@ footer .footerMenu ul li a{
 }
 .collab .collabTeam{
     text-decoration: none;
-    color: aliceblue;
+    color: #F7F2FA;
     padding: 10px;
     border-radius: 10px;
     display: flex;
@@ -672,7 +677,7 @@ footer .footerMenu ul li a{
     height: 50px;
     display: flex;
     border-radius: 50px;
-    border: 1px solid aliceblue;
+    border: 1px solid #F7F2FA;
     align-items: center;
     flex-wrap: wrap;
     text-decoration: none;
@@ -690,13 +695,109 @@ footer .footerMenu ul li a{
         transform: translateX(-100%);
     }
 }
+/*Squadre*/
+.IndicatorePagina{
+    display: flex;
+    height: 150px;
+    background-image: url(../img/campo.jpg);
+    background-size: cover;
+    background-position: center;
+    align-items: center;
+}
+.IndicatorePagina h1{
+    font-size: 6em;
+    color: #F7F2FA;
+    font-family: "Righteous", serif;
+    font-weight: 200;
+    margin-left: 19px;
+    text-shadow: 0 5px 30px #194896;
+}
+.contentCardSquadre{
+    background-color: #141A33;
+    padding: 70px 10px;
+    display: flex;
+    gap: 2vw;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.cardTM{
+    width: 400px;
+    text-decoration: none;
+    cursor: pointer;
+    height: min-content;
+    background-color: #F7F2FA;
+    background-image: radial-gradient(circle, #B5B0B8 1px, transparent 1px);
+    background-size: 10px 10px;
+    border-radius: 20px;
+    color: #141A33;
+    transition: 0.7s;
+}
+.cardTeam {
+    width: calc(100% - 40px);
+    padding: 20px;
+    backdrop-filter: blur(3px);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+.cardTM:hover{
+    transition: 0.7s;
+    box-shadow: 0 0 10px #B5B0B8;
+    background-size: 20px 20px;
+}
+.cardTeam:hover .infoTeam{
+    margin-right: 5px;
+}
+.cardTeam:hover .teamLogo{
+    margin-left: 5px;
+}
+.imgTeam{
+    z-index: 1;
+}
+.cardTeam .teamLogo{
+    width: 50px;
+    border-radius: 50%;
+}
+.imgAllenatore{
+    text-align: center;
+}
+.infoTeam{
+    display: flex;
+    z-index: 1;
+    width: 130px;
+    padding-top: 30px;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+.girone{
+    text-align: right;
+}
+
 /*responsive*/
 @media screen and (max-width: 1000px){
     .navigation{
         display: none;
     }
+    .schema {
+        width: 100%;
+        display: flex;
+        height: auto;
+        gap: 50px;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+    }
+    .strutturadiv{
+        justify-content: center;
+    }
+    .lineaOrizzonatalePr{
+        width: 2px;
+        height: 8vh;
+    }
     main{
-        margin-top: 70px;
+        padding-top: 70px;
     }
     nav .Navfirst{
         display: none;
@@ -731,8 +832,25 @@ footer .footerMenu ul li a{
         max-width: 80vw;
     }
 }
+@media screen and (max-width: 650px){
+    .contornopresentazioneDiv{
+        max-width: 90vw;
+        margin: 0;
+    }
+    .card2{
+        margin-bottom: 50px;
+    }
+    .presentazioneDiv h1{
+        font-size: 1.8em;
+    }
+    .presentazioneDiv p{
+        font-size: 1.3em;
+    }
+}
 @media screen and (max-width: 470px){
     .ImgName h1 {
         font-size: 2em;
     }
 }
+/*palette*/
+/*https://coolors.co/palette/3eb1ee-800080-#F7F2FA-b5b0b8-5072a7-194896-1a1256-141a33*/
