@@ -28,39 +28,79 @@ function menuHamb() {
     }
 }
 buttonHamb.addEventListener('click', function(){
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
     menuHamb();
 });
 
 // SPA routes
 const routes = {
-    '/home': 'home.html',
-    '/partite': 'partite.html',
-    '/calendario': 'calendario.html',
-    '/classifica': 'classifica.html',
-    '/squadre': 'squadre.html',
-    '/regolamento': 'regolamento.html'
+    '/chiSiamo': '/chiSiamo.html',
+    '/partite': '/partite.html',
+    '/calendario': '/calendario.html',
+    '/classifica': '/classifica.html',
+    '/squadre': '/squadre.html',
+    '/squadre/itisCastelli': '/squadre/itisCastelli.html',
+    '/regolamento': '/regolamento.html'
 };
+
 function loadContent(url) {
     const mainContent = document.getElementById('main-content');
     fetch(url)
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
         .then(html => {
             mainContent.innerHTML = html;
         })
         .catch(err => console.error('Error loading content:', err));
 }
+
 function navigate(event) {
     event.preventDefault();
-    const path = event.target.getAttribute('href');
-    window.history.pushState({}, path, window.location.origin + path);
-    loadContent(routes[path]);
+    let path = event.target.getAttribute('href');
+    if (!path) return;
+
+    if (path.endsWith('/')) {
+        path = path.slice(0, -1);
+    }
+
+    if (routes[path]) {
+        window.history.pushState({}, '', path);
+        loadContent(routes[path]);
+    } else {
+        console.error('Route not found:', path);
+    }
 }
-window.onpopstate = () => {
-    loadContent(routes[window.location.pathname]);
-};
+
 document.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', navigate);
-    console.log(link);
 });
-loadContent(routes[window.location.pathname] || routes['/']);
-// scroll verticale
+
+
+window.onpopstate = () => {
+    let path = window.location.pathname;
+    if (path.endsWith('/')) {
+        path = path.slice(0, -1);
+    }
+    if (routes[path]) {
+        loadContent(routes[path]);
+    } else {
+        console.error('Route not found:', path);
+    }
+};
+
+let initialPath = window.location.pathname;
+if (initialPath.endsWith('/')) {
+    initialPath = initialPath.slice(0, -1);
+}
+if (routes[initialPath]) {
+    loadContent(routes[initialPath]);
+} else {
+    console.error('Route not found:', initialPath);
+}
