@@ -797,22 +797,26 @@ footer .footerMenu ul li a{
 .infoSquadraSingle{
     padding: 50px;
     height: 100vh;
+    display: flex;
     background-color: #141A33;
-    border-radius: 20px;
+    justify-content: center;
 }
 .GiocatoriSquadra{
-    width: 70vw;
-    height: 40vh;
     border-radius: 20px;
+    padding: 10px 5px 50px 5px;
+    max-width: 70vw;
+    height: fit-content;
+    background-color: #1A1256;
+    box-shadow: 0 0 20px #1A1256;
 }
 .titleGiocatori{
     width: 100%;
     height: 50px;
-    background-color: #00acee;
     display: flex;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     align-items: center;
+    justify-content: center;
 }
 .GiocatoriSquadra .titleGiocatori{
     padding: 10px;

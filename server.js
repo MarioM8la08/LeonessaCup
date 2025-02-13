@@ -15,7 +15,7 @@ app.get('/*.html', (req, res) => {
 // API endpoint example
 app.get('/api/data', async (req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM squadre');
+        const result = await pool.query(' SELECT * FROM squadre');
         res.json(result.rows);
     } catch (err) {
         console.error(err);
