@@ -796,15 +796,49 @@ footer .footerMenu ul li a{
 }
 .infoSquadraSingle{
     padding: 50px;
-    height: 100vh;
     display: flex;
+    flex-direction: column;
     background-color: #141A33;
+    box-shadow: 0 0 20px #141A33;
     justify-content: center;
+}
+.GironeSquadra{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 0 20px #1A1256;
+    margin: 20px;
+    background-color: #1A1256;
+    border-radius: 20px;
+}
+.GironeSquadra h2{
+    color: #F7F2FA;
+    font-size: 2em;
+    font-family: "Righteous", serif;
+}
+.GironeSquadra .classificaSquadra{
+    padding: 10px;
+}
+.classifica table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.classifica table tr th{
+    color: #F7F2FA;
+    background-color: #141A33;
+    padding: 10px;
+}
+.classifica table tr td{
+    color: #F7F2FA;
+    border-left: 5px solid #1A1256;
+    text-align: center;
+    padding: 5px;
+    background-color: #194896;
 }
 .GiocatoriSquadra{
     border-radius: 20px;
     padding: 10px 5px 50px 5px;
-    max-width: 70vw;
     height: fit-content;
     background-color: #1A1256;
     box-shadow: 0 0 20px #1A1256;
@@ -830,19 +864,41 @@ footer .footerMenu ul li a{
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    padding: 20px;
+    padding: 15px;
 }
 .giocatore {
     background-color: #3b5998;
     border-radius: 20px;
     padding: 10px;
+    text-decoration: none;
     display: flex;
     color: #F7F2FA;
+    transition: 0.7s;
+}
+.giocatore:hover{
+    transition: 0.7s;
+    box-shadow: 0 0 10px #194896;
 }
 .giocatore img {
-    height: 70px;
+    height: 80px;
 }
-
+.giocatore div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.giocatore h3{
+    font-size: 1.4em;
+    font-family: "Righteous", serif;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+.giocatore p{
+    color: #B5B0B8;
+    margin-left: 5px;
+    font-size: 1.3em;
+    letter-spacing: 1px;
+}
 /*responsive*/
 @media screen and (max-width: 1000px){
     .navigation{
