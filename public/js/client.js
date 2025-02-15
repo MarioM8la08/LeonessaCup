@@ -69,7 +69,7 @@ async function initSquadraPage() {
 //SPA
 const routes = {
     '/chiSiamo': '/chiSiamo.html',
-    '/partite': '/partite.html',
+    '/credits': '/credits.html',
     '/calendario': '/calendario.html',
     '/classifica': '/classifica.html',
     '/squadre': '/squadre.html',
