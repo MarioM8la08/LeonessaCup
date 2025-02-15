@@ -802,40 +802,6 @@ footer .footerMenu ul li a{
     box-shadow: 0 0 20px #141A33;
     justify-content: center;
 }
-.GironeSquadra{
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    padding: 20px;
-    box-shadow: 0 0 20px #1A1256;
-    margin: 20px;
-    background-color: #1A1256;
-    border-radius: 20px;
-}
-.GironeSquadra h2{
-    color: #F7F2FA;
-    font-size: 2em;
-    font-family: "Righteous", serif;
-}
-.GironeSquadra .classificaSquadra{
-    padding: 10px;
-}
-.classifica table{
-    width: 100%;
-    border-collapse: collapse;
-}
-.classifica table tr th{
-    color: #F7F2FA;
-    background-color: #141A33;
-    padding: 10px;
-}
-.classifica table tr td{
-    color: #F7F2FA;
-    border-left: 5px solid #1A1256;
-    text-align: center;
-    padding: 5px;
-    background-color: #194896;
-}
 .GiocatoriSquadra{
     border-radius: 20px;
     padding: 10px 5px 50px 5px;
@@ -899,6 +865,66 @@ footer .footerMenu ul li a{
     font-size: 1.3em;
     letter-spacing: 1px;
 }
+.DatiSquadra {
+    border-radius: 30px;
+    width: 100%;
+    background-color: #194896;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 50px;
+}
+.pioggia {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle, #B5B0B8 1px, transparent 1px);
+    background-size: 10px 10px;
+    animation: rainEffect 3s ease infinite;
+}
+.DatiFondamentali{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgba(26, 18, 86, 0.8);
+    backdrop-filter: blur(2px);
+}
+.DatiFondamentali div{
+    height: 100%;
+    padding: 20px;
+    width: 14vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #F7F2FA;
+    gap: 10px;
+}
+.DatiFondamentali div h2{
+    font-size: 1.5em;
+    font-family: "Righteous", serif;
+    font-weight: 300;
+}
+.DatiFondamentali div p{
+    font-size: 1.3em;
+    font-family: "Righteous", serif;
+    font-weight: 300;
+}
+@keyframes rainEffect {
+    0% {
+        background-size: 10px 10px;
+    }
+    50% {
+        background-size: 20px 20px;
+    }
+    100% {
+        background-size: 10px 10px;
+    }
+}
+
 /*responsive*/
 @media screen and (max-width: 1000px){
     .navigation{

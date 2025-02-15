@@ -34,8 +34,39 @@ buttonHamb.addEventListener('click', function(){
     });
     menuHamb();
 });
-
-// SPA routes
+// Squadre page
+async function initSquadraPage() {
+    let squadraID = document.getElementById('squadraID').innerText;
+    let dataSquadra = {};
+    // comunicazione con il server per dati squadra
+    await fetch(`/api/squadre/Data?squadraID=${squadraID}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            dataSquadra = data;
+            console.log('Squadra data:', dataSquadra);
+        })
+        .catch(err => console.error('Error loading squadra data:', err));
+    let ContentPosition = "posizione";
+    let ContentPunti = "punti";
+    let ContentVinte = "vittorie";
+    let ContentGol = "gol_fatti";
+    let ContentPartite = "partite_giocate";
+    let arremptyData = [ContentPosition, ContentPunti, ContentVinte, ContentGol, ContentPartite];
+    for (let i = 0; i < arremptyData.length; i++) {
+        let field = document.getElementById(arremptyData[i]);
+        console.log('field:', arremptyData[i], field);
+        field.innerHTML = dataSquadra[arremptyData[i]];
+        if(arremptyData[i] === 'posizione') {
+            field.innerHTML += '°';
+        }
+    }
+}
+//SPA
 const routes = {
     '/chiSiamo': '/chiSiamo.html',
     '/partite': '/partite.html',
@@ -45,7 +76,6 @@ const routes = {
     '/squadre/itisCastelli': '/squadre/itisCastelli.html',
     '/regolamento': '/regolamento.html'
 };
-
 function loadContent(url) {
     const mainContent = document.getElementById('main-content');
     fetch(url)
@@ -57,10 +87,12 @@ function loadContent(url) {
         })
         .then(html => {
             mainContent.innerHTML = html;
+            if (url === routes['/squadre/itisCastelli']) {
+                initSquadraPage();
+            }
         })
         .catch(err => console.error('Error loading content:', err));
 }
-
 function navigate(event) {
     event.preventDefault();
     let path = event.target.getAttribute('href');
@@ -77,12 +109,9 @@ function navigate(event) {
         console.error('Route not found:', path);
     }
 }
-
 document.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', navigate);
 });
-
-
 window.onpopstate = () => {
     let path = window.location.pathname;
     if (path.endsWith('/')) {
@@ -94,7 +123,6 @@ window.onpopstate = () => {
         console.error('Route not found:', path);
     }
 };
-
 let initialPath = window.location.pathname;
 if (initialPath.endsWith('/')) {
     initialPath = initialPath.slice(0, -1);
