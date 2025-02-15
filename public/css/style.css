@@ -796,6 +796,7 @@ footer .footerMenu ul li a{
 }
 .infoSquadraSingle{
     padding: 50px;
+    gap: 50px;
     display: flex;
     flex-direction: column;
     background-color: #141A33;
@@ -869,10 +870,10 @@ footer .footerMenu ul li a{
     border-radius: 30px;
     width: 100%;
     background-color: #194896;
+    box-shadow: 0 0 10px #1A1256;
     height: 200px;
     overflow: hidden;
     position: relative;
-    margin-bottom: 50px;
 }
 .pioggia {
     position: absolute;
@@ -924,7 +925,40 @@ footer .footerMenu ul li a{
         background-size: 10px 10px;
     }
 }
-
+/*collaboratori*/
+.collaboratori{
+    height: 100vh;
+    padding: 50px;
+    background-color: #F7F2FA;
+}
+.collaboratori .CardGalleryCB{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.CardGalleryCB a{
+    width: 300px;
+    height: 400px;
+    text-decoration: none;
+    background-color: #141A33;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: #F7F2FA;
+    box-shadow: 0 0 20px #141A33;
+}
+.CardGalleryCB a img{
+    height: 80%;
+}
+.NameRole{
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
 /*responsive*/
 @media screen and (max-width: 1000px){
     .navigation{
