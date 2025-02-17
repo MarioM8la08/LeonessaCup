@@ -4,6 +4,17 @@
     padding: 0;
     transition: 0.3s;
 }
+:root{
+    --main-color: #194896;
+    --second-color: #1A1256;
+    --third-color: #141A33;
+    --fourth-color: #5072A7;
+    --fifth-color: #F7F2FA;
+    --sixth-color: #B5B0B8;
+    --seventh-color: #3EB1EE;
+    --eight-color:  #800080;
+    --second-color-darker: #1A1248;
+}
 body{
     background-image: url(../img/brescia.jpg);
     background-size: cover;
@@ -21,7 +32,7 @@ nav{
     z-index: 10;
     height: 55px;
     backdrop-filter: blur(5px);
-    background-color:   #F7F2FA;
+    background-color:   var(--fifth-color);
     display: flex;
 }
 
@@ -47,12 +58,12 @@ nav{
     position: fixed;
     top: 55px;
     display: flex;
-    box-shadow: 0 0 20px #141A33;
+    box-shadow: 0 0 20px var(--third-color);
     width: 100%;
     align-items: center;
     z-index: 9;
     gap: 10px;
-    background-color: #141A33;
+    background-color: var(--third-color);
 }
 .navigation ul{
     list-style: none;
@@ -61,7 +72,7 @@ nav{
     padding-left: 123px;
 }
 .navigation ul li a{
-    color: #F7F2FA;
+    color: var(--fifth-color);
     text-decoration: none;
     font-size: larger;
     padding: 20px;
@@ -75,7 +86,7 @@ nav{
     height: 2px;
     bottom: 8px;
     left: 0;
-    background-color: #194896;
+    background-color: var(--main-color);
     visibility: hidden;
     transition: all 0.3s ease-in-out;
 }
@@ -102,7 +113,7 @@ nav .social{
     gap: 30px;
 }
 .Navfirst ul li a{
-    color: #194896;
+    color: var(--main-color);
     text-decoration: none;
     font-size: medium;
     position: relative;
@@ -115,7 +126,7 @@ nav .social{
     height: 2px;
     bottom: -8px;
     left: 0;
-    background-color: #194896;
+    background-color: var(--main-color);
     visibility: hidden;
     transition: all 0.3s ease-in-out;
 }
@@ -138,7 +149,7 @@ nav .social{
 }
 .joinMatch a{
     text-decoration: none;
-    color: #F7F2FA;
+    color: var(--fifth-color);
     font-size: 23px;
 }
 .joinMatch{
@@ -161,7 +172,7 @@ nav .social{
 }
 .joinMatch a:hover{
     transition: 0.7s;
-    background-color: #5072A7;
+    background-color: var(--fourth-color);
 }
 
 /*hamburger menu*/
@@ -175,7 +186,7 @@ nav .social{
 .Hamburger div{
     width: 40px;
     height: 3px;
-    background-color: #194896;
+    background-color: var(--main-color);
 }
 @keyframes rotate45 {
     0% {
@@ -249,7 +260,7 @@ nav .social{
     top: 70px;
     width: 100%;
     height: calc(100vh - 70px);
-    background-color: #141A33;
+    background-color: var(--third-color);
 }
 .NavfirstDev{
     display: flex;
@@ -269,13 +280,13 @@ nav .social{
     align-items: center;
     border-radius: 10px;
     cursor: pointer;
-    background-color: #1A1256;
+    background-color: var(--second-color);
     transition: 0.7s;
-    color: #F7F2FA;
+    color: var(--fifth-color);
 }
 .NavfirstDev .btn:hover{
     transition: 0.7s;
-    background-color: #1A1256;
+    background-color: var(--second-color);
 }
 .menuDev .ulMenudev{
     list-style: none;
@@ -288,7 +299,7 @@ nav .social{
     align-items: center;
 }
 .menuDev .ulMenudev li a{
-    color: #F7F2FA;
+    color: var(--fifth-color);
     text-decoration: none;
     font-size: 25px;
     position: relative;
@@ -307,13 +318,13 @@ main{
 }
 /*footer*/
 footer{
-    background-color: #141A33;
+    background-color: var(--third-color);
     display: flex;
     padding: 0 20px;
     justify-content: space-evenly;
     align-items: center;
     height: 400px;
-    color: #F7F2FA;
+    color: var(--fifth-color);
     font-family: "Quicksand", serif;
     font-weight: 400;
     flex-direction: column;
@@ -334,17 +345,17 @@ footer .footerMenu ul{
 }
 footer .footerMenu ul li a{
     text-decoration: none;
-    color: #F7F2FA;
+    color: var(--fifth-color);
 }
 
 /*home*/
 .ImgName h1{
     font-size: 3em;
-    color: #F7F2FA;
+    color: var(--fifth-color);
     font-family: "Righteous", serif;
     font-weight: 200;
     margin-left: 19px;
-    text-shadow: 0 5px 30px #194896;
+    text-shadow: 0 5px 30px var(--main-color);
 }
 .ImgName{
     position: relative;
@@ -375,23 +386,23 @@ footer .footerMenu ul li a{
 }
 .presentazioneDiv h1 {
     font-size: 2em;
-    color: #194896;
+    color: var(--main-color);
     font-family: "Righteous", serif;
     font-weight: 400;
     margin-left: 19px;
-    text-shadow: 0 5px 30px #194896;
+    text-shadow: 0 5px 30px var(--main-color);
 }
 .lineaOrizzonatalePr{
     height: 2px;
-    background-color: #194896;
+    background-color: var(--fifth-color);
     width: 8vw;
 }
 .presentazioneDiv p{
     font-size: 1em;
-    color: #194896;
+    color: var(--main-color);
     font-weight: 300;
     margin-left: 19px;
-    text-shadow: 0 5px 30px #194896;
+    text-shadow: 0 5px 30px var(--main-color);
     word-wrap: break-word;
     white-space: normal;
     font-family: "Lexend Deca", serif;
@@ -408,7 +419,7 @@ footer .footerMenu ul li a{
     max-width: 40vw;
 }
 .main{
-    background-color: #F7F2FA;
+    background-color: var(--third-color);
     padding: 0 0 100px 0;
 }
 .strutturadiv{
@@ -420,30 +431,30 @@ footer .footerMenu ul li a{
 .strutturah2{
     text-transform: uppercase;
     font-size: 2.5em;
-    color: #194896;
+    color: var(--fifth-color);
     text-align: left;
     font-family: "Righteous", serif;
     font-weight: 400;
-    text-shadow: 0 5px 30px #194896;
+    text-shadow: 0 5px 30px var(--main-color);
 }
 .Scuoleh2 {
     text-transform: uppercase;
     font-size: 2em;
-    color: #194896;
+    color: var(--main-color);
     text-align: left;
     font-family: "Righteous", serif;
     font-weight: 400;
-    text-shadow: 0 5px 30px #194896;
+    text-shadow: 0 5px 30px var(--main-color);
     margin-bottom: 20px;
 }
 .partite h2{
     text-transform: uppercase;
     font-size: 2em;
-    color: #194896;
+    color: var(--main-color);
     text-align: left;
     font-family: "Righteous", serif;
     font-weight: 400;
-    text-shadow: 0 5px 30px #194896;
+    text-shadow: 0 5px 30px var(--main-color);
 }
 .contentIMG{
     display: flex;
@@ -465,14 +476,14 @@ footer .footerMenu ul li a{
     height: 50px;
     border-radius: 10px;
     rotate: 45deg;
-    background-color: #194896;
+    background-color: var(--main-color);
 }
 .formastrana2{
     width: 25px;
     height: 25px;
     border-radius: 5px;
     rotate: 45deg;
-    background-color: #194896;
+    background-color: var(--main-color);
 }
 .contentIMG img {
     height: 100px;
@@ -482,18 +493,18 @@ footer .footerMenu ul li a{
 }
 .fa-people-group{
     font-size: 50px;
-    color: #194896;
+    color: var(--fifth-color);
 }
 .fa-sitemap{
     font-size: 50px;
-    color: #194896;
+    color: var(--fifth-color);
 }
 .fa-trophy-star{
     font-size: 50px;
-    color: #194896;
+    color: var(--fifth-color);
 }
 .qualifiche p {
-    color: #141A33;
+    color: var(--third-color);
     font-size: 1em;
     font-weight: 400;
     width: 50%;
@@ -502,15 +513,15 @@ footer .footerMenu ul li a{
 .qualifiche h2{
     text-transform: uppercase;
     font-size: 2em;
-    color: #194896;
+    color: var(--fifth-color);
     text-align: center;
     font-family: "Righteous", serif;
     font-weight: 400;
-    text-shadow: 0 5px 30px #194896;
+    text-shadow: 0 5px 30px var(--main-color);
 }
 .fa-swords{
     font-size: 50px;
-    color: #194896;
+    color: var(--fifth-color);
 }
 .schema{
     width: 100%;
@@ -534,19 +545,19 @@ footer .footerMenu ul li a{
     flex-wrap: wrap;
 }
 .dettagli .cardDett{
-    background-color: #141A33;
+    background-color: var(--second-color);
     border-radius: 20px;
     min-height: 200px;
     width: 300px;
     padding: 20px;
-    color: #F7F2FA;
+    color: var(--fifth-color);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .fa-people-group{
     font-size: 50px;
-    color: #F7F2FA;
+    color: var(--fifth-color);
 }
 .cardDett p{
     font-size: 1em;
@@ -556,7 +567,7 @@ footer .footerMenu ul li a{
 }
 .fa-shirt{
     font-size: 50px;
-    color: #F7F2FA;
+    color: var(--fifth-color);
 }
 .testoDett{
     display: flex;
@@ -567,7 +578,7 @@ footer .footerMenu ul li a{
 }
 .fa-court-sport{
     font-size: 50px;
-    color: #F7F2FA;
+    color: var(--fifth-color);
 }
 .posCerchioDett{
     position: relative;
@@ -582,21 +593,21 @@ footer .footerMenu ul li a{
     margin-top: -70px;
     height: 100px;
     border-radius: 50%;
-    background-color: #194896;
+    background-color: var(--main-color);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .fa-tshirt{
     font-size: 50px;
-    color: #F7F2FA;
+    color: var(--fifth-color);
 }
 .cardCollab{
     width: 50%;
-    background-color: #141A33;
+    background-color: var(--second-color);
     border-radius: 30px;
     display: flex;
-    color: #F7F2FA;
+    color: var(--fifth-color);
     flex-wrap: wrap;
     justify-content: space-around;
 }
@@ -609,14 +620,14 @@ footer .footerMenu ul li a{
 .imgCollab{
     position: absolute;
     margin-top: -30px;
-    background-color: #194896;
+    background-color: var(--main-color);
     padding: 10px;
     rotate: 45deg;
     display: flex;
     width: 50px;
     height: 50px;
     border-radius: 10px;
-    box-shadow: 0 0 10px #194896;
+    box-shadow: 0 0 10px var(--main-color);
     align-items: center;
     justify-content: center;
 }
@@ -627,12 +638,12 @@ footer .footerMenu ul li a{
     justify-content: center;
     align-items: center;
     gap: 10px;
-    color: #F7F2FA;
+    color: var(--fifth-color);
 }
 .fa-handshake{
     font-size: 30px;
     rotate: -45deg;
-    color: #F7F2FA;
+    color: var(--fifth-color);
 }
 .collab h2{
     text-transform: uppercase;
@@ -643,7 +654,7 @@ footer .footerMenu ul li a{
 }
 .collab .collabTeam{
     text-decoration: none;
-    color: #F7F2FA;
+    color: var(--fifth-color);
     padding: 10px;
     border-radius: 10px;
     display: flex;
@@ -655,8 +666,8 @@ footer .footerMenu ul li a{
 }
 .collabTeam:hover{
     transition: 0.7s;
-    background-color: #194896;
-    box-shadow: 0 0 10px #194896;
+    background-color: var(--main-color);
+    box-shadow: 0 0 10px var(--main-color);
 }
 .spessoreCollab{
     width: 100%;
@@ -677,7 +688,7 @@ footer .footerMenu ul li a{
     height: 50px;
     display: flex;
     border-radius: 50px;
-    border: 1px solid #F7F2FA;
+    border: 1px solid var(--fifth-color);
     align-items: center;
     flex-wrap: wrap;
     text-decoration: none;
@@ -706,14 +717,14 @@ footer .footerMenu ul li a{
 }
 .IndicatorePagina h1{
     font-size: 6em;
-    color: #F7F2FA;
+    color: var(--fifth-color);
     font-family: "Righteous", serif;
     font-weight: 200;
     margin-left: 19px;
-    text-shadow: 0 5px 30px #194896;
+    text-shadow: 0 5px 30px var(--main-color);
 }
 .contentCardSquadre{
-    background-color: #141A33;
+    background-color: var(--third-color);
     padding: 70px 10px;
     display: flex;
     gap: 2vw;
@@ -725,11 +736,11 @@ footer .footerMenu ul li a{
     text-decoration: none;
     cursor: pointer;
     height: min-content;
-    background-color: #F7F2FA;
-    background-image: radial-gradient(circle, #B5B0B8 1px, transparent 1px);
+    background-color: var(--fifth-color);
+    background-image: radial-gradient(circle, var(--sixth-color) 1px, transparent 1px);
     background-size: 10px 10px;
     border-radius: 20px;
-    color: #141A33;
+    color: var(--third-color);
     transition: 0.7s;
 }
 .cardTeam {
@@ -743,7 +754,7 @@ footer .footerMenu ul li a{
 }
 .cardTM:hover{
     transition: 0.7s;
-    box-shadow: 0 0 10px #B5B0B8;
+    box-shadow: 0 0 10px var(--sixth-color);
     background-size: 20px 20px;
 }
 .cardTeam:hover .infoTeam{
@@ -799,16 +810,16 @@ footer .footerMenu ul li a{
     gap: 50px;
     display: flex;
     flex-direction: column;
-    background-color: #141A33;
-    box-shadow: 0 0 20px #141A33;
+    background-color: var(--third-color);
+    box-shadow: 0 0 20px var(--third-color);
     justify-content: center;
 }
 .GiocatoriSquadra{
     border-radius: 20px;
     padding: 10px 5px 50px 5px;
     height: fit-content;
-    background-color: #1A1256;
-    box-shadow: 0 0 20px #1A1256;
+    background-color: var(--second-color);
+    box-shadow: 0 0 20px var(--second-color);
 }
 .titleGiocatori{
     width: 100%;
@@ -821,7 +832,7 @@ footer .footerMenu ul li a{
 }
 .GiocatoriSquadra .titleGiocatori{
     padding: 10px;
-    color: #F7F2FA;
+    color: var(--fifth-color);
     font-size: 2em;
     font-family: "Righteous", serif;
     margin-bottom: 20px;
@@ -839,12 +850,12 @@ footer .footerMenu ul li a{
     padding: 10px;
     text-decoration: none;
     display: flex;
-    color: #F7F2FA;
+    color: var(--fifth-color);
     transition: 0.7s;
 }
 .giocatore:hover{
     transition: 0.7s;
-    box-shadow: 0 0 10px #194896;
+    box-shadow: 0 0 10px var(--main-color);
 }
 .giocatore img {
     height: 80px;
@@ -861,7 +872,7 @@ footer .footerMenu ul li a{
     letter-spacing: 1px;
 }
 .giocatore p{
-    color: #B5B0B8;
+    color: var(--sixth-color);
     margin-left: 5px;
     font-size: 1.3em;
     letter-spacing: 1px;
@@ -869,8 +880,8 @@ footer .footerMenu ul li a{
 .DatiSquadra {
     border-radius: 30px;
     width: 100%;
-    background-color: #194896;
-    box-shadow: 0 0 10px #1A1256;
+    background-color: var(--main-color);
+    box-shadow: 0 0 10px var(--second-color);
     height: 200px;
     overflow: hidden;
     position: relative;
@@ -881,7 +892,7 @@ footer .footerMenu ul li a{
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: radial-gradient(circle, #B5B0B8 1px, transparent 1px);
+    background-image: radial-gradient(circle, var(--sixth-color) 1px, transparent 1px);
     background-size: 10px 10px;
     animation: rainEffect 3s ease infinite;
 }
@@ -901,7 +912,7 @@ footer .footerMenu ul li a{
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    color: #F7F2FA;
+    color: var(--fifth-color);
     gap: 10px;
 }
 .DatiFondamentali div h2{
@@ -927,9 +938,9 @@ footer .footerMenu ul li a{
 }
 /*collaboratori*/
 .collaboratori{
-    height: calc(100vh - 124px);
-    padding: 0 50px;
-    background-color: #141A33;
+    min-height: calc(100vh - 224px);
+    padding: 50px 50px;
+    background-color: var(--third-color);
     display: flex;
     align-items: center;
 }
@@ -950,9 +961,9 @@ footer .footerMenu ul li a{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    color: #F7F2FA;
+    color: var(--fifth-color);
     transition: 0.7s;
-    box-shadow: 0 0 20px #1A1256;
+    box-shadow: 0 0 20px var(--second-color);
 }
 .CardGalleryCB a img{
     height: 80%;
@@ -990,7 +1001,7 @@ footer .footerMenu ul li a{
     background: -moz-linear-gradient(90deg, rgba(25,72,150,1) 45%, rgba(20,26,51,1) 100%);
     background: -webkit-linear-gradient(90deg, rgba(25,72,150,1) 45%, rgba(20,26,51,1) 100%);
     background: linear-gradient(90deg, rgba(25,72,150,1) 45%, rgba(20,26,51,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#194896",endColorstr="#141a33",GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="var(--main-color)",endColorstr="var(--third-color)",GradientType=1);
 }
 .sfondoCollaboratori2{
     position: absolute;
@@ -1004,7 +1015,7 @@ footer .footerMenu ul li a{
     background: -moz-linear-gradient(270deg, rgba(25,72,150,1) 45%, rgba(20,26,51,1) 100%);
     background: -webkit-linear-gradient(270deg, rgba(25,72,150,1) 45%, rgba(20,26,51,1) 100%);
     background: linear-gradient(270deg, rgba(25,72,150,1) 45%, rgba(20,26,51,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#194896",endColorstr="#141a33",GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="var(--main-color)",endColorstr="var(--third-color)",GradientType=1);
 }
 .CardGalleryCB a:hover .sfondoCollaboratori1{
     transition: 0.7s;
@@ -1028,7 +1039,7 @@ footer .footerMenu ul li a{
     background: -moz-linear-gradient(180deg, rgba(25,72,150,1) 45%, rgba(20,26,51,1) 100%);
     background: -webkit-linear-gradient(180deg, rgba(25,72,150,1) 45%, rgba(20,26,51,1) 100%);
     background: linear-gradient(180deg, rgba(25,72,150,1) 45%, rgba(20,26,51,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#194896",endColorstr="#141a33",GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="var(--main-color)",endColorstr="var(--third-color)",GradientType=1);
 }
 .sfondoCollaboratori4{
     position: absolute;
@@ -1042,7 +1053,7 @@ footer .footerMenu ul li a{
     background: -moz-linear-gradient(0deg, rgba(25,72,150,1) 45%, rgba(20,26,51,1) 100%);
     background: -webkit-linear-gradient(0deg, rgba(25,72,150,1) 45%, rgba(20,26,51,1) 100%);
     background: linear-gradient(0deg, rgba(25,72,150,1) 45%, rgba(20,26,51,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#194896",endColorstr="#141a33",GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="var(--main-color)",endColorstr="var(--third-color)",GradientType=1);
 }
 .CardGalleryCB a:hover .sfondoCollaboratori3{
     transition: 0.7s;
@@ -1053,6 +1064,75 @@ footer .footerMenu ul li a{
     transition: 0.7s;
     width: 400px;
     height: 400px;
+}
+/*classifica*/
+.Sclassifica{
+    padding: 50px 50px;
+    background-color: var(--third-color);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.Sclassifica table{
+    border-collapse: collapse;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 20px;
+    text-align: center;
+    font-family: "Righteous", serif;
+}
+.copriTabella{
+    background-color: var(--second-color);
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px var(--second-color);
+}
+.Classifica thead{
+    color: var(--fifth-color);
+}
+.Classifica thead th{
+    padding: 10px;
+    font-weight: 300;
+}
+.Classifica tbody{
+    border-radius: 20px;
+}
+.Classifica tbody tr{
+    font-size: 1.1em;
+    height: 65px;
+    background-color: var(--second-color-darker);
+    border-radius: 20px;
+    margin: 5px 0;
+    color: #F7F2FA;
+}
+.Classifica tbody tr img{
+    height: 50px;
+}
+.Classifica tbody tr h4{
+    font-size: 1.1em;
+    font-family: "Righteous", serif;
+    font-weight: 300;
+}
+.squadraTable{
+    padding: 0 10px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 10px;
+    height: 65px;
+}
+.separaRiga{
+    background-color: var(--fourth-color);
+    height: 5px !important;
+}
+table tr td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+table tr td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 /*responsive*/
 @media screen and (max-width: 1000px){
@@ -1132,4 +1212,4 @@ footer .footerMenu ul li a{
     }
 }
 /*palette*/
-/*https://coolors.co/palette/3eb1ee-800080-#F7F2FA-b5b0b8-5072a7-194896-1a1256-141a33*/
+/*https://coolors.co/palette/3eb1ee-800080-var(--fifth-color)-b5b0b8-5072a7-194896-1a1256-141a33*/
