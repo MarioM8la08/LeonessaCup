@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "sync": "browser-sync start --proxy http://localhost:3000 --files 'public/chiSiamo.html, public/classifica.html, public/credits.html, public/squadre/itisCastelli.html, public/css/style.css, public/**/*.js' --browser chrome --open --port 3001",
+    "sync": "browser-sync start --proxy http://localhost:3000 --files 'public/chiSiamo.html, public/classifica.html, public/credits.html, public/squadre/itisCastelli.html, public/css/style.css, public/js/client.js' --browser chrome --open --port 3001",
     "dev:sync": "concurrently \"npm run dev\" \"npm run sync\""
   },
   "author": "Mario M8la",
