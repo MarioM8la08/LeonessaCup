@@ -1157,7 +1157,7 @@ table tr td:last-child {
     align-items: center;
     flex-direction: column;
     padding: 20px;
-    width: 100%;
+    width: calc(100% - 40px);
     background-color: rgba(22, 33, 42, 0.5);
     border-radius: 20px;
 }

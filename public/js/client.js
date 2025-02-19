@@ -66,6 +66,122 @@ async function initSquadraPage() {
         }
     }
 }
+// Classifica page
+function immaginiSquadre(squadra) {
+    let obj = [
+        {
+            "nome_scuola": "Arnaldo",
+            "img": "/img/iislogo.gif"
+        },
+        {
+            "nome_scuola": "Itis Castelli",
+            "img": "/img/iislogo.gif"
+        },
+        {
+            "nome_scuola": "Copernico",
+            "img": "/img/iislogo.gif"
+        },
+        {
+            "nome_scuola": "Gambara",
+            "img": "/img/iislogo.gif"
+        },
+        {
+            "nome_scuola": "Calini",
+            "img": "/img/iislogo.gif"
+        },
+        {
+            "nome_scuola": "Lunardi",
+            "img": "/img/iislogo.gif"
+        },
+        {
+            "nome_scuola": "Canossa",
+            "img": "/img/iislogo.gif"
+        },
+        {
+            "nome_scuola": "Luzzago",
+            "img": "/img/iislogo.gif"
+        },
+        {
+            "nome_scuola": "Leonardo",
+            "img": "/img/iislogo.gif"
+        },
+        {
+            "nome_scuola": "De Andrè",
+            "img": "/img/iislogo.gif"
+        },
+        {
+            "nome_scuola": "Newton",
+            "img": "/img/iislogo.gif"
+        },
+        {
+            "nome_scuola": "Antonietti",
+            "img": "/img/iislogo.gif"
+        }
+    ]
+    for (let i = 0; i < obj.length; i++) {
+        if(obj[i]['nome_scuola'] === squadra) {
+            return obj[i]['img'];
+        }
+    }
+}
+function initTable(girone) {
+    let table = document.getElementById(`classifica${girone[0]['girone']}`);
+    console.log('table:', table);
+    table.innerHTML = "";
+    for (let i = 0; i < girone.length; i++) {
+        let squadra = girone[i]['nome_scuola'];
+        let posizione = girone[i]['posizione'];
+        let punti = girone[i]['punti'];
+        let partiteGiocate = girone[i]['partite_giocate'];
+        let vittorie = girone[i]['vittorie'];
+        let pareggi = girone[i]['pareggi'];
+        let sconfitte = girone[i]['sconfitte'];
+        let golFatti = girone[i]['gol_fatti'];
+        let golSubiti = girone[i]['gol_subiti'];
+        let differenzaReti = girone[i]['differenza_reti'];
+        let imgSquadra = `.${immaginiSquadre(squadra)}`;
+        let html = `
+        <tr>
+          <td>${posizione}</td>
+          <td class="squadraTable"><img src="${imgSquadra}"><h4>${squadra}</h4></td>
+          <td>${punti}</td>
+          <td>${partiteGiocate}</td>
+          <td>${vittorie}</td>
+          <td>${pareggi}</td>
+          <td>${sconfitte}</td>
+          <td>${golFatti}</td>
+          <td>${golSubiti}</td>
+          <td>${differenzaReti}</td>
+        </tr>
+        <tr class="separaRiga"></tr>`;
+        table.innerHTML += html;
+    }
+}
+async function initClassificaPage() {
+    let dataClassifica = [];
+    // comunicazione con il server per dati classifica
+    await fetch('/api/classifica/Data')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            dataClassifica = data;
+        })
+        .catch(err => console.error('Error loading classifica data:', err));
+    let girone = [];
+    console.log('dataClassifica:', dataClassifica);
+    for(let i = 0; i < dataClassifica.length; i++) {
+        girone.push(dataClassifica[i]);
+        if(girone.length === 4) {
+            initTable(girone);
+            girone = [];
+        }
+    }
+    console.log('girone:', girone);
+}
 //SPA
 const routes = {
     '/chiSiamo': '/chiSiamo.html',
@@ -89,6 +205,8 @@ function loadContent(url) {
             mainContent.innerHTML = html;
             if (url === routes['/squadre/itisCastelli']) {
                 initSquadraPage();
+            } else if (url === routes['/classifica']) {
+                initClassificaPage();
             }
         })
         .catch(err => console.error('Error loading content:', err));
