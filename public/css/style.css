@@ -1161,36 +1161,35 @@ table tr td:last-child {
     background-color: rgba(22, 33, 42, 0.5);
     border-radius: 20px;
 }
+/*partite*/
 .matchSlider{
+    padding: 20px;
     width: auto;
-    height: 400px;
+    height: 200px;
     background-color: var(--third-color);
     display: flex;
     align-items: center;
 }
 .matchDay{
-    width: 300px;
-    height: 200px;
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: column;
+    width: 280px;
+    height: 180px;
     background-color: var(--second-color);
     border-radius: 20px;
-    padding: 20px;
+    padding: 10px;
 }
 .match{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .team{
     display: flex;
     gap: 25px;
     align-items: center;
-    background-color: var(--third-color);
     border-radius: 20px;
     color: var(--fifth-color);
-    padding: 15px;
+    padding: 5px;
     font-size: 1.2em;
 }
 .giornata{
@@ -1204,20 +1203,45 @@ table tr td:last-child {
     font-family: "Righteous", serif;
     font-weight: 300;
 }
+.giornata h3 {
+    font-size: 0.8em;
+    padding-top: 5px;
+    padding-left: 10px;
+    color: var(--fifth-color);
+    font-family: "Righteous", serif;
+    font-weight: 300;
+}
 .giornata img{
     width: 50px;
 }
+.dataMatch hr{
+    width: 100%;
+    height: 1px;
+    background-color: var(--fifth-color);
+    margin-bottom: 10px;
+}
 .risLive{
-    padding: 0 20px;
     background-color: var(--third-color);
+    padding: 0 20px;
     border-radius: 20px;
     font-size: 1.5em;
     font-family: "Righteous", serif;
     font-weight: 300;
     color: var(--fifth-color);
-    height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: space-around;
+}
+.dataMatch{
+    width: 100%;
+}
+.flexContent{
+    display: flex;
+    height: calc(100% - 36px);
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-content: space-around;
 }
 /*responsive*/
 @media screen and (max-width: 1000px){
