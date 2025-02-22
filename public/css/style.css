@@ -1161,6 +1161,64 @@ table tr td:last-child {
     background-color: rgba(22, 33, 42, 0.5);
     border-radius: 20px;
 }
+.matchSlider{
+    width: auto;
+    height: 400px;
+    background-color: var(--third-color);
+    display: flex;
+    align-items: center;
+}
+.matchDay{
+    width: 300px;
+    height: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    background-color: var(--second-color);
+    border-radius: 20px;
+    padding: 20px;
+}
+.match{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.team{
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    background-color: var(--third-color);
+    border-radius: 20px;
+    color: var(--fifth-color);
+    padding: 15px;
+    font-size: 1.2em;
+}
+.giornata{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+.giornata h2{
+    font-size: 2em;
+    color: var(--fifth-color);
+    font-family: "Righteous", serif;
+    font-weight: 300;
+}
+.giornata img{
+    width: 50px;
+}
+.risLive{
+    padding: 0 20px;
+    background-color: var(--third-color);
+    border-radius: 20px;
+    font-size: 1.5em;
+    font-family: "Righteous", serif;
+    font-weight: 300;
+    color: var(--fifth-color);
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
 /*responsive*/
 @media screen and (max-width: 1000px){
     .navigation{

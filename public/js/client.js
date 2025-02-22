@@ -186,7 +186,7 @@ async function initClassificaPage() {
 const routes = {
     '/chiSiamo': '/chiSiamo.html',
     '/credits': '/credits.html',
-    '/calendario': '/calendario.html',
+    '/partite': '/partite.html',
     '/classifica': '/classifica.html',
     '/squadre': '/squadre.html',
     '/squadre/itisCastelli': '/squadre/itisCastelli.html',
