@@ -2,11 +2,12 @@
     border: 0;
     margin: 0;
     padding: 0;
-    transition: 0.3s;
+    transition: 0.7s;
 }
 :root{
     --main-color: #194896;
     --second-color: #1A1256;
+    --second-color--trasparent: rgba(26, 18, 86, 0.5);
     --third-color: #141A33;
     --fourth-color: #5072A7;
     --fifth-color: #F7F2FA;
@@ -14,6 +15,7 @@
     --seventh-color: #3EB1EE;
     --eight-color:  #800080;
     --second-color-darker: #1A1248;
+
 }
 body{
     background-image: url(../img/brescia.jpg);
@@ -23,6 +25,7 @@ body{
     height: 100vh;
     font-size: 16px;
     line-height: 1.5;
+    overflow-x: hidden;
     font-family: "Oswald", serif;
 }
 nav{
@@ -1163,19 +1166,19 @@ table tr td:last-child {
 }
 /*partite*/
 .matchSlider{
-    padding: 20px;
-    width: auto;
-    height: 200px;
+    padding: 20px 0;
     background-color: var(--third-color);
     display: flex;
     align-items: center;
+    overflow-x: auto;
+    width: max-content ;
 }
 .matchDay{
     width: 280px;
     height: 180px;
-    background-color: var(--second-color);
     border-radius: 20px;
     padding: 10px;
+    cursor: pointer;
 }
 .match{
     display: flex;
@@ -1193,9 +1196,12 @@ table tr td:last-child {
     font-size: 1.2em;
 }
 .giornata{
+    padding: 0 20px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 25px;
+    gap: 10px;
+    justify-content: center;
 }
 .giornata h2{
     font-size: 2em;
@@ -1214,14 +1220,29 @@ table tr td:last-child {
 .giornata img{
     width: 50px;
 }
+.dataMatch{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.dataMatch h4{
+    border-radius: 10px;
+    padding: 2px 5px;
+    border: 1px solid var(--fourth-color);
+    color: var(--fourth-color);
+    font-size: 0.7em;
+    font-family: "Righteous", serif;
+}
 .dataMatch hr{
     width: 100%;
     height: 1px;
     background-color: var(--fifth-color);
     margin-bottom: 10px;
+    margin-top: 5px;
 }
 .risLive{
-    background-color: var(--third-color);
+    background-color: var(--second-color);
     padding: 0 20px;
     border-radius: 20px;
     font-size: 1.5em;
@@ -1242,6 +1263,60 @@ table tr td:last-child {
     justify-content: space-evenly;
     flex-wrap: wrap;
     align-content: space-around;
+}
+.titleGiornate{
+    color: var(--fifth-color);
+    font-size: 1.2em;
+    font-family: "Righteous", serif;
+    font-weight: 300;
+}
+.divisoreGiornate{
+    width: 2px;
+    height: 253px;
+    background-color: var(--fifth-color);
+}
+.hGiornate{
+    width: calc(100% - 20px);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.nGiornate{
+    border-radius: 10px;
+    padding: 2px 5px;
+    border: 1px solid var(--fourth-color);
+    color: var(--fourth-color);
+    font-size: 0.8em;
+    font-family: "Righteous", serif;
+}
+.matchDay:hover{
+    transition: 0.7s;
+    background-color: var(--second-color--trasparent);
+}
+.btnSlid{
+    position: absolute;
+    top: 250px;
+    margin: 10px;
+    border: none;
+    border-radius: 100%;
+    padding: 10px 15px;
+    background-color: var(--fourth-color);
+    color: var(--fifth-color);
+    font-size: 1.5em;
+    cursor: pointer;
+}
+.btnSlid:last-child{
+    right: 0;
+}
+.btnSlid:hover{
+    transition: 0.7s;
+    background-color: var(--fifth-color);
+    color: var(--fourth-color);
+}
+.coverSlider{
+    position: relative;
+    width: 100%;
+    background-color: var(--third-color);
 }
 /*responsive*/
 @media screen and (max-width: 1000px){
