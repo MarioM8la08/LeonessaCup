@@ -182,6 +182,34 @@ async function initClassificaPage() {
     }
     console.log('girone:', girone);
 }
+// Partite page
+function initPartitePage() {
+    let idLeft = document.getElementById('btnLeft');
+    let idRight = document.getElementById('btnRight');
+    let slider = document.getElementById('matchSlider');
+    let matchDayWidth = 0;
+    idLeft.addEventListener('click', function() {
+        if(matchDayWidth === -300) {
+            idLeft.style.display = 'none';
+        }
+        if(slider.offsetWidth - window.innerWidth > -matchDayWidth ){
+            idRight.style.display = 'block';
+        }
+        matchDayWidth += 300;
+        slider.style.transform = `translateX(${matchDayWidth}px)`;
+    });
+    idRight.addEventListener('click', function() {
+        matchDayWidth -= 300;
+        if (matchDayWidth === -300) {
+            idLeft.style.display = 'block';
+        }
+        console.log(slider.offsetWidth - window.innerWidth);
+        if(slider.offsetWidth - window.innerWidth < -matchDayWidth ){
+            idRight.style.display = 'none';
+        }
+        slider.style.transform = `translateX(${matchDayWidth}px)`;
+    });
+}
 //SPA
 const routes = {
     '/chiSiamo': '/chiSiamo.html',
@@ -207,6 +235,8 @@ function loadContent(url) {
                 initSquadraPage();
             } else if (url === routes['/classifica']) {
                 initClassificaPage();
+            } else if (url === routes['/partite']) {
+                initPartitePage();
             }
         })
         .catch(err => console.error('Error loading content:', err));
