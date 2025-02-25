@@ -183,7 +183,34 @@ async function initClassificaPage() {
     console.log('girone:', girone);
 }
 // Partite page
-function initPartitePage() {
+function abbreviazioneSquadre(squadra) {
+    squadra = squadra - 1;
+    let obj = ["Cas", "Arn", "Gam", "Cop", "Luz", "Cal", "Can", "Lun", "Leo", "DeA", "New", "Ant"];
+    return obj[squadra];
+}
+function getDayOfWeek(data) {
+    const date = new Date(data);
+    const days = ["Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"];
+    return days[date.getUTCDay()]; // getUTCDay() restituisce 0 (Domenica) - 6 (Sabato)
+}
+function getMonthName(dateString) {
+    const date = new Date(dateString);
+    const months = [
+        "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
+        "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
+    ];
+    return months[date.getUTCMonth()]; // getUTCMonth() restituisce un valore da 0 (Gennaio) a 11 (Dicembre)
+}
+function Snododata(data) { //2025-05-03T15:00:00.000Z
+    let dataString = `${getDayOfWeek(data)} ${data.slice(8, 10)} ${getMonthName(data)}`;
+    return dataString;
+}
+//17/02 - 21:00h ITA
+function dataMatch(data) {
+    let dataString = `${data.slice(8, 10)}/${data.slice(5, 7)} - ${data.slice(11, 16)}h ITA`;
+    return dataString;
+}
+function sliderMatch() {
     let idLeft = document.getElementById('btnLeft');
     let idRight = document.getElementById('btnRight');
     let slider = document.getElementById('matchSlider');
@@ -209,6 +236,73 @@ function initPartitePage() {
         }
         slider.style.transform = `translateX(${matchDayWidth}px)`;
     });
+}
+async function initMatchSeason() {
+    let dataPartite = [];
+    // comunicazione con il server per dati classifica
+    await fetch('/api/partite/DataMatch')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            dataPartite = data;
+        })
+        .catch(err => console.error('Error loading classifica data:', err));
+    console.log('dataPartite:', dataPartite);
+    const giornate = 3;
+    const slider = document.getElementById('matchSlider');
+    slider.innerHTML = "";
+    for (let i = 1; i <= giornate; i++) {
+        slider.innerHTML += `                
+                <div id="giornata${i}" class="giornata">
+                    <div class="hGiornate">
+                        <h1 class="titleGiornate">${Snododata(dataPartite[0]["data_ora"])}</h1>
+                        <h4 class="nGiornate">Giornata ${i}</h4>
+                    </div>
+                </div>`;
+        for (let j = 0; j < dataPartite.length; j++) {
+            let matchDay = document.getElementById(`giornata${i}`);
+            if(dataPartite[j]['giornata'] === i) {
+                matchDay.innerHTML += `
+                    <div class="matchDay">
+                        <div class="dataMatch">
+                            <h3>${dataMatch(dataPartite[j]["data_ora"])}</h3>
+                            <h4>Girone ${dataPartite[j]["girone"]}</h4>
+                            <hr>
+                        </div>
+                        <div class="flexContent">
+                            <div class="squadreFlex">
+                                <div class="match">
+                                    <div class="team">
+                                        <h3>${abbreviazioneSquadre(dataPartite[j]["squadra_casa"])}</h3>
+                                        <img src="/img/iislogo.gif">
+                                    </div>
+                                </div>
+                                <div class="match">
+                                    <div class="team">
+                                        <h3>${abbreviazioneSquadre(dataPartite[j]["squadra_ospite"])}</h3>
+                                        <img src="/img/iislogo.gif">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="risLive">
+                                <div class="ris">-</div>
+                                <div class="ris">-</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        slider.innerHTML += `<div class="divisoreGiornate"></div>`;
+    }
+}
+function initPartitePage() {
+    initMatchSeason().then(r => {});
+    sliderMatch();
 }
 //SPA
 const routes = {
