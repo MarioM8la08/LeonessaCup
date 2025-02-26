@@ -183,6 +183,9 @@ async function initClassificaPage() {
     console.log('girone:', girone);
 }
 // Partite page
+function risultatoPartita(golCasa, golOspite) {
+
+}
 function abbreviazioneSquadre(squadra) {
     squadra = squadra - 1;
     let obj = ["Cas", "Arn", "Gam", "Cop", "Luz", "Cal", "Can", "Lun", "Leo", "DeA", "New", "Ant"];
@@ -289,8 +292,8 @@ async function initMatchSeason() {
                                 </div>
                             </div>
                             <div class="risLive">
-                                <div class="ris">-</div>
-                                <div class="ris">-</div>
+                                <div class="ris">${dataPartite[j]["gol_casa"]}</div>
+                                <div class="ris">${dataPartite[j]["gol_ospite"]}</div>
                             </div>
                         </div>
                     </div>
