@@ -183,8 +183,10 @@ async function initClassificaPage() {
     console.log('girone:', girone);
 }
 // Partite page
-function risultatoPartita(golCasa, golOspite) {
-
+function risultatoPartita(status, gol) {
+    console.log(typeof status);
+    console.log(typeof gol);
+    return status ? gol : '-';
 }
 function abbreviazioneSquadre(squadra) {
     squadra = squadra - 1;
@@ -208,7 +210,6 @@ function Snododata(data) { //2025-05-03T15:00:00.000Z
     let dataString = `${getDayOfWeek(data)} ${data.slice(8, 10)} ${getMonthName(data)}`;
     return dataString;
 }
-//17/02 - 21:00h ITA
 function dataMatch(data) {
     let dataString = `${data.slice(8, 10)}/${data.slice(5, 7)} - ${data.slice(11, 16)}h ITA`;
     return dataString;
@@ -258,11 +259,16 @@ async function initMatchSeason() {
     const giornate = 3;
     const slider = document.getElementById('matchSlider');
     slider.innerHTML = "";
+    let gironi = {
+        "1": [],
+        "2": [],
+        "3": [],
+    };
     for (let i = 1; i <= giornate; i++) {
         slider.innerHTML += `                
                 <div id="giornata${i}" class="giornata">
                     <div class="hGiornate">
-                        <h1 class="titleGiornate">${Snododata(dataPartite[0]["data_ora"])}</h1>
+                        <h1 id="finestraTempGirone${i}" class="titleGiornate">${Snododata(dataPartite[0]["data_ora"])}</h1>
                         <h4 class="nGiornate">Giornata ${i}</h4>
                     </div>
                 </div>`;
@@ -292,15 +298,21 @@ async function initMatchSeason() {
                                 </div>
                             </div>
                             <div class="risLive">
-                                <div class="ris">${dataPartite[j]["gol_casa"]}</div>
-                                <div class="ris">${dataPartite[j]["gol_ospite"]}</div>
+                                <div class="ris">${risultatoPartita(dataPartite[j]["status"], dataPartite[j]["gol_casa"])}</div>
+                                <div class="ris">${risultatoPartita(dataPartite[j]["status"], dataPartite[j]["gol_ospite"])}</div>
                             </div>
                         </div>
                     </div>
                 `;
+                gironi[`${i}`].push(dataPartite[j]["data_ora"]);
             }
         }
         slider.innerHTML += `<div class="divisoreGiornate"></div>`;
+    }
+
+    for (let k = 1; k <= giornate; k++) {
+        let data = document.getElementById('finestraTempGirone' + k);
+        data.innerText = `${getDayOfWeek(gironi[k][0]) } ${gironi[k][0].slice(8, 10)} - ${getDayOfWeek(gironi[k].length - 1) } ${gironi[k][gironi[k].length - 1].slice(8, 10)} ${getMonthName(gironi[k][0])}`;
     }
 }
 function initPartitePage() {
