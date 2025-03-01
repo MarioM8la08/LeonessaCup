@@ -1318,6 +1318,48 @@ table tr td:last-child {
     width: 100%;
     background-color: var(--third-color);
 }
+.leggenda{
+    padding: 0 !important;
+}
+.leggenda0{
+    background-color: #ff0000;
+    height: 100%;
+    width: 5px;
+}
+.leggenda1{
+    background-color: #ff0000;
+    height: 100%;
+    width: 5px;
+}
+.leggenda2{
+    background-color: #ff6000;
+    height: 100%;
+    width: 5px;
+}
+.leggenda3{
+    background-color: transparent;
+    height: 100%;
+    width: 5px;
+}
+.legendaEx{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    color: var(--fifth-color);
+    width: 100%;
+}
+.legendaExCont{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: var(--fifth-color);
+}
+.legendaColor{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
 /*responsive*/
 @media screen and (max-width: 1000px){
     .navigation{

@@ -67,6 +67,9 @@ async function initSquadraPage() {
     }
 }
 // Classifica page
+function isThirdPlaceValid(girone) {
+
+}
 function immaginiSquadre(squadra) {
     let obj = [
         {
@@ -142,6 +145,7 @@ function initTable(girone) {
         let imgSquadra = `.${immaginiSquadre(squadra)}`;
         let html = `
         <tr>
+          <td class="leggenda${i}"></td>
           <td>${posizione}</td>
           <td class="squadraTable"><img src="${imgSquadra}"><h4>${squadra}</h4></td>
           <td>${punti}</td>
