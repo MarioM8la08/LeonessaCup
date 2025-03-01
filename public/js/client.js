@@ -324,6 +324,12 @@ function initPartitePage() {
     sliderMatch();
 }
 //SPA
+const squadreRoutes = [
+    '/squadre/itisCastelli.html', '/squadre/Arnaldo.html', '/squadre/Copernico.html',
+    '/squadre/Gambara.html', '/squadre/Calini.html', '/squadre/Lunardi.html',
+    '/squadre/Canossa.html', '/squadre/Luzzago.html', '/squadre/Leonardo.html',
+    '/squadre/DeAndre.html', '/squadre/Newton.html', '/squadre/Antonietti.html'
+];
 const routes = {
     '/chiSiamo': '/chiSiamo.html',
     '/credits': '/credits.html',
@@ -331,6 +337,17 @@ const routes = {
     '/classifica': '/classifica.html',
     '/squadre': '/squadre.html',
     '/squadre/itisCastelli': '/squadre/itisCastelli.html',
+    '/squadre/arnaldo': '/squadre/Arnaldo.html',
+    '/squadre/copernico': '/squadre/Copernico.html',
+    '/squadre/gambara': '/squadre/Gambara.html',
+    '/squadre/calini': '/squadre/Calini.html',
+    '/squadre/lunardi': '/squadre/Lunardi.html',
+    '/squadre/canossa': '/squadre/Canossa.html',
+    '/squadre/luzzago': '/squadre/Luzzago.html',
+    '/squadre/leonardo': '/squadre/Leonardo.html',
+    '/squadre/deAndre': '/squadre/DeAndre.html',
+    '/squadre/newton': '/squadre/Newton.html',
+    '/squadre/antonietti': '/squadre/Antonietti.html',
     '/regolamento': '/regolamento.html'
 };
 function loadContent(url) {
@@ -344,7 +361,8 @@ function loadContent(url) {
         })
         .then(html => {
             mainContent.innerHTML = html;
-            if (url === routes['/squadre/itisCastelli']) {
+            console.log('Content loaded:', url);
+            if (squadreRoutes.includes(url)) {
                 initSquadraPage();
             } else if (url === routes['/classifica']) {
                 initClassificaPage();
