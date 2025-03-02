@@ -1367,8 +1367,8 @@ table tr td:last-child {
     justify-content: center;
     align-items: center;
     gap: 50px;
-    padding: 20px 50px;
-    width: calc(100% - 100px);
+    padding: 20px 20px;
+    width: calc(100% - 40px);
     background-color: var(--third-color);
 }
 .imgPlayer{
@@ -1447,8 +1447,7 @@ table tr td:last-child {
     border-radius: 20px;
 }
 .statiscaDati div{
-    width: 100px;
-    height: 100px;
+    width: 80px;
     padding: 10px;
     display: flex;
     flex-direction: column;

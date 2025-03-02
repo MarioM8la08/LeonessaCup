@@ -349,6 +349,24 @@ function initPartitePage() {
     initMatchSeason().then(() => {});
     sliderMatch();
 }
+// Player page
+async function initPlayerPage(){
+    let playerID = window.location.search.split('=')[1];
+    let dataPlayer = {};
+    // comunicazione server per giocatori in squadra
+    await fetch(`/api/player/Data?playerID=${playerID}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            dataPlayer = data;
+        })
+        .catch(err => console.error('Error loading player data:', err));
+    console.log('dataPlayer:', dataPlayer);
+}
 //SPA
 const squadreRoutes = [
     '/squadre/itisCastelli.html', '/squadre/Arnaldo.html', '/squadre/Copernico.html',
@@ -395,6 +413,8 @@ function loadContent(url) {
                 initClassificaPage().then(() => {});
             } else if (url === routes['/partite']) {
                 initPartitePage();
+            } else if(url === routes['/player']) {
+                initPlayerPage().then(() => {});
             }
         })
         .catch(err => console.error('Error loading content:', err));
