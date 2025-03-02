@@ -13,9 +13,8 @@
     --fifth-color: #F7F2FA;
     --sixth-color: #B5B0B8;
     --seventh-color: #3EB1EE;
-    --eight-color:  #800080;
+    --eight-color: #ff2512;
     --second-color-darker: #1A1248;
-
 }
 body{
     background-image: url(../img/brescia.jpg);
@@ -317,7 +316,7 @@ nav .social{
     display: none;
 }
 main{
-    padding-top: 124px;
+    padding-top: 123px;
 }
 /*footer*/
 footer{
@@ -1360,24 +1359,24 @@ table tr td:last-child {
     height: 20px;
     border-radius: 50%;
 }
+
+/*playerPage*/
 .playerCenterContent{
     display: flex;
+    height: calc(100vh - 224px);
     justify-content: center;
     align-items: center;
     gap: 50px;
-}
-/*playerPage*/
-.playerCenterContent{
-    padding: 50px 20px;
-    width: calc(100% - 40px);
+    padding: 20px 50px;
+    width: calc(100% - 100px);
     background-color: var(--third-color);
 }
 .imgPlayer{
-    box-shadow: 0 0 20px var(--second-color--trasparent);
+    box-shadow: 0 0 20px var(--fourth-color);
     border-radius: 20px;
     padding: 20px;
     display: flex;
-    background-color: var(--second-color--trasparent);
+    background-color: var(--fourth-color);
     align-items: center;
     justify-content: center;
 }
@@ -1385,8 +1384,92 @@ table tr td:last-child {
     padding: 10px;
     height: 100%;
     border-radius: 20px;
-    box-shadow: 0 0 20px var(--third-color);
-    background-color: var(--third-color);
+}
+.infoPlayer{
+    padding: 20px;
+    background-color: var(--fourth-color);
+    border-radius: 20px;
+    color: var(--fifth-color);
+    font-weight: 200;
+    box-shadow: 0 0 20px var(--fourth-color);
+}
+.principaliInfoPlayer{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+}
+.principaliInfoPlayer h4{
+    font-size: 1.5em;
+    font-family: "Righteous", serif;
+    font-weight: 300;
+    color: var(--fifth-color);
+    padding: 10px;
+    background-color: var(--eight-color);
+    border-radius: 20px;
+    height: fit-content;
+}
+.principaliInfoPlayer h3{
+    font-size: 1.6em;
+    font-family: "Righteous", serif;
+    font-weight: 300;
+    color: var(--fifth-color);
+}
+#ruoloPlayer{
+    font-size: 1.2em;
+    font-family: "Righteous", serif;
+    font-weight: 200;
+    color: var(--sixth-color);
+    margin-bottom: 20px;
+}
+#squadraPlayer{
+    text-decoration: none;
+}
+#squadraPlayer img{
+    height: 15px;
+}
+#numeroPlayer, #annoPlayer, #squadraPlayer{
+    font-size: 1em;
+    font-family: "Righteous", serif;
+    font-weight: 200;
+    color: var(--sixth-color);
+}
+#numeroPlayer strong, #annoPlayer strong, #squadraPlayer strong{
+    color: var(--fifth-color);
+    font-weight: 200;
+}
+.statiscaDati{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: var(--second-color);
+    border-radius: 20px;
+}
+.statiscaDati div{
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    color: var(--fifth-color);
+    font-size: 1.2em;
+    font-family: "Righteous", serif;
+}
+.statiscaDati h5{
+    font-family: "Righteous", serif;
+    font-weight: 250;
+    color: var(--sixth-color);
+    text-align: center;
+    margin-bottom: 10px;
+}
+.statiscaDati p{
+    font-size: 1.2em;
+    font-family: "Righteous", serif;
+    font-weight: 200;
+    color: var(--fifth-color);
 }
 /*responsive*/
 @media screen and (max-width: 1000px){
