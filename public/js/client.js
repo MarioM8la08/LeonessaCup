@@ -35,22 +35,7 @@ buttonHamb.addEventListener('click', function(){
     menuHamb();
 });
 // Squadre page
-async function initSquadraPage() {
-    let squadraID = document.getElementById('squadraID').innerText;
-    let dataSquadra = {};
-    // comunicazione con il server per dati squadra
-    await fetch(`/api/squadre/Data?squadraID=${squadraID}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            dataSquadra = data;
-            console.log('Squadra data:', dataSquadra);
-        })
-        .catch(err => console.error('Error loading squadra data:', err));
+function insertTeams(dataSquadra) {
     let ContentPosition = "posizione";
     let ContentPunti = "punti";
     let ContentVinte = "vittorie";
@@ -66,10 +51,53 @@ async function initSquadraPage() {
         }
     }
 }
-// Classifica page
-function isThirdPlaceValid(girone) {
-
+function insertPlayers(dataGiocatori) {
+    let list = document.getElementById('listaGiocatori');
+    list.innerHTML = "";
+    for (let i = 0; i < dataGiocatori.length; i++) {
+        let nome = dataGiocatori[i]['nome_cognome'];
+        let ruolo = dataGiocatori[i]['ruolo'];
+        let id = dataGiocatori[i]['id_giocatore'] ;
+        list.innerHTML += `
+        <a href="/player?playerID=${id}" class="giocatore">
+            <img alt="" src="/img/player/${id}.png">
+            <div>
+                <h3>${nome}</h3>
+                <p>${ruolo}</p>
+            </div>
+        </a>`;
+    }
+    console.log('dataGiocatori:', dataGiocatori);
 }
+async function initSquadraPage() {
+    let squadraID = document.getElementById('squadraID').innerText;
+    let dataGiocatori = {};
+    // comunicazione server per giocatori in squadra
+    await fetch(`/api/squadre/Giocatori?squadraID=${squadraID}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            insertPlayers(data);
+        })
+        .catch(err => console.error('Error loading squadra data:', err));
+    // comunicazione con il server per dati squadra
+    await fetch(`/api/squadre/Data?squadraID=${squadraID}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            insertTeams(data);
+        })
+        .catch(err => console.error('Error loading squadra data:', err));
+}
+// Classifica page
 function immaginiSquadre(squadra) {
     let obj = [
         {
@@ -147,7 +175,7 @@ function initTable(girone) {
         <tr>
           <td class="leggenda${i}"></td>
           <td>${posizione}</td>
-          <td class="squadraTable"><img src="${imgSquadra}"><h4>${squadra}</h4></td>
+          <td class="squadraTable"><img alt="" src="${imgSquadra}"><h4>${squadra}</h4></td>
           <td>${punti}</td>
           <td>${partiteGiocate}</td>
           <td>${vittorie}</td>
@@ -211,12 +239,10 @@ function getMonthName(dateString) {
     return months[date.getUTCMonth()]; // getUTCMonth() restituisce un valore da 0 (Gennaio) a 11 (Dicembre)
 }
 function Snododata(data) { //2025-05-03T15:00:00.000Z
-    let dataString = `${getDayOfWeek(data)} ${data.slice(8, 10)} ${getMonthName(data)}`;
-    return dataString;
+    return `${getDayOfWeek(data)} ${data.slice(8, 10)} ${getMonthName(data)}`;
 }
 function dataMatch(data) {
-    let dataString = `${data.slice(8, 10)}/${data.slice(5, 7)} - ${data.slice(11, 16)}h ITA`;
-    return dataString;
+    return `${data.slice(8, 10)}/${data.slice(5, 7)} - ${data.slice(11, 16)}h ITA`;
 }
 function sliderMatch() {
     let idLeft = document.getElementById('btnLeft');
@@ -291,13 +317,13 @@ async function initMatchSeason() {
                                 <div class="match">
                                     <div class="team">
                                         <h3>${abbreviazioneSquadre(dataPartite[j]["squadra_casa"])}</h3>
-                                        <img src="/img/iislogo.gif">
+                                        <img alt="" src="/img/iislogo.gif">
                                     </div>
                                 </div>
                                 <div class="match">
                                     <div class="team">
                                         <h3>${abbreviazioneSquadre(dataPartite[j]["squadra_ospite"])}</h3>
-                                        <img src="/img/iislogo.gif">
+                                        <img alt="" src="/img/iislogo.gif">
                                     </div>
                                 </div>
                             </div>
@@ -320,7 +346,7 @@ async function initMatchSeason() {
     }
 }
 function initPartitePage() {
-    initMatchSeason().then(r => {});
+    initMatchSeason().then(() => {});
     sliderMatch();
 }
 //SPA
@@ -348,6 +374,7 @@ const routes = {
     '/squadre/deAndre': '/squadre/DeAndre.html',
     '/squadre/newton': '/squadre/Newton.html',
     '/squadre/antonietti': '/squadre/Antonietti.html',
+    '/player': '/player.html',
     '/regolamento': '/regolamento.html'
 };
 function loadContent(url) {
@@ -363,9 +390,9 @@ function loadContent(url) {
             mainContent.innerHTML = html;
             console.log('Content loaded:', url);
             if (squadreRoutes.includes(url)) {
-                initSquadraPage();
+                initSquadraPage().then(() => {});
             } else if (url === routes['/classifica']) {
-                initClassificaPage();
+                initClassificaPage().then(() => {});
             } else if (url === routes['/partite']) {
                 initPartitePage();
             }

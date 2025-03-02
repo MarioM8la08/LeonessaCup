@@ -1360,6 +1360,34 @@ table tr td:last-child {
     height: 20px;
     border-radius: 50%;
 }
+.playerCenterContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+/*playerPage*/
+.playerCenterContent{
+    padding: 50px 20px;
+    width: calc(100% - 40px);
+    background-color: var(--third-color);
+}
+.imgPlayer{
+    box-shadow: 0 0 20px var(--second-color--trasparent);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    background-color: var(--second-color--trasparent);
+    align-items: center;
+    justify-content: center;
+}
+.imgPlayer img{
+    padding: 10px;
+    height: 100%;
+    border-radius: 20px;
+    box-shadow: 0 0 20px var(--third-color);
+    background-color: var(--third-color);
+}
 /*responsive*/
 @media screen and (max-width: 1000px){
     .navigation{
