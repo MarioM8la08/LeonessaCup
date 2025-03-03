@@ -350,9 +350,29 @@ function initPartitePage() {
     sliderMatch();
 }
 // Player page
+function insertDataPlayer(dataPlayer) {
+    let imgPlayer = document.getElementById('imgPlayer');
+    imgPlayer.src = `/img/player/${dataPlayer[0]['id_giocatore']}.png`;
+    let squadra = "nome_scuola";
+    let ContentNome = "nome_cognome";
+    let ContentAnno = "anno_scolastico";
+    let ContentNumero = "numero_maglia";
+    let ContentRuolo = "ruolo";
+    let ContentGol = "total_gol";
+    let ContentAssist = "total_assist";
+    let ContentGialli = "total_cartellini_gialli";
+    let ContentRossi = "total_cartellini_rossi";
+    let ContentMinuti = "total_minuti_giocati";
+    let presenze = "total_titolare_true";
+    console.log(dataPlayer[0][squadra])
+    let arremptyData = [ContentNome, ContentAnno, ContentNumero, ContentRuolo, ContentGol, ContentAssist, ContentGialli, ContentRossi, ContentMinuti, presenze, squadra];
+    for (let i = 0; i < arremptyData.length; i++) {
+        let field = document.getElementById(arremptyData[i]);
+        field.innerHTML = dataPlayer[0][arremptyData[i]];
+    }
+}
 async function initPlayerPage(){
     let playerID = window.location.search.split('=')[1];
-    let dataPlayer = {};
     // comunicazione server per giocatori in squadra
     await fetch(`/api/player/Data?playerID=${playerID}`)
         .then(response => {
@@ -362,10 +382,10 @@ async function initPlayerPage(){
             return response.json();
         })
         .then(data => {
-            dataPlayer = data;
+            console.log(data);
+            insertDataPlayer(data);
         })
         .catch(err => console.error('Error loading player data:', err));
-    console.log('dataPlayer:', dataPlayer);
 }
 //SPA
 const squadreRoutes = [

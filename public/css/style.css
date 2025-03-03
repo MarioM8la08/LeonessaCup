@@ -1415,7 +1415,7 @@ table tr td:last-child {
     font-weight: 300;
     color: var(--fifth-color);
 }
-#ruoloPlayer{
+#ruolo{
     font-size: 1.2em;
     font-family: "Righteous", serif;
     font-weight: 200;
@@ -1428,13 +1428,13 @@ table tr td:last-child {
 #squadraPlayer img{
     height: 15px;
 }
-#numeroPlayer, #annoPlayer, #squadraPlayer{
+.numero_maglia, .anno_scolastico, #squadraPlayer{
     font-size: 1em;
     font-family: "Righteous", serif;
     font-weight: 200;
     color: var(--sixth-color);
 }
-#numeroPlayer strong, #annoPlayer strong, #squadraPlayer strong{
+.numero_maglia strong, .anno_scolastico strong, #squadraPlayer strong{
     color: var(--fifth-color);
     font-weight: 200;
 }
