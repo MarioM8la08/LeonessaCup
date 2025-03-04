@@ -431,11 +431,12 @@ function loadContent(url) {
                 initSquadraPage().then(() => {});
             } else if (url === routes['/classifica']) {
                 initClassificaPage().then(() => {});
-            } else if (url === routes['/partite']) {
+            }
+            /*else if (url === routes['/partite']) {
                 initPartitePage();
             } else if(url === routes['/player']) {
                 initPlayerPage().then(() => {});
-            }
+            } */
         })
         .catch(err => console.error('Error loading content:', err));
 }

@@ -592,6 +592,7 @@ footer .footerMenu ul li a{
 .cerchioDett{
     position: absolute;
     width: 100px;
+    font-size: 50px !important;
     margin-top: -70px;
     height: 100px;
     border-radius: 50%;
@@ -1469,6 +1470,29 @@ table tr td:last-child {
     font-family: "Righteous", serif;
     font-weight: 200;
     color: var(--fifth-color);
+}
+/*regolamento*/
+
+.mainRegolamento{
+    padding: 100px 0;
+    width: 100%;
+    background-color: var(--third-color);
+    font-family: "Righteous", serif;
+    font-weight: 200;
+}
+.btnreg{
+    background-color: var(--second-color);
+    padding: 10px 10px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: var(--fifth-color);
+    font-family: "Righteous", serif;
+    font-weight: 200;
+    cursor: pointer;
+    transition: 0.7s;
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
 }
 /*responsive*/
 @media screen and (max-width: 1000px){
