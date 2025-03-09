@@ -1,3 +1,4 @@
+let dataytMatch = [];
 // hamburger menu
 const buttonHamb = document.getElementById('Hamburger');
 const lineA = document.getElementById('lineA');
@@ -44,7 +45,7 @@ function insertTeams(dataSquadra) {
     let arremptyData = [ContentPosition, ContentPunti, ContentVinte, ContentGol, ContentPartite];
     for (let i = 0; i < arremptyData.length; i++) {
         let field = document.getElementById(arremptyData[i]);
-        console.log('field:', arremptyData[i], field);
+        // console.log('field:', arremptyData[i], field);
         field.innerHTML = dataSquadra[arremptyData[i]];
         if(arremptyData[i] === 'posizione') {
             field.innerHTML += '°';
@@ -67,7 +68,7 @@ function insertPlayers(dataGiocatori) {
             </div>
         </a>`;
     }
-    console.log('dataGiocatori:', dataGiocatori);
+    // console.log('dataGiocatori:', dataGiocatori);
 }
 async function initSquadraPage() {
     let squadraID = document.getElementById('squadraID').innerText;
@@ -157,7 +158,7 @@ function immaginiSquadre(squadra) {
 }
 function initTable(girone) {
     let table = document.getElementById(`classifica${girone[0]['girone']}`);
-    console.log('table:', table);
+    // console.log('table:', table);
     table.innerHTML = "";
     for (let i = 0; i < girone.length; i++) {
         let squadra = girone[i]['nome_scuola'];
@@ -204,7 +205,7 @@ async function initClassificaPage() {
         })
         .catch(err => console.error('Error loading classifica data:', err));
     let girone = [];
-    console.log('dataClassifica:', dataClassifica);
+    // console.log('dataClassifica:', dataClassifica);
     for(let i = 0; i < dataClassifica.length; i++) {
         girone.push(dataClassifica[i]);
         if(girone.length === 4) {
@@ -212,12 +213,87 @@ async function initClassificaPage() {
             girone = [];
         }
     }
-    console.log('girone:', girone);
+    // console.log('girone:', girone);
 }
 // Partite page
+async function loadytMatch() {
+    await fetch('/api/partite/ytMatch')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            dataytMatch = data;
+        })
+        .catch(err => console.error('Error loading classifica data:', err));
+}
+// YT API
+document.addEventListener('DOMContentLoaded', function() {
+    function loadClient() {
+        gapi.client.setApiKey('AIzaSyBgcQk81g5HKGWadplpG4AHrxySVyDDcLQ');
+        return gapi.client.load('https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest')
+            .then(() => {
+                // console.log('GAPI client loaded for API');
+                execute();
+            }, (err) => {
+                console.error('Error loading GAPI client for API', err);
+            });
+    }
+
+    function execute() {
+        return gapi.client.youtube.search.list({
+            'part': 'snippet',
+            'q': 'soccer highlights', // Modify the search query as needed
+            'type': 'video',
+            'maxResults': 1
+        }).then(async (response) => {
+            const videoContainer = document.getElementById('video-match');
+            const matchslideryt = document.getElementById('matchSlideryt');
+            if (videoContainer) {
+                response.result.items.forEach(item => {
+                    const videoId = item.id.videoId;
+                    const iframe = document.createElement('iframe');
+                    iframe.width = '1153';
+                    iframe.height = '649';
+                    iframe.src = `https://www.youtube.com/embed/6p_acerDKKI?si=_CUQH00zGIMQV6Ne`;
+                    iframe.frameBorder = '0';
+                    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                    iframe.allowFullscreen = true;
+                    videoContainer.appendChild(iframe);
+                });
+            } else {
+                console.error('video-container element not found');
+            }
+            if (matchslideryt && dataytMatch.length > 0) {
+                let data = dataytMatch;
+                console.log('data:', data);
+                for (let i = 0; i < data.length; i++) {
+                    let link = data[i]["link_youtube"];
+                    response.result.items.forEach(item => {
+                        const videoId = link;
+                        const iframe = document.createElement('iframe');
+                        iframe.width = '250';
+                        iframe.height = '140';
+                        iframe.src = videoId;
+                        iframe.frameBorder = '0';
+                        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                        iframe.allowFullscreen = true;
+                        matchslideryt.appendChild(iframe);
+                    });
+                }
+            }
+        }, (err) => {
+            console.error('Execute error', err);
+        });
+    }
+
+    gapi.load('client', loadClient);
+});
 function risultatoPartita(status, gol) {
-    console.log(typeof status);
-    console.log(typeof gol);
+    // console.log(typeof status);
+    // console.log(typeof gol);
     return status ? gol : '-';
 }
 function abbreviazioneSquadre(squadra) {
@@ -264,7 +340,7 @@ function sliderMatch() {
         if (matchDayWidth === -300) {
             idLeft.style.display = 'block';
         }
-        console.log(slider.offsetWidth - window.innerWidth);
+        // console.log(slider.offsetWidth - window.innerWidth);
         if(slider.offsetWidth - window.innerWidth < -matchDayWidth ){
             idRight.style.display = 'none';
         }
@@ -285,7 +361,7 @@ async function initMatchSeason() {
             dataPartite = data;
         })
         .catch(err => console.error('Error loading classifica data:', err));
-    console.log('dataPartite:', dataPartite);
+    // console.log('dataPartite:', dataPartite);
     const giornate = 3;
     const slider = document.getElementById('matchSlider');
     slider.innerHTML = "";
@@ -348,6 +424,8 @@ async function initMatchSeason() {
 function initPartitePage() {
     initMatchSeason().then(() => {});
     sliderMatch();
+    loadytMatch().then(r => {});
+    // gapi.load('client', loadClient);
 }
 // Player page
 function insertDataPlayer(dataPlayer) {
@@ -364,7 +442,7 @@ function insertDataPlayer(dataPlayer) {
     let ContentRossi = "total_cartellini_rossi";
     let ContentMinuti = "total_minuti_giocati";
     let presenze = "total_titolare_true";
-    console.log(dataPlayer[0][squadra])
+    // console.log(dataPlayer[0][squadra])
     let arremptyData = [ContentNome, ContentAnno, ContentNumero, ContentRuolo, ContentGol, ContentAssist, ContentGialli, ContentRossi, ContentMinuti, presenze, squadra];
     for (let i = 0; i < arremptyData.length; i++) {
         let field = document.getElementById(arremptyData[i]);
@@ -382,7 +460,7 @@ async function initPlayerPage(){
             return response.json();
         })
         .then(data => {
-            console.log(data);
+            // console.log(data);
             insertDataPlayer(data);
         })
         .catch(err => console.error('Error loading player data:', err));
@@ -426,17 +504,17 @@ function loadContent(url) {
         })
         .then(html => {
             mainContent.innerHTML = html;
-            console.log('Content loaded:', url);
+            // console.log('Content loaded:', url);
             if (squadreRoutes.includes(url)) {
                 initSquadraPage().then(() => {});
             } else if (url === routes['/classifica']) {
                 initClassificaPage().then(() => {});
             }
-            /*else if (url === routes['/partite']) {
+            else if (url === routes['/partite']) {
                 initPartitePage();
             } else if(url === routes['/player']) {
                 initPlayerPage().then(() => {});
-            } */
+            }
         })
         .catch(err => console.error('Error loading content:', err));
 }
