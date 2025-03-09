@@ -1131,7 +1131,6 @@ footer .footerMenu ul li a{
     width: 200px;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
     gap: 10px;
     height: 65px;
 }
@@ -1314,7 +1313,19 @@ table tr td:last-child {
     font-size: 1.5em;
     cursor: pointer;
 }
-.btnSlid:last-child{
+.btnSlid1{
+    position: absolute;
+    bottom: 75px;
+    margin: 10px;
+    border: none;
+    border-radius: 100%;
+    padding: 10px 15px;
+    background-color: var(--fourth-color);
+    color: var(--fifth-color);
+    font-size: 1.5em;
+    cursor: pointer;
+}
+.btnRight{
     right: 0;
 }
 .btnSlid:hover{
@@ -1342,7 +1353,13 @@ table tr td:last-child {
     display: flex;
     gap: 20px;
     justify-content: space-evenly;
-    overflow-x: auto;
+    overflow: auto;
+    white-space: nowrap;
+}
+.copriSlider{
+    position: relative;
+    width: 100%;
+    background-color: var(--third-color);
 }
 .leggenda{
     padding: 0 !important;

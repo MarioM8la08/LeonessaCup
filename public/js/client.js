@@ -230,7 +230,7 @@ async function loadytMatch() {
         .catch(err => console.error('Error loading classifica data:', err));
 }
 // YT API
-document.addEventListener('DOMContentLoaded', function() {
+function utube() {
     function loadClient() {
         gapi.client.setApiKey('AIzaSyBgcQk81g5HKGWadplpG4AHrxySVyDDcLQ');
         return gapi.client.load('https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest')
@@ -241,7 +241,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Error loading GAPI client for API', err);
             });
     }
-
     function execute() {
         return gapi.client.youtube.search.list({
             'part': 'snippet',
@@ -288,9 +287,8 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Execute error', err);
         });
     }
-
     gapi.load('client', loadClient);
-});
+}
 function risultatoPartita(status, gol) {
     // console.log(typeof status);
     // console.log(typeof gol);
@@ -345,6 +343,32 @@ function sliderMatch() {
             idRight.style.display = 'none';
         }
         slider.style.transform = `translateX(${matchDayWidth}px)`;
+    });
+    // slider yt
+    let idLeftyt = document.getElementById('btnLyt');
+    let idRightyt = document.getElementById('btnRyt');
+    let slideryt = document.getElementById('matchSlideryt');
+    let matchDayWidthyt = 0;
+    idLeftyt.addEventListener('click', function() {
+        if(matchDayWidthyt === -160) {
+            idLeftyt.style.display = 'none';
+        }
+        if(slideryt.offsetWidth - window.innerWidth > -matchDayWidthyt ){
+            idRightyt.style.display = 'block';
+        }
+        matchDayWidthyt += 160;
+        slideryt.style.transform = `translateX(${matchDayWidthyt}px)`;
+    });
+    idRightyt.addEventListener('click', function() {
+        matchDayWidthyt -= 160;
+        if (matchDayWidthyt === -160) {
+            idLeftyt.style.display = 'block';
+        }
+        // console.log(slider.offsetWidth - window.innerWidth);
+        if(slideryt.offsetWidth - window.innerWidth < -matchDayWidthyt ){
+            idRightyt.style.display = 'none';
+        }
+        slideryt.style.transform = `translateX(${matchDayWidthyt}px)`;
     });
 }
 async function initMatchSeason() {
@@ -425,7 +449,7 @@ function initPartitePage() {
     initMatchSeason().then(() => {});
     sliderMatch();
     loadytMatch().then(r => {});
-    // gapi.load('client', loadClient);
+    utube();
 }
 // Player page
 function insertDataPlayer(dataPlayer) {
