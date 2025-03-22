@@ -70,6 +70,24 @@ function insertPlayers(dataGiocatori) {
     }
     // console.log('dataGiocatori:', dataGiocatori);
 }
+function insertStaff(dataStaff) {
+    let list = document.getElementById('listaStaff');
+    list.innerHTML = "";
+    for (let i = 0; i < dataStaff.length; i++) {
+        let nome = dataStaff[i]['nome_cognome'];
+        let ruolo = dataStaff[i]['ruolo'];
+        let id = dataStaff[i]['id_staff'];
+        list.innerHTML += `
+        <a href="/player?playerID=${id}" class="giocatore">
+            <img alt="" src="/img/player/${id}.png">
+            <div>
+                <h3>${nome}</h3>
+                <p>${ruolo}</p>
+            </div>
+        </a>`;
+    }
+    // console.log('dataGiocatori:', dataGiocatori);
+}
 async function initSquadraPage() {
     let squadraID = document.getElementById('squadraID').innerText;
     let dataGiocatori = {};
@@ -95,6 +113,18 @@ async function initSquadraPage() {
         })
         .then(data => {
             insertTeams(data);
+        })
+        .catch(err => console.error('Error loading squadra data:', err));
+    // comunicazione server per staff in squadra
+    await fetch(`/api/squadre/Staff?squadraID=${squadraID}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            insertStaff(data);
         })
         .catch(err => console.error('Error loading squadra data:', err));
 }

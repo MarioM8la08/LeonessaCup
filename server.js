@@ -7,14 +7,17 @@ const dataTeamRouter = require('./routes/DataTeam.js');
 const dataGironiRouter = require('./routes/ClassificaGironi.js');
 const dataMatchRouter = require('./routes/DataMatch.js');
 const dataGiocatoriRouter = require('./routes/teamGiocatori.js');
+const dataStaffRouter = require('./routes/teamStaff.js');
 const dataPlayerPage = require('./routes/PlayerPage.js');
 const ytMatch = require('./routes/ytMatch.js');
+const cors = require('cors');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(dataTeamRouter);
 app.use(dataGironiRouter);
 app.use(dataMatchRouter);
 app.use(dataGiocatoriRouter);
+app.use(dataStaffRouter);
 app.use(dataPlayerPage);
 app.use(ytMatch);
 
