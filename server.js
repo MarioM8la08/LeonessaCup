@@ -10,6 +10,7 @@ const dataGiocatoriRouter = require('./routes/teamGiocatori.js');
 const dataStaffRouter = require('./routes/teamStaff.js');
 const dataPlayerPage = require('./routes/PlayerPage.js');
 const ytMatch = require('./routes/ytMatch.js');
+const MatchStat = require('./routes/MatchStat.js');
 const cors = require('cors');
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -19,7 +20,9 @@ app.use(dataMatchRouter);
 app.use(dataGiocatoriRouter);
 app.use(dataStaffRouter);
 app.use(dataPlayerPage);
+app.use(cors());
 app.use(ytMatch);
+app.use(MatchStat);
 
 app.get('/*.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', req.path));

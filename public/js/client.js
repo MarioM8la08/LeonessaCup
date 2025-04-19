@@ -136,7 +136,7 @@ function immaginiSquadre(squadra) {
             "img": "/img/iislogo.gif"
         },
         {
-            "nome_scuola": "Itis Castelli",
+            "nome_scuola": "Castelli",
             "img": "/img/iislogo.gif"
         },
         {
@@ -259,7 +259,7 @@ async function loadytMatch() {
         })
         .catch(err => console.error('Error loading classifica data:', err));
 }
-// YT API
+    // YT API
 function utube() {
     function loadClient() {
         gapi.client.setApiKey('AIzaSyBgcQk81g5HKGWadplpG4AHrxySVyDDcLQ');
@@ -327,6 +327,11 @@ function risultatoPartita(status, gol) {
 function abbreviazioneSquadre(squadra) {
     squadra = squadra - 1;
     let obj = ["Cas", "Arn", "Gam", "Cop", "Luz", "Cal", "Can", "Lun", "Leo", "DeA", "New", "Ant"];
+    return obj[squadra];
+}
+function GetSquadraById(squadra) {
+    squadra = squadra - 1;
+    let obj = ["Castelli", "Arnaldo", "Gambara", "Copernico", "Luzzago", "Calini", "Canossa", "Lunardi", "Leonardo", "De Andrè", "Newton", "Antonietti"];
     return obj[squadra];
 }
 function getDayOfWeek(data) {
@@ -436,7 +441,7 @@ async function initMatchSeason() {
             let matchDay = document.getElementById(`giornata${i}`);
             if(dataPartite[j]['giornata'] === i) {
                 matchDay.innerHTML += `
-                    <div class="matchDay">
+                    <a href="/partite/partita?partiteId=${dataPartite[j]["id_partita"]}" class="matchDay">
                         <div class="dataMatch">
                             <h3>${dataMatch(dataPartite[j]["data_ora"])}</h3>
                             <h4>Girone ${dataPartite[j]["girone"]}</h4>
@@ -462,7 +467,7 @@ async function initMatchSeason() {
                                 <div class="ris">${risultatoPartita(dataPartite[j]["status"], dataPartite[j]["gol_ospite"])}</div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 `;
                 gironi[`${i}`].push(dataPartite[j]["data_ora"]);
             }
@@ -480,6 +485,36 @@ function initPartitePage() {
     sliderMatch();
     loadytMatch().then(r => {});
     utube();
+}
+// Partita page
+function initStatPartita(data){
+    //loghi
+    let logoCasa = document.getElementById('logoSquadraCasa');
+    let logoOspite = document.getElementById('logoSquadraOspite');
+    logoCasa.src = immaginiSquadre(GetSquadraById(data['squadra_casa']));
+    logoOspite.src = immaginiSquadre(GetSquadraById(data['squadra_ospite']));
+    console.log(GetSquadraById(data['squadra_casa']));
+    //risultati
+    let risultatoCasa = document.getElementById('gol_casa');
+    let risultatoOspite = document.getElementById('gol_ospite');
+    risultatoCasa.innerText = data['gol_casa'];
+    risultatoOspite.innerText = data['gol_ospite'];
+}
+async function partitaPage() {
+    // leggiamo i parametri della partita dall'url dopo il '?'
+    let idPartita = window.location.search.split('=')[1];
+    // comunicazione con il server per dati partita
+    await fetch(`/api/partite/MatchStat?partitaID=${idPartita}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            initStatPartita(data);
+        })
+        .catch(err => console.error('Error loading partita data:', err));
 }
 // Player page
 function insertDataPlayer(dataPlayer) {
@@ -530,6 +565,7 @@ const routes = {
     '/chiSiamo': '/chiSiamo.html',
     '/credits': '/credits.html',
     '/partite': '/partite.html',
+    '/partite/partita': '/partite/partita.html',
     '/classifica': '/classifica.html',
     '/squadre': '/squadre.html',
     '/squadre/itisCastelli': '/squadre/itisCastelli.html',
@@ -563,11 +599,12 @@ function loadContent(url) {
                 initSquadraPage().then(() => {});
             } else if (url === routes['/classifica']) {
                 initClassificaPage().then(() => {});
-            }
-            else if (url === routes['/partite']) {
+            } else if (url === routes['/partite']) {
                 initPartitePage();
             } else if(url === routes['/player']) {
                 initPlayerPage().then(() => {});
+            } else if(url === routes['/partite/partita']) {
+                partitaPage();
             }
         })
         .catch(err => console.error('Error loading content:', err));
