@@ -10,6 +10,7 @@
     --second-color--trasparent: rgba(26, 18, 86, 0.5);
     --third-color: #141A33;
     --fourth-color: #5072A7;
+    --fourth-color--trasparent: rgba(80, 114, 167, 0.5);
     --fifth-color: #F7F2FA;
     --sixth-color: #B5B0B8;
     --seventh-color: #3EB1EE;
@@ -1558,13 +1559,30 @@ table tr td:last-child {
     height: 200px;
 }
 .team1Result{
-    width: 50%;
+    width: 45%;
     background-color: var(--second-color);
     color: var(--fifth-color);
     justify-content: flex-end;
 }
+.whowinner h1{
+    font-size: 1.3em;
+    font-family: "Righteous", serif;
+    font-weight: 200;
+    color: var(--fifth-color);
+    position: absolute;
+    z-index: 10;
+    background-color: var(--fourth-color--trasparent);
+    border-radius: 15px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px var(--fourth-color);
+    padding: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .team2Result{
-    width: 40%;
+    width: 45%;
     background-color: var(--fifth-color);
     color: var(--second-color);
     justify-content: flex-start;
@@ -1575,10 +1593,24 @@ table tr td:last-child {
     font-weight: 200;
     margin: 5vw;
 }
+.lose{
+    width: 40% !important;
+}
+.win{
+    width: 50% !important;
+}
+.pareggio{
+    width: 50% !important;
+}
 .whowinner{
     position: relative;
     width: 10%;
     height: 100%;
+    background: #1A1256;
+    background: -webkit-linear-gradient(90deg, rgba(26, 18, 86, 1) 50%, rgba(247, 242, 250, 1) 50%);
+    background: -moz-linear-gradient(90deg, rgba(26, 18, 86, 1) 50%, rgba(247, 242, 250, 1) 50%);
+    background: linear-gradient(90deg, rgba(26, 18, 86, 1) 50%, rgba(247, 242, 250, 1) 50%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1A1256", endColorstr="#F7F2FA", GradientType=1);
 }
 .whowinner::before,
 .whowinner::after {

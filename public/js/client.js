@@ -353,6 +353,9 @@ function Snododata(data) { //2025-05-03T15:00:00.000Z
 function dataMatch(data) {
     return `${data.slice(8, 10)}/${data.slice(5, 7)} - ${data.slice(11, 16)}h ITA`;
 }
+function dataMatchCompressed(data) {
+    return `${data.slice(8, 10)}/${data.slice(5, 7)}  ${data.slice(11, 16)}h`;
+}
 function sliderMatch() {
     let idLeft = document.getElementById('btnLeft');
     let idRight = document.getElementById('btnRight');
@@ -495,10 +498,37 @@ function initStatPartita(data){
     logoOspite.src = immaginiSquadre(GetSquadraById(data['squadra_ospite']));
     console.log(GetSquadraById(data['squadra_casa']));
     //risultati
+    let risCasa = data['gol_casa']
+    let risOspite = data['gol_ospite'];
+    let status = data['status'];
+    let ora = data['data_ora'];
+    console.log(status);
     let risultatoCasa = document.getElementById('gol_casa');
     let risultatoOspite = document.getElementById('gol_ospite');
-    risultatoCasa.innerText = data['gol_casa'];
-    risultatoOspite.innerText = data['gol_ospite'];
+    let dataPartita = document.getElementById('dataPartita');
+    let divTeam1 = document.getElementById('TeamDiv1');
+    let divTeam2 = document.getElementById('TeamDiv2');
+    if(!status) {
+        risCasa = '-';
+        risOspite = '-';
+        divTeam1.classList.add('pareggio');
+        divTeam2.classList.add('pareggio');
+        dataPartita.innerText = dataMatchCompressed(ora);
+    } else {
+        dataPartita.hidden = true;
+        if (risCasa > risOspite) {
+            divTeam1.classList.add('win');
+            divTeam2.classList.add('lose');
+        } else if(risCasa === risOspite) {
+            divTeam1.classList.add('pareggio');
+            divTeam2.classList.add('pareggio');
+        } else {
+            divTeam1.classList.add('lose');
+            divTeam2.classList.add('win');
+        }
+    }
+    risultatoCasa.innerText = risCasa;
+    risultatoOspite.innerText = risOspite;
 }
 async function partitaPage() {
     // leggiamo i parametri della partita dall'url dopo il '?'
