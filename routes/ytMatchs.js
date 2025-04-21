@@ -1,15 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('./db.js');
-router.get('/api/partite/mediaMatch', async (req, res) => {
-    const partitaID = req.query['partitaID'];
+router.get('/api/partite/ytMatchs', async (req, res) => {
     try {
-        const query = 'select link_youtube from video_partite where id_partita = $1;';
-        const result = await pool.query(query, [partitaID]);
+        const query = 'select * from video_partite order by id_partita desc;';
+        const result = await pool.query(query);
         if (result.rows.length === 0) {
             return res.status(404).send('Squadra not found');
         }
-        res.json(result.rows[0]);
+        res.json(result.rows);
     } catch (err) {
         console.error(err);
         res.status(500).send('Server error');

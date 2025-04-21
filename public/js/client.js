@@ -247,7 +247,7 @@ async function initClassificaPage() {
 }
 // Partite page
 async function loadytMatch() {
-    await fetch('/api/partite/ytMatch')
+    await fetch('/api/partite/ytMatchs')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -490,6 +490,24 @@ function initPartitePage() {
     utube();
 }
 // Partita page
+function mediaMatch(){
+    //interroghiamo server con id partita se ha video se non lo ha quindi status = false mostriamo un count down per la partita con dietro la diretta e il link al social
+    let idPartita = window.location.search.split('=')[1];
+    let media = document.getElementById('mediaMatch');
+    // interroghiamo server con id partita e ricaviamo il link youtube
+    fetch(`/api/partite/mediaMatch?partitaID=${idPartita}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('data:', data);
+                media.innerHTML = `<iframe width="560" height="315" src="${data["link_youtube"]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+        })
+        .catch(err => console.error('Error loading partita data:', err));
+}
 function initStatPartita(data){
     //loghi
     let logoCasa = document.getElementById('logoSquadraCasa');
@@ -502,7 +520,7 @@ function initStatPartita(data){
     let risOspite = data['gol_ospite'];
     let status = data['status'];
     let ora = data['data_ora'];
-    console.log(status);
+    console.log(data);
     let risultatoCasa = document.getElementById('gol_casa');
     let risultatoOspite = document.getElementById('gol_ospite');
     let dataPartita = document.getElementById('dataPartita');
@@ -516,6 +534,7 @@ function initStatPartita(data){
         dataPartita.innerText = dataMatchCompressed(ora);
     } else {
         dataPartita.hidden = true;
+        mediaMatch();
         if (risCasa > risOspite) {
             divTeam1.classList.add('win');
             divTeam2.classList.add('lose');
