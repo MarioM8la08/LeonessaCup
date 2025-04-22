@@ -78,13 +78,13 @@ function insertStaff(dataStaff) {
         let ruolo = dataStaff[i]['ruolo'];
         let id = dataStaff[i]['id_staff'];
         list.innerHTML += `
-        <a href="/player?playerID=${id}" class="giocatore">
+        <div href="#" class="giocatore">
             <img alt="" src="/img/player/${id}.png">
             <div>
                 <h3>${nome}</h3>
                 <p>${ruolo}</p>
             </div>
-        </a>`;
+        </div>`;
     }
     // console.log('dataGiocatori:', dataGiocatori);
 }
@@ -490,7 +490,19 @@ function initPartitePage() {
     utube();
 }
 // Partita page
-function mediaMatch(){
+function countdownPartita(data) {
+    let dataPartita = new Date(data);
+    let oraPartita = dataPartita.getTime();
+    let oraAttuale = new Date().getTime();
+    let diff = oraPartita - oraAttuale;
+    let giorni = Math.floor(diff / (1000 * 60 * 60 * 24));
+    let ore = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minuti = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    let secondi = Math.floor((diff % (1000 * 60)) / 1000);
+    let countdown = document.getElementById('countdown');
+    countdown.innerHTML = `${giorni}d ${ore}h ${minuti}m ${secondi}s`;
+}
+function mediaMatch(dataMatch){
     //interroghiamo server con id partita se ha video se non lo ha quindi status = false mostriamo un count down per la partita con dietro la diretta e il link al social
     let idPartita = window.location.search.split('=')[1];
     let media = document.getElementById('mediaMatch');
@@ -503,12 +515,11 @@ function mediaMatch(){
             return response.json();
         })
         .then(data => {
-            console.log('data:', data);
                 media.innerHTML = `<iframe width="560" height="315" src="${data["link_youtube"]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
         })
         .catch(err => console.error('Error loading partita data:', err));
 }
-function initStatPartita(data){
+function initStatPartita(data) {
     //loghi
     let logoCasa = document.getElementById('logoSquadraCasa');
     let logoOspite = document.getElementById('logoSquadraOspite');
@@ -532,9 +543,12 @@ function initStatPartita(data){
         divTeam1.classList.add('pareggio');
         divTeam2.classList.add('pareggio');
         dataPartita.innerText = dataMatchCompressed(ora);
+        setInterval(() => {
+            countdownPartita(data["data_ora"]);
+        }, 1000);
     } else {
         dataPartita.hidden = true;
-        mediaMatch();
+        mediaMatch(data);
         if (risCasa > risOspite) {
             divTeam1.classList.add('win');
             divTeam2.classList.add('lose');
