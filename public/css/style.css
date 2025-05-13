@@ -1663,6 +1663,7 @@ table tr td:last-child {
     align-items: center;
 }
 .PanoramicaMatch{
+    display: flex;
     padding: 20px;
     width: 100%;
     height: 100%;
@@ -1679,6 +1680,60 @@ table tr td:last-child {
     width: 2px;
     height: 100%;
     background-color: var(--fifth-color);
+}
+.lineaTemporaleEventi .evento{
+    display: inline-flex;
+    margin-left: -30px;
+    align-items: center;
+    color: var(--fifth-color);
+}
+.evento .pallino{
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: var(--fourth-color);
+    border: 1px solid var(--fifth-color);
+}
+.evento .Minuto{
+    font-size: 15px;
+    width: 15px;
+    padding-right: 5px;
+}
+.lineaOr{
+    height: 2px;
+    width: 20px;
+    margin-left: 5px;
+    background-color: var(--fifth-color);
+}
+.pallinoIcon{
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background-color: var(--fifth-color);
+    margin-left: 5px;
+    justify-content: center;
+    align-items: center;
+}
+.fa-futbol{
+    color: var(--footer-color);
+    font-size: 1.5em;
+}
+.playerEvento{
+    font-size: 15px;
+    font-family: "Righteous", serif;
+    font-weight: 200;
+    margin-left: 5px;
+}
+.fa-rectangle{
+    font-size: 1.3em;
+    rotate: 90deg;
+}
+.cardRed{
+    color: red;
+}
+.cardYellow{
+    color: #e6ae01;
 }
 /*responsive*/
 @media screen and (max-width: 1000px){

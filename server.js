@@ -12,6 +12,7 @@ const dataPlayerPage = require('./routes/PlayerPage.js');
 const ytMatchs = require('./routes/ytMatchs.js');
 const ytMatch = require('./routes/ytMatch.js');
 const MatchStat = require('./routes/MatchStat.js');
+const eventiMatch = require('./routes/eventiMatch.js');
 const cors = require('cors');
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -25,6 +26,7 @@ app.use(cors());
 app.use(ytMatchs);
 app.use(ytMatch);
 app.use(MatchStat);
+app.use(eventiMatch);
 
 app.get('/*.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', req.path));
