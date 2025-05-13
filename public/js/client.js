@@ -490,6 +490,21 @@ function initPartitePage() {
     utube();
 }
 // Partita page
+async function initEventMatch() {
+    let idPartita = window.location.search.split('=')[1];
+    await fetch(`/api/eventi?partitaID=${idPartita}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            initTimeline(data);
+        })
+        .catch(err => console.error('Error loading partita data:', err));
+}
 function countdownPartita(data) {
     let dataPartita = new Date(data);
     let oraPartita = dataPartita.getTime();
@@ -518,6 +533,39 @@ function mediaMatch(dataMatch){
                 media.innerHTML = `<iframe width="560" height="315" src="${data["link_youtube"]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
         })
         .catch(err => console.error('Error loading partita data:', err));
+}
+    // funzione che riempira la linea temporale con eventi con un html predefinito
+function initTimeline(data) {
+    let timeline = document.getElementById('timeline');
+    timeline.innerHTML = "";
+    let minutiPr = 0;
+    for (let i = 0; i < data.length; i++) {
+        let gap = 0;
+        let minuto = data[i]['minuto'];
+        let evento = data[i]['evento'];
+        let squadra = data[i]['id_squadra'];
+        let giocatore = data[i]['nome_cognome'];
+        gap = minuto - minutiPr - 3;
+        minutiPr = parseInt(minuto);
+        //eliminare il nome utilizzando lo spazio tra nome e cognome per avere cognome tipo "Mario Rossi" a "Rossi"
+        giocatore = giocatore.split(" ")[1];
+        timeline.innerHTML += `                
+                <div class="evento" style="margin-top: ${gap}0px;">
+                    <div class="Minuto">${minuto}</div>
+                    <div class="pallino"></div>
+                    <div class="lineaOr"></div>
+                    <div id="iconEvent${i}" class="pallinoIcon"></div>
+                    <h2 class="playerEvento">${giocatore}</h2>
+                </div>`;
+        let icon = document.getElementById('iconEvent' + i);
+        if(evento === 'gol') {
+            icon.innerHTML = `<i class="fa-solid fa-thin fa-futbol"></i>`;
+        } else if(evento === 'giallo') {
+            icon.innerHTML = `<i class="fa-solid fa-thin fa-rectangle cardYellow"></i>`;
+        } else if(evento === 'rosso') {
+            icon.innerHTML = `<i class="fa-solid fa-thin fa-rectangle cardRed"></i>`;
+        }
+    }
 }
 function initStatPartita(data) {
     //loghi
@@ -562,6 +610,10 @@ function initStatPartita(data) {
     }
     risultatoCasa.innerText = risCasa;
     risultatoOspite.innerText = risOspite;
+    initEventMatch().then(r => {});
+    setInterval(() => {
+        initEventMatch().then(r => {});
+    }, 10000);
 }
 async function partitaPage() {
     // leggiamo i parametri della partita dall'url dopo il '?'
