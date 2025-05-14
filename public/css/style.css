@@ -1665,11 +1665,9 @@ table tr td:last-child {
 .PanoramicaMatch{
     display: flex;
     padding: 20px;
-    width: 100%;
-    height: 100%;
-    background-color: var(--fourth-color);
-    border-radius: 20px;
-    box-shadow: 0 0 10px var(--fourth-color);
+}
+.casaEVENTO{
+    margin-left: -113px !important;
 }
 .listaPrimaSquadra, .listaSecondaSquadra{
     width: 50%;
@@ -1683,7 +1681,7 @@ table tr td:last-child {
 }
 .lineaTemporaleEventi .evento{
     display: inline-flex;
-    margin-left: -30px;
+    margin-left: -40px;
     align-items: center;
     color: var(--fifth-color);
 }
@@ -1697,7 +1695,10 @@ table tr td:last-child {
 .evento .Minuto{
     font-size: 15px;
     width: 15px;
-    padding-right: 5px;
+    padding: 0 5px;
+}
+.spazio5{
+    margin-right: 5px !important;
 }
 .lineaOr{
     height: 2px;
