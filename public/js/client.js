@@ -490,7 +490,7 @@ function initPartitePage() {
     utube();
 }
 // Partita page
-async function initEventMatch() {
+async function initEventMatch(idCasa) {
     let idPartita = window.location.search.split('=')[1];
     await fetch(`/api/eventi?partitaID=${idPartita}`)
         .then(response => {
@@ -501,7 +501,7 @@ async function initEventMatch() {
         })
         .then(data => {
             console.log(data);
-            initTimeline(data);
+            initTimeline(data, idCasa);
         })
         .catch(err => console.error('Error loading partita data:', err));
 }
@@ -535,7 +535,7 @@ function mediaMatch(dataMatch){
         .catch(err => console.error('Error loading partita data:', err));
 }
     // funzione che riempira la linea temporale con eventi con un html predefinito
-function initTimeline(data) {
+function initTimeline(data, idCasa) {
     let timeline = document.getElementById('timeline');
     timeline.innerHTML = "";
     let minutiPr = 0;
@@ -549,14 +549,26 @@ function initTimeline(data) {
         minutiPr = parseInt(minuto);
         //eliminare il nome utilizzando lo spazio tra nome e cognome per avere cognome tipo "Mario Rossi" a "Rossi"
         giocatore = giocatore.split(" ")[1];
-        timeline.innerHTML += `                
+        console.log(data[i]['id_squadra'] === idCasa);
+        if(data[i]['id_squadra'] === idCasa) {
+            timeline.innerHTML += `                
+                <div class="evento casaEVENTO" style="margin-top: ${gap}0px;">
+                    <h2 class="playerEvento">${giocatore}</h2>
+                    <div id="iconEvent${i}" class="pallinoIcon"></div>
+                    <div class="lineaOr"></div>
+                    <div class="pallino"></div>
+                    <div class="Minuto">${minuto}''</div>
+                </div>`;
+        } else {
+            timeline.innerHTML += `                
                 <div class="evento" style="margin-top: ${gap}0px;">
-                    <div class="Minuto">${minuto}</div>
+                    <div class="Minuto spazio5">${minuto}''</div>
                     <div class="pallino"></div>
                     <div class="lineaOr"></div>
                     <div id="iconEvent${i}" class="pallinoIcon"></div>
                     <h2 class="playerEvento">${giocatore}</h2>
                 </div>`;
+        }
         let icon = document.getElementById('iconEvent' + i);
         if(evento === 'gol') {
             icon.innerHTML = `<i class="fa-solid fa-thin fa-futbol"></i>`;
@@ -569,6 +581,7 @@ function initTimeline(data) {
 }
 function initStatPartita(data) {
     //loghi
+    console.log(data);
     let logoCasa = document.getElementById('logoSquadraCasa');
     let logoOspite = document.getElementById('logoSquadraOspite');
     logoCasa.src = immaginiSquadre(GetSquadraById(data['squadra_casa']));
@@ -610,9 +623,9 @@ function initStatPartita(data) {
     }
     risultatoCasa.innerText = risCasa;
     risultatoOspite.innerText = risOspite;
-    initEventMatch().then(r => {});
+    initEventMatch(data['squadra_casa']).then(r => {});
     setInterval(() => {
-        initEventMatch().then(r => {});
+        initEventMatch(data['squadra_casa']).then(r => {});
     }, 10000);
 }
 async function partitaPage() {
