@@ -315,7 +315,7 @@ nav .social{
     width: 100%;
 }
 .hidden{
-    display: none;
+    display: none !important;
 }
 main{
     padding-top: 123px;
@@ -1685,6 +1685,12 @@ table tr td:last-child {
     align-items: center;
     color: var(--fifth-color);
 }
+.lineaTemporaleEventi .redLive{
+    display: inline-flex;
+    margin-left: -40px;
+    align-items: center;
+    color: var(--fifth-color);
+}
 .evento .pallino{
     width: 20px;
     height: 20px;
@@ -1692,7 +1698,24 @@ table tr td:last-child {
     background-color: var(--fourth-color);
     border: 1px solid var(--fifth-color);
 }
-.evento .Minuto{
+.pallinoLive{
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: var(--eight-color);
+}
+.PointerLive{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: var(--third-color);
+    border: 1px solid var(--fifth-color);
+}
+
+.Minuto{
     font-size: 15px;
     width: 15px;
     padding: 0 5px;
