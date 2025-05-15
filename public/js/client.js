@@ -319,10 +319,32 @@ function utube() {
     }
     gapi.load('client', loadClient);
 }
-function risultatoPartita(status, gol) {
-    // console.log(typeof status);
-    // console.log(typeof gol);
-    return status ? gol : '-';
+// tre stati della partita: 0 = in corso, 1 = finita, 2 = non iniziata      dal tempo dedurre lo stato le partite durano 60 minuti + 15 min intervallo
+// 0 = in corso, 1 = finita, 2 = non iniziata
+function checkStatus(orario) {
+    let dataPartita = new Date(orario);
+    let oraPartita = dataPartita.getTime();
+    let oraAttuale = new Date().getTime();
+    let diff = oraPartita - oraAttuale;
+    // console.log('diff:', diff);
+    if(diff > 0) {
+        return 2; // non iniziata
+    } else if(diff < 0 && diff > -4500000) {
+        return 0; // in corso
+    } else {
+        return 1; // finita
+    }
+}
+// funzione che restituisce il risultato della partita in base allo stato
+function risultatoPartita(orario, gol) {
+    let stato = checkStatus(orario);
+    if(stato === 0) {
+        return gol;
+    } else if(stato === 1) {
+        return gol;
+    } else {
+        return '-';
+    }
 }
 function abbreviazioneSquadre(squadra) {
     squadra = squadra - 1;
@@ -334,10 +356,15 @@ function GetSquadraById(squadra) {
     let obj = ["Castelli", "Arnaldo", "Gambara", "Copernico", "Luzzago", "Calini", "Canossa", "Lunardi", "Leonardo", "De Andrè", "Newton", "Antonietti"];
     return obj[squadra];
 }
+function minutoPartita(dataInizio) {
+    const inizio = new Date(dataInizio);
+    const oraAdesso = new Date();
+    return Math.floor((oraAdesso - inizio) / 60000);
+}
 function getDayOfWeek(data) {
     const date = new Date(data);
     const days = ["Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"];
-    return days[date.getUTCDay()]; // getUTCDay() restituisce 0 (Domenica) - 6 (Sabato)
+    return days[date.getDay()]; // Orario locale
 }
 function getMonthName(dateString) {
     const date = new Date(dateString);
@@ -345,16 +372,28 @@ function getMonthName(dateString) {
         "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
         "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
     ];
-    return months[date.getUTCMonth()]; // getUTCMonth() restituisce un valore da 0 (Gennaio) a 11 (Dicembre)
+    return months[date.getMonth()]; // Orario locale
 }
-function Snododata(data) { //2025-05-03T15:00:00.000Z
-    return `${getDayOfWeek(data)} ${data.slice(8, 10)} ${getMonthName(data)}`;
+function Snododata(data) {
+    const date = new Date(data);
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${getDayOfWeek(data)} ${day} ${getMonthName(data)}`;
 }
 function dataMatch(data) {
-    return `${data.slice(8, 10)}/${data.slice(5, 7)} - ${data.slice(11, 16)}h ITA`;
+    const date = new Date(data);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${day}/${month} - ${hours}:${minutes}h ITA`;
 }
 function dataMatchCompressed(data) {
-    return `${data.slice(8, 10)}/${data.slice(5, 7)}  ${data.slice(11, 16)}h`;
+    const date = new Date(data);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${day}/${month}  ${hours}:${minutes}h`;
 }
 function sliderMatch() {
     let idLeft = document.getElementById('btnLeft');
@@ -432,6 +471,7 @@ async function initMatchSeason() {
         "2": [],
         "3": [],
     };
+    console.log('dataPartite:', dataPartite);
     for (let i = 1; i <= giornate; i++) {
         slider.innerHTML += `                
                 <div id="giornata${i}" class="giornata">
@@ -466,8 +506,8 @@ async function initMatchSeason() {
                                 </div>
                             </div>
                             <div class="risLive">
-                                <div class="ris">${risultatoPartita(dataPartite[j]["status"], dataPartite[j]["gol_casa"])}</div>
-                                <div class="ris">${risultatoPartita(dataPartite[j]["status"], dataPartite[j]["gol_ospite"])}</div>
+                                <div class="ris">${risultatoPartita(dataPartite[j]["data_ora"], dataPartite[j]["gol_casa"])}</div>
+                                <div class="ris">${risultatoPartita(dataPartite[j]["data_ora"], dataPartite[j]["gol_ospite"])}</div>
                             </div>
                         </div>
                     </a>
@@ -490,7 +530,7 @@ function initPartitePage() {
     utube();
 }
 // Partita page
-async function initEventMatch(idCasa) {
+async function initEventMatch(idCasa, ora) {
     let idPartita = window.location.search.split('=')[1];
     await fetch(`/api/eventi?partitaID=${idPartita}`)
         .then(response => {
@@ -501,7 +541,7 @@ async function initEventMatch(idCasa) {
         })
         .then(data => {
             console.log(data);
-            initTimeline(data, idCasa);
+            initTimeline(data, idCasa, ora);
         })
         .catch(err => console.error('Error loading partita data:', err));
 }
@@ -535,7 +575,7 @@ function mediaMatch(dataMatch){
         .catch(err => console.error('Error loading partita data:', err));
 }
     // funzione che riempira la linea temporale con eventi con un html predefinito
-function initTimeline(data, idCasa) {
+function initTimeline(data, idCasa, ora) {
     let timeline = document.getElementById('timeline');
     timeline.innerHTML = "";
     let minutiPr = 0;
@@ -578,6 +618,18 @@ function initTimeline(data, idCasa) {
             icon.innerHTML = `<i class="fa-solid fa-thin fa-rectangle cardRed"></i>`;
         }
     }
+    let minutoLive = minutoPartita(ora);
+    console.log('minutoLive:', minutoLive);
+    if (minutoLive > 0 && minutoLive < 75) {
+        timeline.innerHTML += `                
+                <div class="redLive" style="margin-top: ${minutoLive - minutiPr - 3}0px;">
+                    <div class="Minuto">7''</div>
+                    <div class="PointerLive"><div class="pallinoLive"></div></div>
+                </div>`;
+        setInterval(() => {
+
+        }, 10000);
+    }
 }
 function initStatPartita(data) {
     //loghi
@@ -590,8 +642,11 @@ function initStatPartita(data) {
     //risultati
     let risCasa = data['gol_casa']
     let risOspite = data['gol_ospite'];
-    let status = data['status'];
+    let status = false;
     let ora = data['data_ora'];
+    let statusMatch = checkStatus(ora);
+    status = (statusMatch === 0 || statusMatch === 1);
+    console.log(status);
     console.log(data);
     let risultatoCasa = document.getElementById('gol_casa');
     let risultatoOspite = document.getElementById('gol_ospite');
@@ -604,6 +659,7 @@ function initStatPartita(data) {
         divTeam1.classList.add('pareggio');
         divTeam2.classList.add('pareggio');
         dataPartita.innerText = dataMatchCompressed(ora);
+        countdownPartita(data["data_ora"]);
         setInterval(() => {
             countdownPartita(data["data_ora"]);
         }, 1000);
@@ -623,10 +679,16 @@ function initStatPartita(data) {
     }
     risultatoCasa.innerText = risCasa;
     risultatoOspite.innerText = risOspite;
-    initEventMatch(data['squadra_casa']).then(r => {});
-    setInterval(() => {
-        initEventMatch(data['squadra_casa']).then(r => {});
-    }, 10000);
+    if(status) {
+        initEventMatch(data['squadra_casa'], ora).then(r => {});
+        setInterval(() => {
+            initEventMatch(data['squadra_casa'], ora).then(r => {});
+        }, 10000);
+    } else {
+        let idTimDiv = document.getElementById('timelineTotal');
+        idTimDiv.classList.add('hidden');
+    }
+
 }
 async function partitaPage() {
     // leggiamo i parametri della partita dall'url dopo il '?'
