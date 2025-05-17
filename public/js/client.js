@@ -486,7 +486,7 @@ async function initMatchSeason() {
                 matchDay.innerHTML += `
                     <a href="/partite/partita?partiteId=${dataPartite[j]["id_partita"]}" class="matchDay">
                         <div class="dataMatch">
-                            <h3>${dataMatch(dataPartite[j]["data_ora"])}</h3>
+                            <h3>${dataMatch(dataPartite[j]["data_ora"])}${checkStatus(dataPartite[j]["data_ora"]) === 0 ? '<div class="live-dot"></div>' : ''}</h3>
                             <h4>Girone ${dataPartite[j]["girone"]}</h4>
                             <hr>
                         </div>
@@ -620,15 +620,26 @@ function initTimeline(data, idCasa, ora) {
     }
     let minutoLive = minutoPartita(ora);
     console.log('minutoLive:', minutoLive);
-    if (minutoLive > 0 && minutoLive < 75) {
+    if (minutoLive >= 0 && minutoLive <= 30) {
         timeline.innerHTML += `                
                 <div class="redLive" style="margin-top: ${minutoLive - minutiPr - 3}0px;">
-                    <div class="Minuto">7''</div>
+                    <div class="Minuto">${minutoLive}''</div>
                     <div class="PointerLive"><div class="pallinoLive"></div></div>
                 </div>`;
-        setInterval(() => {
-
-        }, 10000);
+    } else if(minutoLive > 30 && minutoLive < 45) {
+        const minutoIntervallo = 30;
+        timeline.innerHTML += `                
+                <div class="redLive" style="margin-top: ${minutoIntervallo - minutiPr - 3}0px;">
+                    <div class="Minuto">Int</div>
+                    <div class="PointerLive"><div class="live-dot"></div></div>
+                </div>`;
+    } else if(minutoLive >= 45 && minutoLive <= 75) {
+        console.log('minutoLive:', minutoLive);
+        timeline.innerHTML += `                
+                <div class="redLive" style="margin-top: ${(minutoLive - 15) - minutiPr - 3}0px;">
+                    <div class="Minuto">${minutoLive - 15}''</div>
+                    <div class="PointerLive"><div class="pallinoLive"></div></div>
+                </div>`;
     }
 }
 function initStatPartita(data) {
