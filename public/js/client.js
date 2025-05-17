@@ -35,8 +35,23 @@ buttonHamb.addEventListener('click', function(){
     });
     menuHamb();
 });
+// media query
+
 // Squadre page
 function insertTeams(dataSquadra) {
+    let Pos = document.getElementById('Pos');
+    let G = document.getElementById('G');
+    let V = document.getElementById('V');
+    let PG = document.getElementById('PG');
+    let GF = document.getElementById('Pt');
+
+    if (window.innerWidth < 480) {
+        Pos.innerText = "Pos";
+        G.innerText = "G";
+        V.innerText = "V";
+        PG.innerText = "PG";
+        GF.innerText = "Pt";
+    }
     let ContentPosition = "posizione";
     let ContentPunti = "punti";
     let ContentVinte = "vittorie";
@@ -130,54 +145,39 @@ async function initSquadraPage() {
 }
 // Classifica page
 function immaginiSquadre(squadra) {
+    console.log(squadra);
     let obj = [
         {
             "nome_scuola": "Arnaldo",
-            "img": "/img/iislogo.gif"
+            "img": "/img/squadre/arnaldo.png"
         },
         {
-            "nome_scuola": "Castelli",
-            "img": "/img/iislogo.gif"
-        },
-        {
-            "nome_scuola": "Copernico",
-            "img": "/img/iislogo.gif"
+            "nome_scuola": "Itis Castelli",
+            "img": "/img/squadre/castelli.png"
         },
         {
             "nome_scuola": "Gambara",
-            "img": "/img/iislogo.gif"
+            "img": "/img/squadre/gambara.png"
         },
         {
-            "nome_scuola": "Calini",
-            "img": "/img/iislogo.gif"
-        },
-        {
-            "nome_scuola": "Lunardi",
-            "img": "/img/iislogo.gif"
-        },
-        {
-            "nome_scuola": "Canossa",
-            "img": "/img/iislogo.gif"
+            "nome_scuola": "Copernico",
+            "img": "/img/squadre/copernico.png"
         },
         {
             "nome_scuola": "Luzzago",
-            "img": "/img/iislogo.gif"
+            "img": "/img/squadre/luzzago.png"
         },
         {
-            "nome_scuola": "Leonardo",
-            "img": "/img/iislogo.gif"
+            "nome_scuola": "Calini",
+            "img": "/img/squadre/calini.png"
+        },
+        {
+            "nome_scuola": "Canossa",
+            "img": "/img/squadre/canossa.png"
         },
         {
             "nome_scuola": "De Andrè",
-            "img": "/img/iislogo.gif"
-        },
-        {
-            "nome_scuola": "Newton",
-            "img": "/img/iislogo.gif"
-        },
-        {
-            "nome_scuola": "Antonietti",
-            "img": "/img/iislogo.gif"
+            "img": "/img/squadre/deandre.png"
         }
     ]
     for (let i = 0; i < obj.length; i++) {
@@ -189,6 +189,7 @@ function immaginiSquadre(squadra) {
 function initTable(girone) {
     let table = document.getElementById(`classifica${girone[0]['girone']}`);
     // console.log('table:', table);
+    console.log('girone:', girone);
     table.innerHTML = "";
     for (let i = 0; i < girone.length; i++) {
         let squadra = girone[i]['nome_scuola'];
@@ -206,7 +207,7 @@ function initTable(girone) {
         <tr>
           <td class="leggenda${i}"></td>
           <td>${posizione}</td>
-          <td class="squadraTable"><img alt="" src="${imgSquadra}"><h4>${squadra}</h4></td>
+          <td class="squadraTable"><img alt="" src="${imgSquadra}"><h4 class="squadraTableh4">${squadra}</h4></td>
           <td>${punti}</td>
           <td>${partiteGiocate}</td>
           <td>${vittorie}</td>
@@ -348,12 +349,12 @@ function risultatoPartita(orario, gol) {
 }
 function abbreviazioneSquadre(squadra) {
     squadra = squadra - 1;
-    let obj = ["Cas", "Arn", "Gam", "Cop", "Luz", "Cal", "Can", "Lun", "Leo", "DeA", "New", "Ant"];
+    let obj = ["Cas", "Arn", "Gam", "Cop", "Luz", "Cal", "Can", "DeA"];
     return obj[squadra];
 }
 function GetSquadraById(squadra) {
     squadra = squadra - 1;
-    let obj = ["Castelli", "Arnaldo", "Gambara", "Copernico", "Luzzago", "Calini", "Canossa", "Lunardi", "Leonardo", "De Andrè", "Newton", "Antonietti"];
+    let obj = ["Itis Castelli", "Arnaldo", "Gambara", "Copernico", "Luzzago", "Calini", "Canossa", "De Andrè"];
     return obj[squadra];
 }
 function minutoPartita(dataInizio) {
@@ -463,16 +464,16 @@ async function initMatchSeason() {
         })
         .catch(err => console.error('Error loading classifica data:', err));
     // console.log('dataPartite:', dataPartite);
-    const giornate = 3;
+    const giornate = 4;
     const slider = document.getElementById('matchSlider');
     slider.innerHTML = "";
     let gironi = {
         "1": [],
-        "2": [],
-        "3": [],
+        "2": []
     };
     console.log('dataPartite:', dataPartite);
     for (let i = 1; i <= giornate; i++) {
+        if (i === 1) {
         slider.innerHTML += `                
                 <div id="giornata${i}" class="giornata">
                     <div class="hGiornate">
@@ -480,10 +481,45 @@ async function initMatchSeason() {
                         <h4 class="nGiornate">Giornata ${i}</h4>
                     </div>
                 </div>`;
+        } else if (i === 2) {
+            slider.innerHTML += `                
+                <div id="giornata${i}" class="giornata">
+                    <div class="hGiornate">
+                        <h1 id="finestraTempGirone${i}" class="titleGiornate">${Snododata(dataPartite[2]["data_ora"])}</h1>
+                        <h4 class="nGiornate">Giornata ${i}</h4>
+                    </div>
+                </div>`;
+        } else if (i === 3) {
+            slider.innerHTML += `                
+                <div id="giornata${i}" class="giornata">
+                    <div class="hGiornate">
+                        <h1 id="finestraTempGirone${i}" class="titleGiornate">${Snododata(dataPartite[4]["data_ora"])}</h1>
+                        <h4 class="nGiornate">Giornata ${i}</h4>
+                    </div>
+                </div>`;
+        } else {
+            slider.innerHTML += `                
+                <div id="giornata${i}" class="giornata">
+                    <div class="hGiornate">
+                        <h1 id="finestraTempGirone${i}" class="titleGiornate">${Snododata(dataPartite[3]["data_ora"])}</h1>
+                        <h4 class="nGiornate">Giornata ${i}</h4>
+                    </div>
+                </div>`;
+        }
         for (let j = 0; j < dataPartite.length; j++) {
             let matchDay = document.getElementById(`giornata${i}`);
-            if(dataPartite[j]['giornata'] === i) {
-                matchDay.innerHTML += `
+            if(dataPartite[j]["squadra_casa"] === dataPartite[j]["squadra_ospite"]){
+                console.log('partita di andata e ritorno');
+                if(dataPartite[j]['giornata'] === i) {
+                    matchDay.innerHTML += `
+                    <div class="matchDay2 centerText" style="">
+                        <p class="attesaEstrazioni">In attesa delle prossime estrazioni...</p>
+                    </div>`;
+                    gironi[`${i}`].push(dataPartite[j]["data_ora"]);
+                }
+            } else {
+                if(dataPartite[j]['giornata'] === i) {
+                    matchDay.innerHTML += `
                     <a href="/partite/partita?partiteId=${dataPartite[j]["id_partita"]}" class="matchDay">
                         <div class="dataMatch">
                             <h3>${dataMatch(dataPartite[j]["data_ora"])}${checkStatus(dataPartite[j]["data_ora"]) === 0 ? '<div class="live-dot"></div>' : ''}</h3>
@@ -495,13 +531,13 @@ async function initMatchSeason() {
                                 <div class="match">
                                     <div class="team">
                                         <h3>${abbreviazioneSquadre(dataPartite[j]["squadra_casa"])}</h3>
-                                        <img alt="" src="/img/iislogo.gif">
+                                        <img alt="" src="${immaginiSquadre(GetSquadraById(dataPartite[j]["squadra_casa"]))}">
                                     </div>
                                 </div>
                                 <div class="match">
                                     <div class="team">
                                         <h3>${abbreviazioneSquadre(dataPartite[j]["squadra_ospite"])}</h3>
-                                        <img alt="" src="/img/iislogo.gif">
+                                        <img alt="" src="${immaginiSquadre(GetSquadraById(dataPartite[j]["squadra_ospite"]))}">
                                     </div>
                                 </div>
                             </div>
@@ -512,15 +548,11 @@ async function initMatchSeason() {
                         </div>
                     </a>
                 `;
-                gironi[`${i}`].push(dataPartite[j]["data_ora"]);
+                    gironi[`${i}`].push(dataPartite[j]["data_ora"]);
+                }
             }
         }
         slider.innerHTML += `<div class="divisoreGiornate"></div>`;
-    }
-
-    for (let k = 1; k <= giornate; k++) {
-        let data = document.getElementById('finestraTempGirone' + k);
-        data.innerText = `${getDayOfWeek(gironi[k][0]) } ${gironi[k][0].slice(8, 10)} - ${getDayOfWeek(gironi[k].length - 1) } ${gironi[k][gironi[k].length - 1].slice(8, 10)} ${getMonthName(gironi[k][0])}`;
     }
 }
 function initPartitePage() {
@@ -758,9 +790,9 @@ async function initPlayerPage(){
 //SPA
 const squadreRoutes = [
     '/squadre/itisCastelli.html', '/squadre/Arnaldo.html', '/squadre/Copernico.html',
-    '/squadre/Gambara.html', '/squadre/Calini.html', '/squadre/Lunardi.html',
-    '/squadre/Canossa.html', '/squadre/Luzzago.html', '/squadre/Leonardo.html',
-    '/squadre/DeAndre.html', '/squadre/Newton.html', '/squadre/Antonietti.html'
+    '/squadre/Gambara.html', '/squadre/Calini.html',
+    '/squadre/Canossa.html', '/squadre/Luzzago.html',
+    '/squadre/DeAndre.html'
 ];
 const routes = {
     '/chiSiamo': '/chiSiamo.html',
@@ -774,13 +806,9 @@ const routes = {
     '/squadre/copernico': '/squadre/Copernico.html',
     '/squadre/gambara': '/squadre/Gambara.html',
     '/squadre/calini': '/squadre/Calini.html',
-    '/squadre/lunardi': '/squadre/Lunardi.html',
     '/squadre/canossa': '/squadre/Canossa.html',
     '/squadre/luzzago': '/squadre/Luzzago.html',
-    '/squadre/leonardo': '/squadre/Leonardo.html',
     '/squadre/deAndre': '/squadre/DeAndre.html',
-    '/squadre/newton': '/squadre/Newton.html',
-    '/squadre/antonietti': '/squadre/Antonietti.html',
     '/player': '/player.html',
     '/regolamento': '/regolamento.html'
 };
