@@ -47,6 +47,9 @@ nav{
     padding: 0 20px;
     gap: 10px;
 }
+.cardTeam .fa-people-group{
+    font-size: 100px;
+}
 .logo h4{
     color: white;
     font-family: "Oswald", serif;
@@ -742,6 +745,7 @@ footer .footerMenu ul li a{
     padding: 70px 10px;
     display: flex;
     gap: 2vw;
+    min-height: 60vh;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -750,12 +754,24 @@ footer .footerMenu ul li a{
     text-decoration: none;
     cursor: pointer;
     height: min-content;
-    background-color: var(--fifth-color);
-    background-image: radial-gradient(circle, var(--sixth-color) 1px, transparent 1px);
+    background-color: var(--footer-color);
+    background-image: radial-gradient(circle, var(--second-color) 1px, transparent 1px);
     background-size: 10px 10px;
     border-radius: 20px;
-    color: var(--third-color);
+    color: var(--fifth-color);
     transition: 0.7s;
+}
+.attesaEstrazioni{
+    font-size: medium;
+    color: var(--fifth-color);
+    font-family: "Righteous", serif;
+    font-weight: 400;
+    text-shadow: 0 5px 30px var(--main-color);
+}
+.centerText{
+    display: flex;
+    text-align: center;
+    align-items: center;
 }
 .cardTeam {
     width: calc(100% - 40px);
@@ -768,7 +784,7 @@ footer .footerMenu ul li a{
 }
 .cardTM:hover{
     transition: 0.7s;
-    box-shadow: 0 0 10px var(--sixth-color);
+    box-shadow: 0 0 10px var(--second-color-darker);
     background-size: 20px 20px;
 }
 .cardTeam:hover .infoTeam{
@@ -782,7 +798,6 @@ footer .footerMenu ul li a{
 }
 .cardTeam .teamLogo{
     width: 50px;
-    border-radius: 50%;
 }
 .imgAllenatore{
     text-align: center;
@@ -803,7 +818,7 @@ footer .footerMenu ul li a{
 .titoloSquadra{
     width: 100%;
     height: 200px;
-    background-image: url(/img/KLI-Team-BKG-BLACK_LOTUS.jpg);
+    background-color: var(--footer-color);
     background-size: cover;
     background-position: center;
     display: flex;
@@ -813,7 +828,7 @@ footer .footerMenu ul li a{
 }
 .titoloSquadra h1{
     color: aliceblue;
-    font-size: 4em;
+    font-size: clamp(35px, 11vw, 80px);
     font-family: "Righteous", serif;
 }
 .titoloSquadra img {
@@ -1131,7 +1146,6 @@ footer .footerMenu ul li a{
 }
 .squadraTable{
     padding: 0 10px;
-    width: 200px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -1192,6 +1206,13 @@ table tr td:last-child {
     padding: 10px;
     cursor: pointer;
 }
+.matchDay2{
+    width: 280px;
+    height: 180px;
+    text-decoration: none;
+    border-radius: 20px;
+    padding: 10px;
+}
 .match{
     display: flex;
     align-items: center;
@@ -1233,7 +1254,9 @@ table tr td:last-child {
     align-items: center;
 }
 .giornata img{
+    height: 50px;
     width: 50px;
+    object-fit: contain;
 }
 .dataMatch{
     display: flex;
@@ -1535,6 +1558,7 @@ table tr td:last-child {
     background-color: var(--second-color);
     padding: 10px 10px;
     border-radius: 20px;
+    min-width: 42px;
     text-decoration: none;
     color: var(--fifth-color);
     font-family: "Righteous", serif;
@@ -1561,7 +1585,7 @@ table tr td:last-child {
 }
 .logoSquadra{
     width: 200px;
-    height: 200px;
+    height: auto;
 }
 .team1Result{
     width: 45%;
@@ -1588,7 +1612,7 @@ table tr td:last-child {
 }
 .team2Result{
     width: 45%;
-    background-color: var(--fifth-color);
+    background-color: var(--fourth-color);
     color: var(--second-color);
     justify-content: flex-start;
 }
@@ -1611,10 +1635,10 @@ table tr td:last-child {
     position: relative;
     width: 10%;
     height: 100%;
-    background: #1A1256;
-    background: -webkit-linear-gradient(90deg, rgba(26, 18, 86, 1) 50%, rgba(247, 242, 250, 1) 50%);
-    background: -moz-linear-gradient(90deg, rgba(26, 18, 86, 1) 50%, rgba(247, 242, 250, 1) 50%);
-    background: linear-gradient(90deg, rgba(26, 18, 86, 1) 50%, rgba(247, 242, 250, 1) 50%);
+    background: var(--fourth-color);
+    background: -webkit-linear-gradient(90deg, rgba(26, 18, 86, 1) 50%, var(--fourth-color) 50%);
+    background: -moz-linear-gradient(90deg, rgba(26, 18, 86, 1) 50%, var(--fourth-color) 50%);
+    background: linear-gradient(90deg, rgba(26, 18, 86, 1) 50%, var(--fourth-color) 50%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1A1256", endColorstr="#F7F2FA", GradientType=1);
 }
 .whowinner::before,
@@ -1628,7 +1652,7 @@ table tr td:last-child {
 }
 
 .whowinner::before {
-    background-color: var(--fifth-color);
+    background-color: var(--fourth-color);
     clip-path: polygon(100% 0, 100% 100%, 0 0);
 }
 
@@ -1785,6 +1809,43 @@ table tr td:last-child {
 .cardYellow{
     color: #e6ae01;
 }
+.finaleResoconto{
+    width: 100%;
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--third-color);
+}
+.secondasemifinale, .primosemifinale{
+    width: 200px;
+    height: 400px;
+    background-color: var(--second-color);
+}
+.fa-shield{
+    color: var(--main-color);
+    font-size: 120px;
+}
+.finale{
+    width: 250px;
+    height: 600px;
+    margin: 0 10px;
+    background-color: var(--second-color);
+    font-family: "Italianno", cursive;
+    color: var(--fifth-color);
+    font-size: 2em;
+    text-align: center;
+}
+.finale img{
+    width: 120px;
+}
+.secondasemifinale, .primosemifinale, .finale{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    align-items: center;
+}
 /*responsive*/
 @media screen and (max-width: 1000px){
     .navigation{
@@ -1840,6 +1901,16 @@ table tr td:last-child {
         align-items: center;
         justify-content: center;
     }
+    .Sclassifica {
+        padding: 50px 0;
+    }
+    .copriTabella{
+        width: 95%;
+    }
+    .Classifica thead th {
+        padding: 5px;
+        font-size: small;
+    }
     .Hamburger{
         z-index: 10;
         cursor: pointer;
@@ -1866,8 +1937,47 @@ table tr td:last-child {
     .presentazioneDiv p{
         font-size: 1.3em;
     }
+    .primosemifinale, .secondasemifinale{
+        padding: 30px;
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+    }
+    .finale{
+        width: auto;
+        height: auto;
+        padding: 10px 30px;
+        display: flex;
+        flex-direction: row;
+        margin: 10px 0;
+        font-size: clamp(1.2em, 3vw, 2.5em);
+    }
+    .finaleResoconto{
+        flex-direction: column;
+    }
+    .fa-shield{
+        font-size: clamp(30px, 18vw, 100px);
+    }
+    .giornata{
+        justify-content: start;
+    }
+    .logoSquadra{
+        width: 20vw;
+    }
+    .headerResult{
+        height: 200px;
+    }
 }
 @media screen and (max-width: 480px){
+    .contornopresentazioneDiv {
+        max-width: 90vw;
+        margin: 10px 0 0 0;
+    }
+    .presentazioneDiv p{
+        font-size: 1em;
+    }
     .ImgName h1 {
         font-size: 2em;
     }
@@ -1889,12 +1999,102 @@ table tr td:last-child {
         margin-bottom: 15px;
         align-items: center;
     }
+    .collabTeam h2{
+        display: none;
+    }
+    .cardCollab {
+        width: 80%;
+        background-color: var(--second-color);
+        border-radius: 30px;
+        display: flex;
+        color: var(--fifth-color);
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .collabTeam{
+        min-width: auto !important;
+    }
+    .contentIMG{
+        gap: 12vw;
+    }
+    .cardTeam{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .cardTeam .imgTeam{
+        display: flex;
+        justify-content: center;
+    }
+    .infoTeamPrincipale{
+        text-align: center;
+    }
+    .infoTeam{
+        padding-top: 0;
+    }
+    .girone{
+        text-align: center;
+    }
+    .DatiSquadra {
+        border-radius: 0;
+        height: 150px;
+    }
+    .infoSquadraSingle {
+        padding: 30px 0;
+    }
+    .titoloSquadra img {
+        height: 70px;
+        width: auto;
+    }
+    .contentIMG img {
+        width: 100px !important;
+        height: auto;
+    }
+    .titoloSquadra{
+        height: 150px;
+    }
+    .listaGiocatori{
+        flex-direction: column;
+    }
+    .Sclassifica{
+        padding: 20px 0;
+    }
+    .copriTabella{
+        width: 100%;
+    }
+    .squadraTableh4{
+        display: none;
+    }
+    .Classifica tbody tr{
+        font-size: small;
+    }
+    .Classifica thead th{
+        padding: 5px;
+        font-size: small;
+    }
+    .squadraTable {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        height: 65px;
+        justify-content: center;
+    }
+    .Classifica tbody tr img{
+        width: 50px;
+        height: auto;
+    }
 }
-hr{
-    width: 100%;
-    height: 2px;
-    background-color: var(--fifth-color);
-    margin: 10px;
+@media screen and (max-width: 360px){
+    .Classifica thead th {
+        padding: 4px;
+        font-size: x-small;
+    }
+    .Classifica tbody tr img{
+        width: 13vw;
+        height: auto;
+    }
 }
+
 /*palette*/
 /*https://coolors.co/palette/3eb1ee-800080-var(--fifth-color)-b5b0b8-5072a7-194896-1a1256-141a33*/
