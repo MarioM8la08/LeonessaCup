@@ -28,7 +28,6 @@ body{
     line-height: 1.5;
     overflow-x: hidden;
     font-family: "Oswald", serif;
-    overflow-y: hidden;
 }
 nav{
     width: 100%;
@@ -1198,6 +1197,13 @@ table tr td:last-child {
     align-items: center;
     overflow-x: auto;
     width: max-content ;
+    overflow-y: hidden;
+    box-sizing: border-box;
+    scroll-behavior: smooth; /* per scroll più fluido se vuoi */
+}
+
+.slider-item {
+    flex: 0 0 auto; /* gli item mantengono la loro larghezza, non si restringono */
 }
 .matchDay{
     width: 280px;
