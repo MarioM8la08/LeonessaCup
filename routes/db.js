@@ -9,7 +9,8 @@ const pool = new Pool({
     password: 'M8laMM11116913!',
     port: 5432,
     ssl: {
-        ca: fs.readFileSync('DigiCertGlobalRootG2.crt.pem')
+        ca: fs.readFileSync('DigiCertGlobalRootG2.crt.pem'),
+        rejectUnauthorized: false
     }
 });
 
