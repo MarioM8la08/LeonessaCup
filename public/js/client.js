@@ -503,13 +503,12 @@ async function initMatchSeason() {
         "1": [],
         "2": []
     };
-    console.log('dataPartite:', dataPartite);
     for (let i = 1; i <= giornate; i++) {
         if (i === 1) {
         slider.innerHTML += `                
                 <div id="giornata${i}" class="giornata">
                     <div class="hGiornate">
-                        <h1 id="finestraTempGirone${i}" class="titleGiornate">${Snododata(dataPartite[0]["data_ora"])}</h1>
+                        <h1 id="finestraTempGirone${i}" class="titleGiornate">${Snododata(dataPartite[3]["data_ora"])}</h1>
                         <h4 class="nGiornate">Giornata ${i}</h4>
                     </div>
                 </div>`;
