@@ -37,7 +37,9 @@ app.use(eventiMatch);
 app.get('/*.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', req.path));
 });
-
+app.get('/', (req, res) => {
+    res.redirect('/chiSiamo');
+});
 // Per tutte le altre rotte, invia index.html (SPA fallback)
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
