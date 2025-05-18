@@ -2047,6 +2047,17 @@ table tr td:last-child {
     .collabTeam{
         min-width: auto !important;
     }
+    .logo{
+        padding: 0;
+        margin-left: 10px;
+    }
+    .hambDev{
+        margin: 0;
+        padding-right: 10px;
+    }
+    nav {
+        justify-content: space-between;
+    }
     .contentIMG{
         gap: 12vw;
     }
