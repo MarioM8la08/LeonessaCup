@@ -273,6 +273,10 @@ nav .social{
     height: calc(100vh - 70px);
     background-color: var(--third-color);
 }
+.author{
+    text-decoration: none;
+    color: var(--fifth-color);
+}
 .NavfirstDev{
     display: flex;
     justify-content: space-evenly;
