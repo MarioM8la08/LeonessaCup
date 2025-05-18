@@ -111,10 +111,17 @@ function insertStaff(dataStaff) {
     let list = document.getElementById('listaStaff');
     list.innerHTML = "";
     for (let i = 0; i < dataStaff.length; i++) {
-        let nome = dataStaff[i]['nome_cognome'];
-        let ruolo = dataStaff[i]['ruolo'];
-        let id = dataStaff[i]['id_staff'];
-        list.innerHTML += `
+        if (dataStaff[i]['nome_cognome'] === '00100') {
+            list.innerHTML += `
+        <div href="#" class="" style="color: #fff;">
+                <h4>Non disponibile lo staff tecnico.</h4>
+            </div>
+        </div>`;
+        } else {
+            let nome = dataStaff[i]['nome_cognome'];
+            let ruolo = dataStaff[i]['ruolo'];
+            let id = dataStaff[i]['id_staff'];
+            list.innerHTML += `
         <div href="#" class="giocatore">
             <img alt="" src="/img/player/${id}.png">
             <div>
@@ -122,6 +129,7 @@ function insertStaff(dataStaff) {
                 <p>${ruolo}</p>
             </div>
         </div>`;
+        }
     }
     // console.log('dataGiocatori:', dataGiocatori);
 }
