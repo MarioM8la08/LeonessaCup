@@ -1,4 +1,11 @@
 let dataytMatch = [];
+function locationAs(){
+    let url = window.location.href;
+    if (url === "https://leonessacup.live" || url === "https://leonessacup.live/") {
+        window.location.href = "https://leonessacup.live/chiSiamo";
+    }
+}
+locationAs();
 // hamburger menu
 const buttonHamb = document.getElementById('Hamburger');
 let isOpen = false;
@@ -828,6 +835,13 @@ const routes = {
 };
 function loadContent(url) {
     const mainContent = document.getElementById('main-content');
+
+    // Redirect root path to /chiSiamo
+    if (url === '/') {
+        url = routes['/chiSiamo'];
+        window.history.replaceState({}, '', '/chiSiamo');
+    }
+
     fetch(url)
         .then(response => {
             if (!response.ok) {
@@ -837,21 +851,21 @@ function loadContent(url) {
         })
         .then(html => {
             mainContent.innerHTML = html;
-            // console.log('Content loaded:', url);
             if (squadreRoutes.includes(url)) {
                 initSquadraPage().then(() => {});
             } else if (url === routes['/classifica']) {
                 initClassificaPage().then(() => {});
             } else if (url === routes['/partite']) {
                 initPartitePage();
-            } else if(url === routes['/player']) {
+            } else if (url === routes['/player']) {
                 initPlayerPage().then(() => {});
-            } else if(url === routes['/partite/partita']) {
+            } else if (url === routes['/partite/partita']) {
                 partitaPage();
             }
         })
         .catch(err => console.error('Error loading content:', err));
 }
+
 function navigate(event) {
     event.preventDefault();
     let path = event.target.getAttribute('href');
@@ -868,9 +882,11 @@ function navigate(event) {
         console.error('Route not found:', path);
     }
 }
+
 document.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', navigate);
 });
+
 window.onpopstate = () => {
     let path = window.location.pathname;
     if (path.endsWith('/')) {
@@ -882,6 +898,7 @@ window.onpopstate = () => {
         console.error('Route not found:', path);
     }
 };
+
 let initialPath = window.location.pathname;
 if (initialPath.endsWith('/')) {
     initialPath = initialPath.slice(0, -1);
