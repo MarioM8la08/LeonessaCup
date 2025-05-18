@@ -36,7 +36,7 @@ nav{
     z-index: 10;
     height: 55px;
     backdrop-filter: blur(5px);
-    background-color:   var(--fifth-color);
+    background-color: var(--footer-color);
     display: flex;
 }
 
@@ -120,7 +120,7 @@ nav .social{
     gap: 30px;
 }
 .Navfirst ul li a{
-    color: var(--main-color);
+    color: var(--fifth-color);
     text-decoration: none;
     font-size: medium;
     position: relative;
