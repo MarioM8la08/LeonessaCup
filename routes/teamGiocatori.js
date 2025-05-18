@@ -9,6 +9,7 @@ router.get('/api/squadre/Giocatori', async (req, res) => {
         if (result.rows.length === 0) {
             return res.status(404).send('Squadra not found');
         }
+        console.log(result.rows);
         res.json(result.rows);
     } catch (err) {
         console.error(err);

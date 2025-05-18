@@ -91,6 +91,7 @@ function insertTeams(dataSquadra) {
 function insertPlayers(dataGiocatori) {
     let list = document.getElementById('listaGiocatori');
     list.innerHTML = "";
+    console.log('dataGiocatori:', dataGiocatori);
     for (let i = 0; i < dataGiocatori.length; i++) {
         let nome = dataGiocatori[i]['nome_cognome'];
         let ruolo = dataGiocatori[i]['ruolo'];
@@ -126,6 +127,7 @@ function insertStaff(dataStaff) {
 }
 async function initSquadraPage() {
     let squadraID = document.getElementById('squadraID').innerText;
+    console.log('squadraID:', squadraID);
     let dataGiocatori = {};
     // comunicazione server per giocatori in squadra
     await fetch(`/api/squadre/Giocatori?squadraID=${squadraID}`)
@@ -136,6 +138,7 @@ async function initSquadraPage() {
             return response.json();
         })
         .then(data => {
+            console.log('data:', data);
             insertPlayers(data);
         })
         .catch(err => console.error('Error loading squadra data:', err));
@@ -870,6 +873,12 @@ function navigate(event) {
     event.preventDefault();
     let path = event.target.getAttribute('href');
     if (!path) return;
+
+    // Check if the link is external
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+        window.open(path, '_blank'); // Open external links in a new tab
+        return;
+    }
 
     if (path.endsWith('/')) {
         path = path.slice(0, -1);
