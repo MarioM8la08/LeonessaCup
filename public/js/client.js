@@ -1,6 +1,7 @@
 let dataytMatch = [];
 // hamburger menu
 const buttonHamb = document.getElementById('Hamburger');
+let isOpen = false;
 const lineA = document.getElementById('lineA');
 const lineB = document.getElementById('lineB');
 const lineC = document.getElementById('lineC');
@@ -29,11 +30,24 @@ function menuHamb() {
     }
 }
 buttonHamb.addEventListener('click', function(){
+    isOpen = !isOpen;
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
     });
+    //bloccare lo scrolling
+    document.body.style.overflow = 'hidden';
     menuHamb();
+});
+const links = document.querySelectorAll('a');
+links.forEach(link => {
+    console.log('link:', link);
+    link.addEventListener('click', function() {
+        if (isOpen) {
+            menuHamb();
+            isOpen = !isOpen;
+        }
+    });
 });
 // media query
 
