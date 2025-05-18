@@ -1376,7 +1376,6 @@ table tr td:last-child {
 .coverSlider{
     position: relative;
     width: 100%;
-    overflow-x: auto;
     background-color: var(--third-color);
 }
 .partiteReview{
@@ -1980,6 +1979,15 @@ table tr td:last-child {
     }
     .headerResult{
         height: 200px;
+    }
+    .coverSlider{
+        overflow-x: auto;
+    }
+    .btnRight{
+        display: none;
+    }
+    .btnLeft{
+        display: none;
     }
 }
 @media screen and (max-width: 480px){
