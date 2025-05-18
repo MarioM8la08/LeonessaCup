@@ -26,8 +26,11 @@ body{
     height: 100vh;
     font-size: 16px;
     line-height: 1.5;
-    overflow-x: hidden;
     font-family: "Oswald", serif;
+}
+html{
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 nav{
     width: 100%;
