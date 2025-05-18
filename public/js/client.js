@@ -1,7 +1,7 @@
 let dataytMatch = [];
 function locationAs(){
     let url = window.location.href;
-    if (url === "https://leonessacup.live" || url === "https://leonessacup.live/") {
+    if (url.startsWith("https://leonessacup.live") && !url.includes("/chiSiamo") && !url.includes("/squadre") && !url.includes("/partite") && !url.includes("/player") && !url.includes("/classifica") && !url.includes("/credits") && !url.includes("/regolamento")) {
         window.location.href = "https://leonessacup.live/chiSiamo";
     }
 }
