@@ -862,6 +862,10 @@ function loadContent(url) {
         })
         .then(html => {
             mainContent.innerHTML = html;
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
             if (squadreRoutes.includes(url)) {
                 initSquadraPage().then(() => {});
             } else if (url === routes['/classifica']) {
