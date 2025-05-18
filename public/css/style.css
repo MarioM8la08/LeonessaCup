@@ -32,6 +32,7 @@ html{
     scroll-behavior: smooth;
     overflow-x: hidden;
 }
+
 nav{
     width: 100%;
     position: fixed;
@@ -1995,6 +1996,12 @@ table tr td:last-child {
     .btnLeft{
         display: none;
     }
+    .playerCenterContent {
+        height: auto;
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+
 }
 @media screen and (max-width: 480px){
     .contornopresentazioneDiv {
