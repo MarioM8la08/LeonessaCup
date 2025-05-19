@@ -4,14 +4,21 @@ const router = express.Router();
 const pool = require('./db.js');
 router.get('/api/eventi', async (req, res) => {
     const partitaID = req.query['partitaID'];
+
+    // Validate partitaID
+    if (!partitaID || isNaN(partitaID)) {
+        return res.status(400).send('Invalid or missing partitaID');
+    }
+
     try {
-        // fare un join per avere il nome del giocatore da giocatori in valore crescente in base al campo minuto
-        const query = "select * from eventi join giocatori on eventi.id_giocatore = giocatori.id_giocatore where id_partita = $1 order by minuto asc";
+        // Query to fetch events with player names, ordered by minute
+        const query = "SELECT * FROM eventi JOIN giocatori ON eventi.id_giocatore = giocatori.id_giocatore WHERE id_partita = $1 ORDER BY minuto ASC";
         const result = await pool.query(query, [partitaID]);
+
         if (result.rows.length === 0) {
-            return res.status(404).send('Squadra not found');
+            return res.status(404).send('No events found for the given partitaID');
         }
-        console.log(result.rows);
+
         res.json(result.rows);
     } catch (err) {
         console.error(err);
