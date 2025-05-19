@@ -48,7 +48,6 @@ buttonHamb.addEventListener('click', function(){
 });
 const links = document.querySelectorAll('a');
 links.forEach(link => {
-    console.log('link:', link);
     link.addEventListener('click', function() {
         if (isOpen) {
             menuHamb();
@@ -81,7 +80,6 @@ function insertTeams(dataSquadra) {
     let arremptyData = [ContentPosition, ContentPunti, ContentVinte, ContentGol, ContentPartite];
     for (let i = 0; i < arremptyData.length; i++) {
         let field = document.getElementById(arremptyData[i]);
-        // console.log('field:', arremptyData[i], field);
         field.innerHTML = dataSquadra[arremptyData[i]];
         if(arremptyData[i] === 'posizione') {
             field.innerHTML += '°';
@@ -91,7 +89,6 @@ function insertTeams(dataSquadra) {
 function insertPlayers(dataGiocatori) {
     let list = document.getElementById('listaGiocatori');
     list.innerHTML = "";
-    console.log('dataGiocatori:', dataGiocatori);
     for (let i = 0; i < dataGiocatori.length; i++) {
         let nome = dataGiocatori[i]['nome_cognome'];
         let ruolo = dataGiocatori[i]['ruolo'];
@@ -105,7 +102,6 @@ function insertPlayers(dataGiocatori) {
             </div>
         </a>`;
     }
-    // console.log('dataGiocatori:', dataGiocatori);
 }
 function insertStaff(dataStaff) {
     let list = document.getElementById('listaStaff');
@@ -131,11 +127,9 @@ function insertStaff(dataStaff) {
         </div>`;
         }
     }
-    // console.log('dataGiocatori:', dataGiocatori);
 }
 async function initSquadraPage() {
     let squadraID = document.getElementById('squadraID').innerText;
-    console.log('squadraID:', squadraID);
     let dataGiocatori = {};
     // comunicazione server per giocatori in squadra
     await fetch(`/api/squadre/Giocatori?squadraID=${squadraID}`)
@@ -146,7 +140,6 @@ async function initSquadraPage() {
             return response.json();
         })
         .then(data => {
-            console.log('data:', data);
             insertPlayers(data);
         })
         .catch(err => console.error('Error loading squadra data:', err));
@@ -177,7 +170,6 @@ async function initSquadraPage() {
 }
 // Classifica page
 function immaginiSquadre(squadra) {
-    console.log(squadra);
     let obj = [
         {
             "nome_scuola": "Arnaldo",
@@ -220,8 +212,6 @@ function immaginiSquadre(squadra) {
 }
 function initTable(girone) {
     let table = document.getElementById(`classifica${girone[0]['girone']}`);
-    // console.log('table:', table);
-    console.log('girone:', girone);
     table.innerHTML = "";
     for (let i = 0; i < girone.length; i++) {
         let squadra = girone[i]['nome_scuola'];
@@ -268,7 +258,6 @@ async function initClassificaPage() {
         })
         .catch(err => console.error('Error loading classifica data:', err));
     let girone = [];
-    // console.log('dataClassifica:', dataClassifica);
     for(let i = 0; i < dataClassifica.length; i++) {
         girone.push(dataClassifica[i]);
         if(girone.length === 4) {
@@ -276,7 +265,6 @@ async function initClassificaPage() {
             girone = [];
         }
     }
-    // console.log('girone:', girone);
 }
 // Partite page
 async function loadytMatch() {
@@ -298,7 +286,6 @@ function utube() {
         gapi.client.setApiKey('AIzaSyBgcQk81g5HKGWadplpG4AHrxySVyDDcLQ');
         return gapi.client.load('https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest')
             .then(() => {
-                // console.log('GAPI client loaded for API');
                 execute();
             }, (err) => {
                 console.error('Error loading GAPI client for API', err);
@@ -330,7 +317,6 @@ function utube() {
             }
             if (matchslideryt && dataytMatch.length > 0) {
                 let data = dataytMatch;
-                console.log('data:', data);
                 for (let i = 0; i < data.length; i++) {
                     let link = data[i]["link_youtube"];
                     response.result.items.forEach(item => {
@@ -359,7 +345,6 @@ function checkStatus(orario) {
     let oraPartita = dataPartita.getTime();
     let oraAttuale = new Date().getTime();
     let diff = oraPartita - oraAttuale;
-    // console.log('diff:', diff);
     if(diff > 0) {
         return 2; // non iniziata
     } else if(diff < 0 && diff > -4500000) {
@@ -448,7 +433,6 @@ function sliderMatch() {
         if (matchDayWidth === -300) {
             idLeft.style.display = 'block';
         }
-        // console.log(slider.offsetWidth - window.innerWidth);
         if(slider.offsetWidth - window.innerWidth < -matchDayWidth ){
             idRight.style.display = 'none';
         }
@@ -474,7 +458,6 @@ function sliderMatch() {
         if (matchDayWidthyt === -160) {
             idLeftyt.style.display = 'block';
         }
-        // console.log(slider.offsetWidth - window.innerWidth);
         if(slideryt.offsetWidth - window.innerWidth < -matchDayWidthyt ){
             idRightyt.style.display = 'none';
         }
@@ -495,7 +478,6 @@ async function initMatchSeason() {
             dataPartite = data;
         })
         .catch(err => console.error('Error loading classifica data:', err));
-    // console.log('dataPartite:', dataPartite);
     const giornate = 4;
     const slider = document.getElementById('matchSlider');
     slider.innerHTML = "";
@@ -540,7 +522,6 @@ async function initMatchSeason() {
         for (let j = 0; j < dataPartite.length; j++) {
             let matchDay = document.getElementById(`giornata${i}`);
             if(dataPartite[j]["squadra_casa"] === dataPartite[j]["squadra_ospite"]){
-                console.log('partita di andata e ritorno');
                 if(dataPartite[j]['giornata'] === i) {
                     matchDay.innerHTML += `
                     <div class="matchDay2 centerText" style="">
@@ -603,7 +584,6 @@ async function initEventMatch(idCasa, ora) {
             return response.json();
         })
         .then(data => {
-            console.log(data);
             initTimeline(data, idCasa, ora);
         })
         .catch(err => console.error('Error loading partita data:', err));
@@ -650,9 +630,6 @@ function initTimeline(data, idCasa, ora) {
         let giocatore = data[i]['nome_cognome'];
         gap = minuto - minutiPr - 3;
         minutiPr = parseInt(minuto);
-        //eliminare il nome utilizzando lo spazio tra nome e cognome per avere cognome tipo "Mario Rossi" a "Rossi"
-        giocatore = giocatore.split(" ")[1];
-        console.log(data[i]['id_squadra'] === idCasa);
         if(data[i]['id_squadra'] === idCasa) {
             timeline.innerHTML += `                
                 <div class="evento casaEVENTO" style="margin-top: ${gap}0px;">
@@ -682,7 +659,6 @@ function initTimeline(data, idCasa, ora) {
         }
     }
     let minutoLive = minutoPartita(ora);
-    console.log('minutoLive:', minutoLive);
     if (minutoLive >= 0 && minutoLive <= 30) {
         timeline.innerHTML += `                
                 <div class="redLive" style="margin-top: ${minutoLive - minutiPr - 3}0px;">
@@ -697,7 +673,6 @@ function initTimeline(data, idCasa, ora) {
                     <div class="PointerLive"><div class="live-dot"></div></div>
                 </div>`;
     } else if(minutoLive >= 45 && minutoLive <= 75) {
-        console.log('minutoLive:', minutoLive);
         timeline.innerHTML += `                
                 <div class="redLive" style="margin-top: ${(minutoLive - 15) - minutiPr - 3}0px;">
                     <div class="Minuto">${minutoLive - 15}''</div>
@@ -706,13 +681,10 @@ function initTimeline(data, idCasa, ora) {
     }
 }
 function initStatPartita(data) {
-    //loghi
-    console.log(data);
     let logoCasa = document.getElementById('logoSquadraCasa');
     let logoOspite = document.getElementById('logoSquadraOspite');
     logoCasa.src = immaginiSquadre(GetSquadraById(data['squadra_casa']));
     logoOspite.src = immaginiSquadre(GetSquadraById(data['squadra_ospite']));
-    console.log(GetSquadraById(data['squadra_casa']));
     //risultati
     let risCasa = data['gol_casa']
     let risOspite = data['gol_ospite'];
@@ -720,8 +692,6 @@ function initStatPartita(data) {
     let ora = data['data_ora'];
     let statusMatch = checkStatus(ora);
     status = (statusMatch === 0 || statusMatch === 1);
-    console.log(status);
-    console.log(data);
     let risultatoCasa = document.getElementById('gol_casa');
     let risultatoOspite = document.getElementById('gol_ospite');
     let dataPartita = document.getElementById('dataPartita');
@@ -795,7 +765,6 @@ function insertDataPlayer(dataPlayer) {
     let ContentRossi = "total_cartellini_rossi";
     let ContentMinuti = "total_minuti_giocati";
     let presenze = "total_titolare_true";
-    // console.log(dataPlayer[0][squadra])
     let arremptyData = [ContentNome, ContentAnno, ContentNumero, ContentRuolo, ContentGol, ContentAssist, ContentGialli, ContentRossi, ContentMinuti, presenze, squadra];
     for (let i = 0; i < arremptyData.length; i++) {
         let field = document.getElementById(arremptyData[i]);
@@ -813,7 +782,6 @@ async function initPlayerPage(){
             return response.json();
         })
         .then(data => {
-            // console.log(data);
             insertDataPlayer(data);
         })
         .catch(err => console.error('Error loading player data:', err));
