@@ -17,6 +17,7 @@
     --eight-color: #ff2512;
     --second-color-darker: #1A1248;
     --footer-color: #141A20;
+    --footer-color--transparent: rgba(20, 26, 32, 0.5);
 }
 body{
     background-image: url(../img/brescia.jpg);
@@ -276,6 +277,10 @@ nav .social{
 }
 .author{
     text-decoration: none;
+    color: var(--fifth-color);
+}
+.fa-hashtag{
+    font-size: 97px;
     color: var(--fifth-color);
 }
 .NavfirstDev{
@@ -826,9 +831,11 @@ footer .footerMenu ul li a{
 }
 /*squadra*/
 .titoloSquadra{
+    position: relative;
     width: 100%;
+    overflow: hidden;
     height: 200px;
-    background-color: var(--footer-color);
+    background-color: var(--footer-color--transparent);
     background-size: cover;
     background-position: center;
     display: flex;
@@ -836,7 +843,30 @@ footer .footerMenu ul li a{
     align-items: center;
     justify-content: center;
 }
+.fa-camera-polaroid{
+    font-size: 97px;
+    color: var(--fifth-color);
+}
+.fa-calendar-star{
+    font-size: 97px;
+    color: var(--fifth-color);
+}
+.fa-laptop-code{
+    font-size: 97px;
+    color: var(--fifth-color);
+}
+.titoloSquadra .imgTeamTitle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container */
+    z-index: -1; /* Places the image behind the content */
+}
+
 .titoloSquadra h1{
+    opacity: 1;
     color: aliceblue;
     font-size: clamp(35px, 11vw, 80px);
     font-family: "Righteous", serif;
@@ -999,6 +1029,8 @@ footer .footerMenu ul li a{
     padding: 20px 50px;
     display: flex;
     flex-direction: column;
+    width: 350px;
+    height: 250px;
     justify-content: space-around;
     align-items: center;
     color: var(--fifth-color);
@@ -1862,6 +1894,82 @@ table tr td:last-child {
     justify-content: center;
     gap: 40px;
     align-items: center;
+}
+/* slider */
+.slider {
+    width: 100%;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+}
+.slide {
+    min-width: 100%;
+    height: 100%;
+    background-size: contain; /* Cambiato da cover a contain */
+    background-position: center;
+    background-repeat: no-repeat; /* Evita la ripetizione dell'immagine */
+}
+.slider-buttons {
+    position: absolute;
+    display: none;
+    top: 50%;
+    /*width: 100%;*/
+    /*display: flex;*/
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+.slider-button {
+    background: rgba(0,0,0,0.3);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5em;
+    cursor: pointer;
+    outline: none;
+    transition: background 0.2s;
+}
+.slider-button:hover {
+    background: rgba(0,0,0,0.5);
+}
+.slider-dots {
+    display: none;
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+}
+.slider-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 4px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.slider-dot.active {
+    opacity: 1;
+    background: #333;
+}
+.backSlider{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--third-color);
+    padding: 10px 10px 50px 10px;
 }
 /*responsive*/
 @media screen and (max-width: 1000px){
