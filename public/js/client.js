@@ -6,6 +6,7 @@ function locationAs(){
     }
 }
 locationAs();
+//image slider generale
 // hamburger menu
 const buttonHamb = document.getElementById('Hamburger');
 let isOpen = false;
@@ -588,6 +589,20 @@ async function initEventMatch(idCasa, ora) {
         })
         .catch(err => console.error('Error loading partita data:', err));
 }
+async function returnDataMatch(idPartita) {
+    try {
+        const response = await fetch(`/api/partite/MatchStat?partitaID=${idPartita}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log(data);
+        return data;
+    } catch (err) {
+        console.error('Error loading partita data:', err);
+        throw err; // Re-throw the error to handle it in the calling function
+    }
+}
 function countdownPartita(data) {
     let dataPartita = new Date(data);
     let oraPartita = dataPartita.getTime();
@@ -680,7 +695,56 @@ function initTimeline(data, idCasa, ora) {
                 </div>`;
     }
 }
+async function imagemSquadre() {
+    let idPartita = window.location.search.split('=')[1];
+    let matchData = await returnDataMatch(idPartita);
+    let nImg = matchData['nImg'];
+    let idImg = document.getElementById('slides');
+    console.log(idImg);
+    idImg.innerHTML = "";
+    console.log(idPartita, nImg);
+    for (let i = 1; i <= nImg; i++) {
+        idImg.innerHTML += `
+            <div class="slide" style="background-image:url('/img/Partite/${idPartita}/${i}.JPG');"></div>
+        `;
+    }
+    const slides = document.getElementById('slides');
+    const dotsContainer = document.getElementById('slider-dots');
+    const totalSlides = slides.children.length;
+    let currentIndex = 0;
+
+    function showSlide(index) {
+        if (index < 0) index = totalSlides - 1;
+        if (index >= totalSlides) index = 0;
+        slides.style.transform = `translateX(${-index * 100}%)`;
+        currentIndex = index;
+        updateDots();
+    }
+
+    function updateDots() {
+        Array.from(dotsContainer.children).forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+        });
+    }
+
+    // Create dots
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('span');
+        dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => showSlide(i);
+        dotsContainer.appendChild(dot);
+    }
+
+    document.getElementById('prev').onclick = () => showSlide(currentIndex - 1);
+    document.getElementById('next').onclick = () => showSlide(currentIndex + 1);
+
+    // Optional: Auto-play slider
+    setInterval(() => showSlide(currentIndex + 1), 4000);
+
+    showSlide(0);
+}
 function initStatPartita(data) {
+    imagemSquadre().then(r => {});
     let logoCasa = document.getElementById('logoSquadraCasa');
     let logoOspite = document.getElementById('logoSquadraOspite');
     logoCasa.src = immaginiSquadre(GetSquadraById(data['squadra_casa']));
