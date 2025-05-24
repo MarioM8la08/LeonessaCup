@@ -96,7 +96,7 @@ function insertPlayers(dataGiocatori) {
         let id = dataGiocatori[i]['id_giocatore'] ;
         list.innerHTML += `
         <a href="/player?playerID=${id}" class="giocatore">
-            <img alt="" src="/img/player/${id}.png">
+            <img alt="" src="https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/player/${id}.png">
             <div>
                 <h3>${nome}</h3>
                 <p>${ruolo}</p>
@@ -120,7 +120,7 @@ function insertStaff(dataStaff) {
             let id = dataStaff[i]['id_staff'];
             list.innerHTML += `
         <div href="#" class="giocatore">
-            <img alt="" src="/img/player/${id}.png">
+            <img alt="" src="https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/player/${id}.png">
             <div>
                 <h3>${nome}</h3>
                 <p>${ruolo}</p>
@@ -174,35 +174,35 @@ function immaginiSquadre(squadra) {
     let obj = [
         {
             "nome_scuola": "Arnaldo",
-            "img": "/img/squadre/arnaldo.png"
+            "img": "https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/squadre/arnaldo.png"
         },
         {
             "nome_scuola": "Itis Castelli",
-            "img": "/img/squadre/castelli.png"
+            "img": "https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/squadre/castelli.png"
         },
         {
             "nome_scuola": "Gambara",
-            "img": "/img/squadre/gambara.png"
+            "img": "https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/squadre/gambara.png"
         },
         {
             "nome_scuola": "Copernico",
-            "img": "/img/squadre/copernico.png"
+            "img": "https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/squadre/copernico.png"
         },
         {
             "nome_scuola": "Luzzago",
-            "img": "/img/squadre/luzzago.png"
+            "img": "https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/squadre/luzzago.png"
         },
         {
             "nome_scuola": "Calini",
-            "img": "/img/squadre/calini.png"
+            "img": "https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/squadre/calini.png"
         },
         {
             "nome_scuola": "Canossa",
-            "img": "/img/squadre/canossa.png"
+            "img": "https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/squadre/canossa.png"
         },
         {
             "nome_scuola": "De Andrè",
-            "img": "/img/squadre/deandre.png"
+            "img": "https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/squadre/deandre.png"
         }
     ]
     for (let i = 0; i < obj.length; i++) {
@@ -225,7 +225,7 @@ function initTable(girone) {
         let golFatti = girone[i]['gol_fatti'];
         let golSubiti = girone[i]['gol_subiti'];
         let differenzaReti = girone[i]['differenza_reti'];
-        let imgSquadra = `.${immaginiSquadre(squadra)}`;
+        let imgSquadra = `${immaginiSquadre(squadra)}`;
         let html = `
         <tr>
           <td class="leggenda${i}"></td>
@@ -705,7 +705,7 @@ async function imagemSquadre() {
     console.log(idPartita, nImg);
     for (let i = 1; i <= nImg; i++) {
         idImg.innerHTML += `
-            <div class="slide" style="background-image:url('/img/Partite/${idPartita}/${i}.JPG');"></div>
+            <div class="slide" style="background-image:url('https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/Partite/${idPartita}/${i}.JPG');"></div>
         `;
     }
     const slides = document.getElementById('slides');
@@ -817,7 +817,7 @@ async function partitaPage() {
 // Player page
 function insertDataPlayer(dataPlayer) {
     let imgPlayer = document.getElementById('imgPlayer');
-    imgPlayer.src = `/img/player/${dataPlayer[0]['id_giocatore']}.png`;
+    imgPlayer.src = `https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/player/${dataPlayer[0]['id_giocatore']}.png`;
     let squadra = "nome_scuola";
     let ContentNome = "nome_cognome";
     let ContentAnno = "anno_scolastico";
