@@ -22,6 +22,7 @@ const adminReg = require('./routes/admin.js');
 const modificaClassifica = require('./routes/modificaClassifica.js');
 const createEvent = require('./routes/createEvent.js');
 const updateEvent = require('./routes/updateMatch.js');
+const prestazioni = require('./routes/prestazioni.js');
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -40,6 +41,7 @@ app.use(adminReg);
 app.use(modificaClassifica);
 app.use(createEvent);
 app.use(updateEvent);
+app.use(prestazioni);
 
 // Gestione richieste a file HTML direttamente
 app.get('/*.html', (req, res) => {

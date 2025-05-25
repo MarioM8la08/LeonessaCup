@@ -197,6 +197,58 @@
             '</form>';
         return html;
     }
+    // funzioni inserimento
+    function prestazione() {
+        let html = '<form id="createPerformanceForm">\n' +
+            '    <h2>Aggiungi Prestazione</h2>\n' +
+            '    <div class="campo">\n' +
+            '        <label for="id_partita">ID Partita:</label>\n' +
+            '        <input type="number" id="id_partita" name="id_partita" required>\n' +
+            '    </div>\n' +
+            '    <div class="campo">\n' +
+            '        <label for="id_giocatore">ID Giocatore:</label>\n' +
+            '        <input type="number" id="id_giocatore" name="id_giocatore" required>\n' +
+            '    </div>\n' +
+            '    <div class="campo">\n' +
+            '        <label for="minuti_giocati">Minuti Giocati:</label>\n' +
+            '        <input type="number" id="minuti_giocati" name="minuti_giocati" value="0">\n' +
+            '    </div>\n' +
+            '    <div class="campo">\n' +
+            '        <label for="gol">Gol:</label>\n' +
+            '        <input type="number" id="gol" name="gol" value="0">\n' +
+            '    </div>\n' +
+            '    <div class="campo">\n' +
+            '        <label for="assist">Assist:</label>\n' +
+            '        <input type="number" id="assist" name="assist" value="0">\n' +
+            '    </div>\n' +
+            '    <div class="campo">\n' +
+            '        <label for="cartellini_gialli">Cartellini Gialli:</label>\n' +
+            '        <input type="number" id="cartellini_gialli" name="cartellini_gialli" value="0">\n' +
+            '    </div>\n' +
+            '    <div class="campo">\n' +
+            '        <label for="cartellini_rossi">Cartellini Rossi:</label>\n' +
+            '        <input type="number" id="cartellini_rossi" name="cartellini_rossi" value="0">\n' +
+            '    </div>\n' +
+            '    <div class="campo">\n' +
+            '        <label for="titolare">Titolare:</label>\n' +
+            '        <input type="checkbox" id="titolare" name="titolare">\n' +
+            '    </div>\n' +
+            '    <div class="campo">\n' +
+            '        <label for="note">Note:</label>\n' +
+            '        <input type="text" id="note" name="note" maxlength="255">\n' +
+            '    </div>\n' +
+            '    <div class="campo">\n' +
+            '        <label for="evento">Evento:</label>\n' +
+            '        <select id="evento" name="evento">\n' +
+            '            <option value="gol">Gol</option>\n' +
+            '            <option value="cartellino giallo">Cartellino Giallo</option>\n' +
+            '            <option value="cartellino rosso">Cartellino Rosso</option>\n' +
+            '        </select>\n' +
+            '    </div>\n' +
+            '    <button type="submit">Aggiungi Prestazione</button>\n' +
+            '</form>';
+        return html;
+    }
     function isLoggedIn() {
         const loggedInAdmin = localStorage.getItem('loggedInAdmin');
         return loggedInAdmin !== null;
@@ -409,7 +461,67 @@
                 });
                 break;
             case 'option4':
-                contentDiv.innerHTML = '<h2>Aggiungi Prestazione</h2><p>Qui puoi aggiungere le prestazioni dei giocatori.</p>';
+                contentDiv.innerHTML = prestazione();
+                // Aggiungi un listener per il submit del form
+                document.getElementById('createPerformanceForm').addEventListener('submit', async function(event) {
+                    event.preventDefault();
+
+                    // Collect input values
+                    const idPartita = document.getElementById('id_partita').value;
+                    const idGiocatore = document.getElementById('id_giocatore').value;
+                    const minutiGiocati = document.getElementById('minuti_giocati').value;
+                    const gol = document.getElementById('gol').value;
+                    const assist = document.getElementById('assist').value;
+                    const cartelliniGialli = document.getElementById('cartellini_gialli').value;
+                    const cartelliniRossi = document.getElementById('cartellini_rossi').value;
+                    const titolare = document.getElementById('titolare').checked;
+                    const note = document.getElementById('note').value;
+                    const evento = document.getElementById('evento').value;
+
+                    console.log('Form submitted with values:', {
+                        idPartita,
+                        idGiocatore,
+                        minutiGiocati,
+                        gol,
+                        assist,
+                        cartelliniGialli,
+                        cartelliniRossi,
+                        titolare,
+                        note,
+                        evento
+                    });
+
+                    try {
+                        const response = await fetch('/api/prestazioni/create', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                id_partita: idPartita,
+                                id_giocatore: idGiocatore,
+                                minuti_giocati: minutiGiocati,
+                                gol: gol,
+                                assist: assist,
+                                cartellini_gialli: cartelliniGialli,
+                                cartellini_rossi: cartelliniRossi,
+                                titolare: titolare,
+                                note: note,
+                                evento: evento
+                            })
+                        });
+
+                        if (response.ok) {
+                            alert('Prestazione aggiunta con successo!');
+                        } else {
+                            const errorText = await response.text();
+                            alert(`Errore: ${errorText}`);
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('Si è verificato un errore durante l\'aggiunta della prestazione.');
+                    }
+                });
                 break;
             case 'option5':
                 contentDiv.innerHTML = '<h2>Aggiungi Staff</h2><p>Qui puoi aggiungere membri dello staff.</p>';
