@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Calibri Light", sans-serif;
+            outline: none;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #323232;
+        }
+        section {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        select {
+            width: 90vw;
+            height: 50px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: white;
+            font-size: 1.2em;
+            padding: 10px;
+        }
+        option {
+            padding: 10px;
+        }
+        main {
+            width: 90vw;
+            height: calc(100vh - 100px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        main form {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            width: 100%;
+            padding: 10px;
+            background-color: #444;
+            border-radius: 10px;
+        }
+        main label {
+            font-size: 14px;
+        }
+        main input, main select, main button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        main input, main select {
+            background-color: #555;
+            color: white;
+            height: 37px;
+        }
+        main button {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        main button:hover {
+            background-color: #0056b3;
+        }
+        .campo {
+            width: 45%;
+        }
+        main h2{
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <select id="mySelector">
+            <option value="option1">Modifica Classifica</option>
+            <option value="option2">Aggiungi Evento</option>
+            <option value="option3">Modifica Partite</option>
+            <option value="option4">Aggiungi Prestazione</option>
+            <option value="option5">Aggiungi Staff</option>
+        </select>
+    </section>
+    <main>
+        <div id="content">
+        </div>
+    </main>>
+<script>
+    let tempId = 0;
+    // funzione classifica
+    function classifica() {
+        // vari input per i valori da mandare per inserirli per le query
+        let html = '    <form id="updateClassificaForm">\n' +
+            '        <h2>Modifica Classifica</h2>\n' +
+            '        <div class="campo">\n' +
+            '            <label for="id_squadra">Nome Squadra:</label>\n' +
+            '            <input type="text" id="id_squadra" name="id_squadra" required>\n' +
+            '        </div>\n' +
+            '        <div class="campo">\n' +
+            '            <label for="punti">Punti:</label>\n' +
+            '            <input type="number" id="punti" name="punti" value="0">\n' +
+            '        </div>\n' +
+            '        <div class="campo">\n' +
+            '            <label for="partite_giocate">Partite Giocate:</label>\n' +
+            '            <input type="number" id="partite_giocate" name="partite_giocate" value="0">\n' +
+            '        </div>\n' +
+            '        <div class="campo">\n' +
+            '            <label for="vittorie">Vittorie:</label>\n' +
+            '            <input type="number" id="vittorie" name="vittorie" value="0">\n' +
+            '        </div>\n' +
+            '        <div class="campo">\n' +
+            '            <label for="pareggi">Pareggi:</label>\n' +
+            '            <input type="number" id="pareggi" name="pareggi" value="0">\n' +
+            '        </div>\n' +
+            '        <div class="campo">\n' +
+            '            <label for="sconfitte">Sconfitte:</label>\n' +
+            '            <input type="number" id="sconfitte" name="sconfitte" value="0">\n' +
+            '        </div>\n' +
+            '        <div class="campo">\n' +
+            '            <label for="gol_fatti">Gol Fatti:</label>\n' +
+            '            <input type="number" id="gol_fatti" name="gol_fatti" value="0">\n' +
+            '        </div>\n' +
+            '        <div class="campo">\n' +
+            '            <label for="gol_subiti">Gol Subiti:</label>\n' +
+            '            <input type="number" id="gol_subiti" name="gol_subiti" value="0">\n' +
+            '        </div>\n' +
+            '        <button type="submit">Modifica</button>\n' +
+            '    </form>';
+        return html;
+    } tempId
+    // funzione evento
+    function evento() {
+        let html = '<form id="createEventForm">\n' +
+            '    <h2>Crea Evento</h2>\n' +
+            '    <div class="campo">\n' +
+            '        <label for="evento">Evento:</label>\n' +
+            '        <select id="evento" name="evento" required>\n' +
+            '            <option value="gol">Gol</option>\n' +
+            '            <option value="giallo">Cartellino Giallo</option>\n' +
+            '            <option value="rosso">Cartellino Rosso</option>\n' +
+            '        </select>\n' +
+            '    </div>\n' +
+            '    <div class="campo">\n' +
+            '        <label for="id_giocatore">ID Giocatore:</label>\n' +
+            '        <input type="number" id="id_giocatore" name="id_giocatore">\n' +
+            '    </div>\n' +
+            '    <div class="campo">\n' +
+            '        <label for="minuto">Minuto:</label>\n' +
+            '        <input type="number" id="minuto" name="minuto" required>\n' +
+            '    </div>\n' +
+            '    <div class="campo">\n' +
+            '        <label for="id_partita">ID Partita:</label>\n' +
+            '        <input type="number" id="id_partita" name="id_partita">\n' +
+            '    </div>\n' +
+            '    <button type="submit">Crea Evento</button>\n' +
+            '</form>';
+        return html;
+    }
+    // funzione partita
+    function partita() {
+        let html = '<form id="updateMatchForm">\n' +
+            '    <h2>Update Match</h2>\n' +
+            '    <div class="campo">\n' +
+            '        <label for="id_partita">Match ID:</label>\n' +
+            '        <input type="number" id="id_partita" name="id_partita" required>\n' +
+            '    </div>\n' +
+            '    <div class="campo">\n' +
+            '        <label for="gol_casa">Home Goals:</label>\n' +
+            '        <input type="number" id="gol_casa" name="gol_casa" value="0">\n' +
+            '    </div>\n' +
+            '    <div class="campo">\n' +
+            '        <label for="gol_ospite">Away Goals:</label>\n' +
+            '        <input type="number" id="gol_ospite" name="gol_ospite" value="0">\n' +
+            '    </div>\n' +
+            '    <button type="submit">Update Match</button>\n' +
+            '</form>';
+        return html;
+    }
+    function isLoggedIn() {
+        const loggedInAdmin = localStorage.getItem('loggedInAdmin');
+        return loggedInAdmin !== null;
+    }
+    if (isLoggedIn()) {
+        //distruggi il localStorage
+        localStorage.removeItem('loggedInAdmin');
+    } else {
+        // Se l'utente non è loggato, reindirizza alla pagina di login
+        window.location.href = '/logAdmin';
+    }
+    let selector = document.getElementById('mySelector');
+    // Funzione per caricare il contenuto dinamico in base alla selezione
+    function loadContent(option) {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = ''; // Pulisce il contenuto precedente
+
+        switch (option) {
+            case 'option1':
+                contentDiv.innerHTML = classifica();
+                // Aggiungi un listener per il submit del form
+                document.getElementById('updateClassificaForm').addEventListener('submit', async function(event) {
+                    event.preventDefault();
+
+                    // Collect input values
+                    const idSquadra = document.getElementById('id_squadra').value;
+                    const punti = document.getElementById('punti').value;
+                    const partiteGiocate = document.getElementById('partite_giocate').value;
+                    const vittorie = document.getElementById('vittorie').value;
+                    const pareggi = document.getElementById('pareggi').value;
+                    const sconfitte = document.getElementById('sconfitte').value;
+                    const golFatti = document.getElementById('gol_fatti').value;
+                    const golSubiti = document.getElementById('gol_subiti').value;
+                    console.log(idSquadra)
+                    console.log('Form submitted with values:', {
+                        tempId,
+                        punti,
+                        partiteGiocate,
+                        vittorie,
+                        pareggi,
+                        sconfitte,
+                        golFatti,
+                        golSubiti
+                    });
+                    try {
+                        const response = await fetch('/api/classifica/update', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                id_squadra: tempId,
+                                punti: punti,
+                                partite_giocate: partiteGiocate,
+                                vittorie: vittorie,
+                                pareggi: pareggi,
+                                sconfitte: sconfitte,
+                                gol_fatti: golFatti,
+                                gol_subiti: golSubiti
+                            })
+                        });
+
+                        if (response.ok) {
+                            alert('Classifica updated successfully!');
+                        } else {
+                            const contentType = response.headers.get('Content-Type');
+                            if (contentType && contentType.includes('application/json')) {
+                                const errorData = await response.json();
+                                alert(`Error: ${errorData.message || 'Failed to update classifica'}`);
+                            } else {
+                                const errorText = await response.text();
+                                alert(`Error: ${errorText}`);
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('An error occurred while updating the classifica.');
+                    }
+                });
+                // aggiorna i dati nel input quando seleziona id squadra
+                document.getElementById('id_squadra').addEventListener('change', async function() {
+                    console.log('ID Squadra selezionato:', this.value);
+                    const idSquadra = this.value;
+                    let dataClassifica = [];
+                    // Qui puoi aggiungere la logica per caricare i dati della squadra selezionata
+                    await fetch('/api/classifica/Data')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            dataClassifica = data;
+                            console.log('Dati della classifica caricati:', dataClassifica);
+                        })
+                        .catch(err => console.error('Error loading classifica data:', err));
+                    for (let i = 0; i < dataClassifica.length; i++) {
+                        if (dataClassifica[i].nome_scuola.toUpperCase() === idSquadra.toUpperCase()) {
+                            document.getElementById('punti').value = dataClassifica[i].punti;
+                            document.getElementById('partite_giocate').value = dataClassifica[i].partite_giocate;
+                            document.getElementById('vittorie').value = dataClassifica[i].vittorie;
+                            document.getElementById('pareggi').value = dataClassifica[i].pareggi;
+                            document.getElementById('sconfitte').value = dataClassifica[i].sconfitte;
+                            document.getElementById('gol_fatti').value = dataClassifica[i].gol_fatti;
+                            document.getElementById('gol_subiti').value = dataClassifica[i].gol_subiti;
+                            tempId = dataClassifica[i].id_squadra;
+                        }
+                    }
+                });
+                break;
+            case 'option2':
+                contentDiv.innerHTML = evento();
+                // giocatori
+                // Aggiungi un listener per il submit del form
+                document.getElementById('createEventForm').addEventListener('submit', async function(event) {
+                    event.preventDefault();
+
+                    // Collect input values
+                    const evento = document.getElementById('evento').value;
+                    const idGiocatore = document.getElementById('id_giocatore').value;
+                    const minuto = document.getElementById('minuto').value;
+                    const idPartita = document.getElementById('id_partita').value;
+
+                    console.log('Form submitted with values:', {
+                        evento,
+                        idGiocatore,
+                        minuto,
+                        idPartita
+                    });
+
+                    try {
+                        const response = await fetch('/api/evento/create', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                evento: evento,
+                                id_giocatore: idGiocatore,
+                                minuto: minuto,
+                                id_partita: idPartita
+                            })
+                        });
+
+                        if (response.ok) {
+                            alert('Evento created successfully!');
+                        } else {
+                            const contentType = response.headers.get('Content-Type');
+                            if (contentType && contentType.includes('application/json')) {
+                                const errorData = await response.json();
+                                alert(`Error: ${errorData.message || 'Failed to create evento'}`);
+                            } else {
+                                const errorText = await response.text();
+                                alert(`Error: ${errorText}`);
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('An error occurred while creating the evento.');
+                    }
+                });
+                break;
+            case 'option3':
+                contentDiv.innerHTML = partita();
+                // Aggiungi un listener per il submit del form
+                document.getElementById('updateMatchForm').addEventListener('submit', async function(event) {
+                    event.preventDefault();
+
+                    // Collect input values
+                    const idPartita = document.getElementById('id_partita').value;
+                    const golCasa = document.getElementById('gol_casa').value;
+                    const golOspite = document.getElementById('gol_ospite').value;
+
+                    console.log('Form submitted with values:', {
+                        idPartita,
+                        golCasa,
+                        golOspite
+                    });
+
+                    try {
+                        const response = await fetch('/api/partite/updateMatch', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                id_partita: idPartita,
+                                gol_casa: golCasa,
+                                gol_ospite: golOspite
+                            })
+                        });
+
+                        if (response.ok) {
+                            alert('Match updated successfully!');
+                        } else {
+                            const contentType = response.headers.get('Content-Type');
+                            if (contentType && contentType.includes('application/json')) {
+                                const errorData = await response.json();
+                                alert(`Error: ${errorData.message || 'Failed to update match'}`);
+                            } else {
+                                const errorText = await response.text();
+                                alert(`Error: ${errorText}`);
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('An error occurred while updating the match.');
+                    }
+                });
+                break;
+            case 'option4':
+                contentDiv.innerHTML = '<h2>Aggiungi Prestazione</h2><p>Qui puoi aggiungere le prestazioni dei giocatori.</p>';
+                break;
+            case 'option5':
+                contentDiv.innerHTML = '<h2>Aggiungi Staff</h2><p>Qui puoi aggiungere membri dello staff.</p>';
+                break;
+            default:
+                contentDiv.innerHTML = '<p>Seleziona un\'opzione valida dal menu a tendina.</p>';
+        }
+    }
+    // Aggiungi un listener per il cambiamento del selettore
+    selector.addEventListener('change', function() {
+        loadContent(this.value);
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inserimenti Leonessa Cup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Calibri Light", sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #323232;
+        }
+        .cardLogin{
+            display: flex;
+            width: 300px;
+            height: 400px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: white;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form class="cardLogin">
+        <input type="text" id="idAdmin" placeholder="ID Admin" required>
+        <input type="password" id="passwordAdmin" placeholder="Password" required>
+        <button type="submit" id="loginButton">Login</button>
+    </form>
+</body>
+<script>
+    // funzione che verifica se l'utente è loggato (quindi se esiste il localStorage 'loggedInAdmin')
+    // funzione che restituisce un booleano se l'utente è loggato e lo si verifica tramite richiesta al server che anche lui restituirà un booleano
+    async function isUserLoggedIn(idAdmin, passwordAdmin) {
+        // fetch per verificare se l'utente è loggato
+        await fetch(`/api/logAdmin?idAdmin=${idAdmin}&passwordAdmin=${passwordAdmin}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data) {
+                    // crea un localStorage per l'utente loggato
+                    localStorage.setItem('loggedInAdmin', JSON.stringify({ idAdmin, passwordAdmin }));
+                    // riaggiorna
+                    window.location.href = '/inserimento';
+                } else {
+                    // altrimenti mostra un messaggio di errore
+                    alert('Credenziali errate. Riprova.');
+                }
+                return data;
+            })
+            .catch(err => console.error('Error loading classifica data:', err));
+
+    }
+    document.getElementById('loginButton').addEventListener('click', async function(event) {
+        event.preventDefault();
+        const idAdmin = document.getElementById('idAdmin').value;
+        const passwordAdmin = document.getElementById('passwordAdmin').value;
+        await isUserLoggedIn(idAdmin, passwordAdmin);
+    });
+</script>
+</html>
