@@ -20,6 +20,8 @@ const MatchStat = require('./routes/MatchStat.js');
 const eventiMatch = require('./routes/eventiMatch.js');
 const adminReg = require('./routes/admin.js');
 const modificaClassifica = require('./routes/modificaClassifica.js');
+const createEvent = require('./routes/createEvent.js');
+const updateEvent = require('./routes/updateMatch.js');
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -36,6 +38,9 @@ app.use(MatchStat);
 app.use(eventiMatch);
 app.use(adminReg);
 app.use(modificaClassifica);
+app.use(createEvent);
+app.use(updateEvent);
+
 // Gestione richieste a file HTML direttamente
 app.get('/*.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', req.path));
@@ -44,8 +49,11 @@ app.get('/', (req, res) => {
     res.redirect('/chiSiamo');
 });
 // Gestione singola rout inserimento
-app.get('/inserimenti', (req, res) => {
+app.get('/inserimento', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'inserimenti.html'));
+});
+app.get("/logAdmin", (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'logAdmin.html'));
 });
 // Per tutte le altre rotte, invia index.html (SPA fallback)
 app.get('*', (req, res) => {

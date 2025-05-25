@@ -4,6 +4,7 @@ const pool = require('./db.js');
 router.get('/api/classifica/Data', async (req, res) => {
     try {
         const query = 'SELECT\n' +
+            '    id_Squadra,\n' +
             '    Nome_Scuola,\n' +
             '    Girone,\n' +
             '    Punti,\n' +
