@@ -485,7 +485,9 @@ async function initMatchSeason() {
     slider.innerHTML = "";
     let gironi = {
         "1": [],
-        "2": []
+        "2": [],
+        "3": [],
+        "4": []
     };
     for (let i = 1; i <= giornate; i++) {
         if (i === 1) {
@@ -532,6 +534,7 @@ async function initMatchSeason() {
                     gironi[`${i}`].push(dataPartite[j]["data_ora"]);
                 }
             } else {
+                console.log(dataPartite[j]['giornata'], i);
                 if(dataPartite[j]['giornata'] === i) {
                     matchDay.innerHTML += `
                     <a href="/partite/partita?partiteId=${dataPartite[j]["id_partita"]}" class="matchDay">

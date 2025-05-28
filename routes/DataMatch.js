@@ -3,7 +3,7 @@ const router = express.Router();
 const pool = require('./db.js');
 router.get('/api/partite/DataMatch', async (req, res) => {
     try {
-        const query = 'select * from partite;';
+        const query = 'SELECT * FROM partite ORDER BY id_partita;';
         const result = await pool.query(query);
         res.json(result.rows);
     } catch (err) {
