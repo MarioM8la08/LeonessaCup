@@ -492,7 +492,7 @@ async function initMatchSeason() {
         slider.innerHTML += `                
                 <div id="giornata${i}" class="giornata">
                     <div class="hGiornate">
-                        <h1 id="finestraTempGirone${i}" class="titleGiornate">${Snododata(dataPartite[5]["data_ora"])}</h1>
+                        <h1 id="finestraTempGirone${i}" class="titleGiornate">Domenica 18 Maggio</h1>
                         <h4 class="nGiornate">Giornata ${i}</h4>
                     </div>
                 </div>`;
@@ -500,7 +500,7 @@ async function initMatchSeason() {
             slider.innerHTML += `                
                 <div id="giornata${i}" class="giornata">
                     <div class="hGiornate">
-                        <h1 id="finestraTempGirone${i}" class="titleGiornate">${Snododata(dataPartite[2]["data_ora"])}</h1>
+                        <h1 id="finestraTempGirone${i}" class="titleGiornate">Domenica 25 Maggio</h1>
                         <h4 class="nGiornate">Giornata ${i}</h4>
                     </div>
                 </div>`;
@@ -508,7 +508,7 @@ async function initMatchSeason() {
             slider.innerHTML += `                
                 <div id="giornata${i}" class="giornata">
                     <div class="hGiornate">
-                        <h1 id="finestraTempGirone${i}" class="titleGiornate">${Snododata(dataPartite[1]["data_ora"])}</h1>
+                        <h1 id="finestraTempGirone${i}" class="titleGiornate">Venerdì 30 Maggio</h1>
                         <h4 class="nGiornate">Giornata ${i}</h4>
                     </div>
                 </div>`;
@@ -516,7 +516,7 @@ async function initMatchSeason() {
             slider.innerHTML += `                
                 <div id="giornata${i}" class="giornata">
                     <div class="hGiornate">
-                        <h1 id="finestraTempGirone${i}" class="titleGiornate">${Snododata(dataPartite[3]["data_ora"])}</h1>
+                        <h1 id="finestraTempGirone${i}" class="titleGiornate">Domenica 1 Giugno</h1>
                         <h4 class="nGiornate">Giornata ${i}</h4>
                     </div>
                 </div>`;
