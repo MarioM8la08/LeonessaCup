@@ -174,35 +174,35 @@ function immaginiSquadre(squadra) {
     let obj = [
         {
             "nome_scuola": "Arnaldo",
-            "img": "/img/squadre/arnaldo.png"
+            "img": "/img/Squadre/arnaldo.png"
         },
         {
             "nome_scuola": "Itis Castelli",
-            "img": "/img/squadre/castelli.png"
+            "img": "/img/Squadre/castelli.png"
         },
         {
             "nome_scuola": "Gambara",
-            "img": "/img/squadre/gambara.png"
+            "img": "/img/Squadre/gambara.png"
         },
         {
             "nome_scuola": "Copernico",
-            "img": "/img/squadre/copernico.png"
+            "img": "/img/Squadre/copernico.png"
         },
         {
             "nome_scuola": "Luzzago",
-            "img": "/img/squadre/luzzago.png"
+            "img": "/img/Squadre/luzzago.png"
         },
         {
             "nome_scuola": "Calini",
-            "img": "/img/squadre/calini.png"
+            "img": "/img/Squadre/calini.png"
         },
         {
             "nome_scuola": "Canossa",
-            "img": "/img/squadre/canossa.png"
+            "img": "/img/Squadre/canossa.png"
         },
         {
             "nome_scuola": "De Andrè",
-            "img": "/img/squadre/deandre.png"
+            "img": "/img/Squadre/deandre.png"
         }
     ]
     for (let i = 0; i < obj.length; i++) {
