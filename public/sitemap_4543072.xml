@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+       <loc>https://leonessacup.live/</loc>
+       <lastmod>2025-05-29T19:42:53+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>1.0000</priority>
+  </url>
+  <url>
+       <loc>https://leonessacup.live/chiSiamo</loc>
+       <lastmod>2025-05-29T19:42:53+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://leonessacup.live/credits</loc>
+       <lastmod>2025-05-29T19:42:53+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://leonessacup.live/classifica</loc>
+       <lastmod>2025-05-29T19:42:53+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://leonessacup.live/regolamento</loc>
+       <lastmod>2025-05-29T19:42:53+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://leonessacup.live/partite/</loc>
+       <lastmod>2025-05-29T19:42:53+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>https://leonessacup.live/squadre/</loc>
+       <lastmod>2025-05-29T19:42:53+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.6400</priority>
+  </url>
+</urlset>
