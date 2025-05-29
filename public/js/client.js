@@ -96,7 +96,7 @@ function insertPlayers(dataGiocatori) {
         let id = dataGiocatori[i]['id_giocatore'] ;
         list.innerHTML += `
         <a href="/player?playerID=${id}" class="giocatore">
-            <img alt="" src="https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/player/${id}.png">
+            <img alt="" src="/img/player/${id}.png">
             <div>
                 <h3>${nome}</h3>
                 <p>${ruolo}</p>
@@ -120,7 +120,7 @@ function insertStaff(dataStaff) {
             let id = dataStaff[i]['id_staff'];
             list.innerHTML += `
         <div href="#" class="giocatore">
-            <img alt="" src="https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/player/${id}.png">
+            <img alt="" src="/img/player/${id}.png">
             <div>
                 <h3>${nome}</h3>
                 <p>${ruolo}</p>
@@ -174,35 +174,35 @@ function immaginiSquadre(squadra) {
     let obj = [
         {
             "nome_scuola": "Arnaldo",
-            "img": "https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/squadre/arnaldo.png"
+            "img": "/img/squadre/arnaldo.png"
         },
         {
             "nome_scuola": "Itis Castelli",
-            "img": "https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/squadre/castelli.png"
+            "img": "/img/squadre/castelli.png"
         },
         {
             "nome_scuola": "Gambara",
-            "img": "https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/squadre/gambara.png"
+            "img": "/img/squadre/gambara.png"
         },
         {
             "nome_scuola": "Copernico",
-            "img": "https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/squadre/copernico.png"
+            "img": "/img/squadre/copernico.png"
         },
         {
             "nome_scuola": "Luzzago",
-            "img": "https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/squadre/luzzago.png"
+            "img": "/img/squadre/luzzago.png"
         },
         {
             "nome_scuola": "Calini",
-            "img": "https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/squadre/calini.png"
+            "img": "/img/squadre/calini.png"
         },
         {
             "nome_scuola": "Canossa",
-            "img": "https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/squadre/canossa.png"
+            "img": "/img/squadre/canossa.png"
         },
         {
             "nome_scuola": "De Andrè",
-            "img": "https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/squadre/deandre.png"
+            "img": "/img/squadre/deandre.png"
         }
     ]
     for (let i = 0; i < obj.length; i++) {
@@ -709,7 +709,7 @@ async function imagemSquadre() {
     console.log(idPartita, nImg);
     for (let i = 1; i <= nImg; i++) {
         idImg.innerHTML += `
-            <div class="slide" style="background-image:url('https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/Partite/${idPartita}/${i}.JPG');"></div>
+            <div class="slide" style="background-image:url('/img/Partite/${idPartita}/${i}.JPG');"></div>
         `;
     }
     const slides = document.getElementById('slides');
@@ -821,7 +821,7 @@ async function partitaPage() {
 // Player page
 function insertDataPlayer(dataPlayer) {
     let imgPlayer = document.getElementById('imgPlayer');
-    imgPlayer.src = `https://res.cloudinary.com/djrlf1tos/image/upload/v1748105675/player/${dataPlayer[0]['id_giocatore']}.png`;
+    imgPlayer.src = `/img/player/${dataPlayer[0]['id_giocatore']}.png`;
     let squadra = "nome_scuola";
     let ContentNome = "nome_cognome";
     let ContentAnno = "anno_scolastico";
