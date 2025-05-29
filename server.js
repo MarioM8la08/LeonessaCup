@@ -4,8 +4,6 @@ const cors = require('cors');
 
 const app = express();
 
-// Usa la porta assegnata da Azure oppure 3000 in locale
-const port = process.env.PORT || 3000;
 app.use(express.json());
 const pool = require('./routes/db.js');
 const dataTeamRouter = require('./routes/DataTeam.js');
@@ -62,7 +60,9 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// Usa la porta assegnata da Azure oppure 3000 in locale
+const port = process.env.PORT || 3000;
 // Avvio server
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Server running at http://0.0.0.0:${port}`);
 });
