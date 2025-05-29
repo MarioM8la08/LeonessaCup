@@ -4,9 +4,9 @@ const path = require('path');
 
 const pool = new Pool({
     user: 'adminleonessa',
-    host: '161.35.20.160',
+    host: 'leonessadb.postgres.database.azure.com',
     database: 'LeonessaCup',
-    password: 'LSC2025_11116913!',
+    password: 'M8laMM11116913!',
     port: 5432,
     ssl: {
         ca: fs.readFileSync('DigiCertGlobalRootG2.crt.pem'),
