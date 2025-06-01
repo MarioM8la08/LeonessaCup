@@ -2038,7 +2038,7 @@ iframe{
     font-weight: 300;
     text-align: center;
 }
-button {
+.main_biglietti button {
     width: 100%;
     padding: 14px;
     border-radius: 10px;
@@ -2050,7 +2050,7 @@ button {
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
 }
-button:hover {
+.main_biglietti button:hover {
     background-color: var(--fifth-color);
     color: var(--fourth-color);
     transform: scale(1.05);
