@@ -1,7 +1,7 @@
 let dataytMatch = [];
 function locationAs(){
     let url = window.location.href;
-    if (url.startsWith("https://leonessacup.live") && !url.includes("/chiSiamo") && !url.includes("/squadre") && !url.includes("/partite") && !url.includes("/player") && !url.includes("/classifica") && !url.includes("/credits") && !url.includes("/regolamento")) {
+    if (url.startsWith("https://leonessacup.live") && !url.includes("/chiSiamo") && !url.includes("/squadre") && !url.includes("/partite") && !url.includes("/player") && !url.includes("/classifica") && !url.includes("/credits") && !url.includes("/regolamento") && !url.includes("/inserimenti") && !url.includes("/biglietti")) {
         window.location.href = "https://leonessacup.live/chiSiamo";
     }
 }
@@ -854,6 +854,76 @@ async function initPlayerPage(){
         })
         .catch(err => console.error('Error loading player data:', err));
 }
+// biglietti page
+function deleteEffect(elementId, interval) {
+    return new Promise((resolve) => {
+        const element = document.getElementById(elementId);
+        if (!element || !element.textContent) {
+            resolve(); // Resolve immediately if no text to delete
+            return;
+        }
+
+        const text = element.textContent;
+        let index = text.length;
+
+        const deletingInterval = setInterval(() => {
+            if (index > 0) {
+                element.textContent = text.substring(0, --index);
+            } else {
+                clearInterval(deletingInterval); // Stop when the text is fully deleted
+                resolve(); // Resolve the Promise
+            }
+        }, interval);
+    });
+}
+async function typeEffect(elementId, text, interval) {
+    await deleteEffect(elementId, interval); // Wait for text deletion to complete
+    const element = document.getElementById(elementId);
+    let index = 0;
+
+    const typingInterval = setInterval(() => {
+        if (index < text.length) {
+            element.textContent += text[index];
+            index++;
+        } else {
+            clearInterval(typingInterval); // Stop when the text is fully displayed
+        }
+    }, interval);
+}
+function initBigliettiPage() {
+    const form = document.getElementById('bookingForm');
+    const feedback = document.getElementById('feedback');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const data = {
+            name: form.nome.value.trim(),
+            surname: form.cognome.value.trim(),
+            email: form.email.value.trim(),
+        };
+
+        typeEffect('feedback', 'Invio in corso...', 50);
+
+        try {
+            const response = await fetch('/api/book', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                typeEffect('feedback', 'Prenotazione inviata! Controlla la tua email.', 50);
+            } else {
+                typeEffect('feedback', `Errore: ${result.message}`, 50);
+            }
+        } catch (error) {
+            typeEffect('feedback', 'Errore di rete o server non raggiungibile.', 50);
+        }
+    });
+}
 //SPA
 const squadreRoutes = [
     '/squadre/itisCastelli.html', '/squadre/Arnaldo.html', '/squadre/Copernico.html',
@@ -877,7 +947,8 @@ const routes = {
     '/squadre/luzzago': '/squadre/Luzzago.html',
     '/squadre/deAndre': '/squadre/DeAndre.html',
     '/player': '/player.html',
-    '/regolamento': '/regolamento.html'
+    '/regolamento': '/regolamento.html',
+    '/biglietti': '/biglietti.html',
 };
 function loadContent(url) {
     const mainContent = document.getElementById('main-content');
@@ -910,7 +981,9 @@ function loadContent(url) {
             } else if (url === routes['/player']) {
                 initPlayerPage().then(() => {});
             } else if (url === routes['/partite/partita']) {
-                partitaPage();
+                partitaPage().then(r => {});
+            } else if (url === routes['/biglietti']) {
+                initBigliettiPage();
             }
         })
         .catch(err => console.error('Error loading content:', err));

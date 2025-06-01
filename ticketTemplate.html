@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Italianno&family=Lexend+Deca:wght@100..900&family=Oswald:wght@200..700&family=Permanent+Marker&family=Quicksand:wght@300..700&family=Righteous&display=swap');
+
+    body, html {
+      margin: 0; padding: 0;
+      width: 80mm;
+      height: 40mm;
+      font-family: 'Righteous', sans-serif;
+      background-color: #141A33;
+      color: aliceblue;
+    }
+    .info img{
+      width: 20px;
+    }
+    main {
+      box-sizing: border-box;
+      padding: 6px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .info {
+      max-width: 50%;
+      height: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-content: flex-start;
+    }
+
+    h1 {
+      font-size: 8pt;
+      margin: 0 0 4px 0;
+      font-weight: 300;
+      float: left;
+      line-height: 1;
+    }
+    .firtp{
+      margin-top: 35px;
+    }
+    p {
+      font-size: 4pt;
+      font-weight: 200;
+      margin: 5px 6px;
+    }
+    .qr {
+      max-width: 35mm;
+      max-height: 35mm;
+      border: 2px solid aliceblue;
+      border-radius: 4px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div class="info">
+    <div class="logo">
+      <img src="https://res.cloudinary.com/djrlf1tos/image/upload/v1748104650/logo.gif" alt="Logo Leonessa Cup" />
+      <h1>Leonessa Cup</h1>
+    </div>
+    <p class="firtp"><strong>Nome:</strong> {{name}}</p>
+    <p><strong>Data:</strong> {{date}}</p>
+  </div>
+  <img class="qr" src="{{qrImage}}" alt="QR Code" />
+</main>
+</body>
+</html>
