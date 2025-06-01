@@ -851,9 +851,10 @@ footer .footerMenu ul li a{
     font-size: 97px;
     color: var(--fifth-color);
 }
-.fa-calendar-star{
+.CardGalleryCB a i {
     font-size: 97px;
     color: var(--fifth-color);
+    z-index: 2;
 }
 .fa-laptop-code{
     font-size: 97px;
@@ -1977,6 +1978,82 @@ iframe{
     align-items: center;
     background-color: var(--third-color);
     padding: 10px 10px 50px 10px;
+}
+/*biglietti*/
+.main_biglietti{
+    padding: 50px;
+    height: calc(100vh - 223px);
+    width: calc(100% - 100px);
+    background-color: var(--third-color);
+    font-family: "Righteous", serif;
+    font-weight: 200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main_biglietti form{
+    width: 400px;
+    color: var(--fifth-color);
+    background-color: var(--second-color);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+.main_biglietti form h1{
+    font-size: 2em;
+    font-family: "Righteous", serif;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+.main_biglietti form input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border: none;
+    background-color: var(--fourth-color--trasparent, rgba(80, 114, 167, 0.5)); /* Fallback added */
+    color: var(--fifth-color);
+    font-size: 1em;
+    font-family: "Righteous", serif;
+    outline: 2px solid var(--second-color); /* Outline color */
+    outline-offset: 4px; /* Distance between border and outline */
+    transition: outline-offset 0.3s, background-color 0.3s;
+}
+.main_biglietti form input:hover {
+    outline-offset: 8px; /* Expansion effect on hover */
+    background-color: var(--fourth-color); /* Ensure this variable is defined */
+}
+.main_biglietti form input::placeholder{
+    color: var(--fifth-color);
+    font-size: 1em;
+    font-family: "Righteous", serif;
+}
+.main_biglietti form {
+    font-size: 1em;
+    font-family: "Righteous", serif;
+    font-weight: 300;
+    text-align: center;
+}
+button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--fourth-color);
+    color: var(--fifth-color);
+    font-size: 1.2em;
+    font-family: "Righteous", serif;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+button:hover {
+    background-color: var(--fifth-color);
+    color: var(--fourth-color);
+    transform: scale(1.05);
 }
 /*responsive*/
 @media screen and (max-width: 1000px){
