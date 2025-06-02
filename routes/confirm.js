@@ -30,11 +30,11 @@ router.get('/api/confirm/:token', async (req, res) => {
             .replace('{{qrImage}}', qrImage);
 
         const pdfBuffer = await generateTicketPDF(ticketHtml);
-
-        await pool.query(
-            'UPDATE bookings SET confirmed = true, qr_code = $1 WHERE id = $2',
-            [qrData, booking.id]
-        );
+        console.log('pdfBuffer is Buffer:', Buffer.isBuffer(pdfBuffer)); // Should log true
+        // Validate that pdfBuffer is a Buffer
+        if (!Buffer.isBuffer(pdfBuffer)) {
+            throw new TypeError('Generated PDF is not a valid Buffer.');
+        }
 
         await sendEmail(
             booking.email,
@@ -44,7 +44,7 @@ router.get('/api/confirm/:token', async (req, res) => {
             [
                 {
                     filename: 'biglietto.pdf',
-                    content: pdfBuffer, // Passa il buffer del PDF
+                    content: pdfBuffer, // Ensure this is a Buffer
                     contentType: 'application/pdf'
                 }
             ]
