@@ -20,7 +20,7 @@ router.post('/api/checkin', async (req, res) => {
         if (rows.length === 0) return res.status(400).json({ message: 'QR non valido o già usato.' });
 
         await pool.query('UPDATE bookings SET used = true WHERE id = $1', [id]);
-        res.json({ message: 'Accesso confermato per ' + rows[0].numero_persone + ' persone.' });
+        res.json({ message: 'Accesso confermato per ' + rows[0].numero_persone + ' persone, per un totale di ' + (rows[0].numero_persone * 2) + '€.' });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Errore server.' });
