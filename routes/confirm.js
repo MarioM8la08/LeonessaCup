@@ -35,7 +35,10 @@ router.get('/api/confirm/:token', async (req, res) => {
         if (!Buffer.isBuffer(pdfBuffer)) {
             throw new TypeError('Generated PDF is not a valid Buffer.');
         }
-
+        await pool.query(
+            'UPDATE bookings SET confirmed = true, qr_code = $1 WHERE id = $2',
+            [qrData, booking.id]
+        );
         await sendEmail(
             booking.email,
             'Il tuo biglietto per la Leonessa Cup',
