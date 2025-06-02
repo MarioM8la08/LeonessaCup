@@ -77,7 +77,7 @@ router.post('/api/book', async (req, res) => {
             [name, surname, email, token, false]
         );
 
-        const link = `${"https:/leonessacup.live" || 'http://localhost:3000'}/api/confirm/${token}`;
+        const link = `https://leonessacup.live/api/confirm/${token}`;
         console.log(`Link di conferma: ${link}`);
         await sendEmail(email, 'Conferma prenotazione Leonessa Cup', htmlEmail(link), true);
 
