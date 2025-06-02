@@ -63,30 +63,33 @@
     // Initialize the QR code scanner
     html5QrCode = new Html5Qrcode("reader");
     html5QrCode.start(
-      { facingMode: "environment" }, // Use the device's back camera
-      { fps: 10, qrbox: 250 },      // Set the scanning frame rate and size
-      (qrMessage) => {
-        // On successful scan
-        resultDiv.innerText = "QR trovato: " + qrMessage;
+            { facingMode: "environment" }, // Use the device's back camera
+            { fps: 10, qrbox: 250 },      // Set the scanning frame rate and size
+            async (qrMessage) => {
+              // On successful scan
+              resultDiv.innerText = "QR trovato: " + qrMessage;
 
-        // Send the QR code to the backend for validation
-        fetch('/api/checkin', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ qr: qrMessage })
-        })
-          .then(res => res.json())
-          .then(data => {
-            resultDiv.innerText = data.message;
-          })
-          .catch(err => {
-            resultDiv.innerText = "Errore: " + err.message;
-          });
-      },
-      (errorMessage) => {
-        // Handle scan errors (optional)
-        console.warn("QR scan error:", errorMessage);
-      }
+              // Stop the scanner
+              await html5QrCode.stop();
+
+              // Send the QR code to the backend for validation
+              fetch('/api/checkin', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ qr: qrMessage })
+              })
+                      .then(res => res.json())
+                      .then(data => {
+                        resultDiv.innerText = data.message;
+                      })
+                      .catch(err => {
+                        resultDiv.innerText = "Errore: " + err.message;
+                      });
+            },
+            (errorMessage) => {
+              // Handle scan errors (optional)
+              console.warn("QR scan error:", errorMessage);
+            }
     );
   });
 </script>
