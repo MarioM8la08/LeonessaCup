@@ -903,7 +903,7 @@ function initBigliettiPage() {
             email: form.email.value.trim(),
         };
 
-        await typeEffect('feedback', 'Invio in corso...', 50);
+        await typeEffect('feedback', 'Invio in corso...', 5);
 
         try {
             const response = await fetch('/api/book', {
