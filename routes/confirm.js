@@ -35,7 +35,7 @@ router.get('/api/confirm/:token', async (req, res) => {
             'UPDATE bookings SET confirmed = true, qr_code = $1 WHERE id = $2',
             [qrData, booking.id]
         );
-
+        console.log('pdfBuffer type:', Buffer.isBuffer(pdfBuffer)); // Should log true
         await sendEmail(
             booking.email,
             'Il tuo biglietto per la Leonessa Cup',
