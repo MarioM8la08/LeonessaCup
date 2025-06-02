@@ -8,7 +8,15 @@ router.post('/api/checkin', async (req, res) => {
 
     const [id, email] = qr.split('|');
     try {
-        const [rows] = await pool.query('SELECT * FROM bookings WHERE id = ? AND email = ? AND confirmed = true AND used = false', [id, email]);
+        const query = `
+            SELECT * 
+            FROM bookings 
+            WHERE id = ? 
+              AND email = ? 
+              AND confirmed = true 
+              AND used = false
+        `;
+        const [rows] = await pool.query(query, [id, email]);
         if (rows.length === 0) return res.status(400).json({ message: 'QR non valido o già usato.' });
 
         await pool.query('UPDATE bookings SET used = true WHERE id = ?', [id]);
