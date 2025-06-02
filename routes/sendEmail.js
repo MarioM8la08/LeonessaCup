@@ -11,7 +11,7 @@ const mg = mailgun.client({
 async function sendEmail(to, subject, content, isHtml = false, attachments = []) {
     try {
         const message = {
-            from: 'Leonessa Cup <postmaster@sandbox707552b8698c48218c06c1b1911e19c3.mailgun.org>',
+            from: 'Leonessa Cup <postmaster@leonessacup.live>',
             to: [to],
             subject,
             [isHtml ? 'html' : 'text']: content,
@@ -21,7 +21,7 @@ async function sendEmail(to, subject, content, isHtml = false, attachments = [])
             message.attachment = attachments;
         }
 
-        const result = await mg.messages.create("sandbox707552b8698c48218c06c1b1911e19c3.mailgun.org", message);
+        const result = await mg.messages.create("leonessacup.live", message);
         console.log("Email inviata:", result);
         return result;
     } catch (error) {
