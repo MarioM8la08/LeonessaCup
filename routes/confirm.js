@@ -25,8 +25,9 @@ router.get('/api/confirm/:token', async (req, res) => {
         const qrData = `${booking.id}|${booking.email}`;
         const qrImage = await QRCode.toDataURL(qrData);
         const ticketHtml = fs.readFileSync('ticketTemplate.html', 'utf8')
-            .replace('{{name}}',booking.name + ' ' + booking.surname)
+            .replace('{{name}}', booking.name + ' ' + booking.surname)
             .replace('{{date}}', new Date().toLocaleDateString())
+            .replace('{{numeroPersone}}', booking.numero_persone)
             .replace('{{qrImage}}', qrImage);
 
         const pdfBuffer = await generateTicketPDF(ticketHtml);
