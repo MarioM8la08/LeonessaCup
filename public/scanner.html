@@ -50,6 +50,17 @@
 <div id="result">Scansiona un QR Code...</div>
 
 <script>
+  function isLoggedIn() {
+    const loggedInAdmin = localStorage.getItem('loggedInAdmin');
+    return loggedInAdmin !== null;
+  }
+  if (isLoggedIn()) {
+    //distruggi il localStorage
+    localStorage.removeItem('loggedInAdmin');
+  } else {
+    // Se l'utente non è loggato, reindirizza alla pagina di login
+    window.location.href = '/logStaff';
+  }
   const startScannerButton = document.getElementById('startScanner');
   const readerDiv = document.getElementById('reader');
   const resultDiv = document.getElementById('result');
