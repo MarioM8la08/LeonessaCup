@@ -1990,6 +1990,7 @@ iframe{
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 20px;
 }
 .main_biglietti form{
     width: 400px;
@@ -2059,8 +2060,34 @@ iframe{
     align-items: flex-end;
     margin-bottom: 15px;
 }
+.calcoloPrezzo{
+    background-color: var(--second-color);
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--fifth-color);
+}
+.calcoloPrezzo h2{
+    font-size: 1.2em;
+    font-family: "Righteous", serif;
+    font-weight: 300;
+}
+.calcoloPrezzo p{
+    font-size: 0.9em;
+    font-family: "Righteous", serif;
+    font-weight: 200;
+}
 /*responsive*/
 @media screen and (max-width: 1000px){
+    .main_biglietti {
+        flex-direction: column;
+        padding: 10px;
+        width: calc(100% - 20px);
+    }
     .navigation{
         display: none;
     }
@@ -2200,6 +2227,9 @@ iframe{
 
 }
 @media screen and (max-width: 480px){
+    .main_biglietti form {
+        width: 90%;
+    }
     .contornopresentazioneDiv {
         max-width: 90vw;
         margin: 10px 0 0 0;
