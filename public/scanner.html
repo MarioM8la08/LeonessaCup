@@ -49,7 +49,7 @@
 <div id="reader"></div>
 <div id="result">Scansiona un QR Code...</div>
 <h6 id="nome"></h6>
-<p>Per favore, assicurati di avere il permesso di utilizzare la fotocamera.</p>
+<p style="padding: 20px">Per favore, assicurati di avere il permesso di utilizzare la fotocamera.</p>
 <script>
   function isLoggedIn() {
     const loggedInAdmin = localStorage.getItem('loggedInAdmin');
@@ -76,7 +76,7 @@
     html5QrCode = new Html5Qrcode("reader");
     html5QrCode.start(
             { facingMode: "environment" }, // Use the device's back camera
-            { fps: 10, qrbox: 250 },      // Set the scanning frame rate and size
+            { fps: 10, qrbox: 500 },      // Set the scanning frame rate and size
             async (qrMessage) => {
               // On successful scan
               resultDiv.innerText = "QR trovato: " + qrMessage;
