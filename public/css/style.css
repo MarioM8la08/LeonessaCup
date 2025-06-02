@@ -1876,6 +1876,17 @@ iframe{
     height: 400px;
     background-color: var(--second-color);
 }
+.secondasemifinale img, .primosemifinale img{
+    height: 100px; /* Set the desired height */
+    object-fit: cover; /* Ensures the image covers the area without stretching */
+    object-position: center;
+}
+.secondasemifinale h2, .primosemifinale h2{
+    font-size: 1em;
+    font-family: "Righteous", serif;
+    font-weight: 300;
+    color: var(--fifth-color);
+}
 .fa-shield{
     color: var(--main-color);
     font-size: 120px;
