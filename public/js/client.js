@@ -893,7 +893,11 @@ async function typeEffect(elementId, text, interval) {
 function initBigliettiPage() {
     const form = document.getElementById('bookingForm');
     const feedback = document.getElementById('feedback');
-
+    const numeroPersone = document.getElementById('numeroPersone');
+    const prezzo = document.getElementById('prezzo');
+    numeroPersone.addEventListener('input', () => {
+        prezzo.innerHTML = `All'ingresso si richiede un contributo di ${(numeroPersone.value * 2)}€`;
+    });
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
