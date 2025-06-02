@@ -6,6 +6,7 @@ async function generateTicketPDF(html) {
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
+    console.log('HTML content:', html); // Debug HTML content
     await page.setContent(html, { waitUntil: 'networkidle0' });
 
     console.log('Generating PDF...');
@@ -13,6 +14,7 @@ async function generateTicketPDF(html) {
         height: '40mm',
         printBackground: true
     });
+    console.log('PDF Buffer:', pdfBuffer); // Debug PDF output
     console.log('PDF generated, is Buffer:', Buffer.isBuffer(pdfBuffer));
 
     await browser.close();
