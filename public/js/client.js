@@ -901,6 +901,7 @@ function initBigliettiPage() {
             name: form.nome.value.trim(),
             surname: form.cognome.value.trim(),
             email: form.email.value.trim(),
+            numeroPersone: form.numeroPersone.value.trim(),
         };
 
         await typeEffect('feedback', 'Invio in corso...', 5);

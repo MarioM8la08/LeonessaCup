@@ -2006,7 +2006,6 @@ iframe{
     font-family: "Righteous", serif;
     font-weight: 300;
     text-align: center;
-    margin-bottom: 30px;
     width: 100%;
 }
 .main_biglietti form input {
@@ -2054,6 +2053,11 @@ iframe{
     background-color: var(--fifth-color);
     color: var(--fourth-color);
     transform: scale(1.05);
+}
+.titleBiglietti{
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 15px;
 }
 /*responsive*/
 @media screen and (max-width: 1000px){

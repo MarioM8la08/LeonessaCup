@@ -55,30 +55,26 @@ function htmlEmail(link){
 }
 
 router.post('/api/book', async (req, res) => {
-    const { name, surname, email } = req.body;
-    console.log(req.body);
-    console.log(!name || !surname || !email);
-    if (!name || !surname || !email) {
+    const { name, surname, email, numeroPersone } = req.body;
+    if (!name || !surname || !email || !numeroPersone) {
         return res.status(400).json({ message: 'Tutti i campi sono obbligatori.' });
     }
 
     try {
         const result = await pool.query('SELECT is_open FROM booking_status LIMIT 1');
-        const bookingStatus = result.rows; // array di righe
+        const bookingStatus = result.rows;
 
         if (!bookingStatus[0].is_open) {
             return res.status(403).json({ message: 'Prenotazioni chiuse.' });
         }
-        console.log('Prenotazioni aperte, procedo con la prenotazione.');
 
         const token = crypto.randomBytes(20).toString('hex');
         await pool.query(
-            'INSERT INTO bookings (name, surname, email, token, confirmed) VALUES ($1, $2, $3, $4, $5)',
-            [name, surname, email, token, false]
+            'INSERT INTO bookings (name, surname, email, numero_persone, token, confirmed) VALUES ($1, $2, $3, $4, $5, $6)',
+            [name, surname, email, numeroPersone, token, false]
         );
 
         const link = `https://leonessacup.live/api/confirm/${token}`;
-        console.log(`Link di conferma: ${link}`);
         await sendEmail(email, 'Conferma prenotazione Leonessa Cup', htmlEmail(link), true);
 
         res.json({ message: 'Controlla la tua email per confermare la prenotazione.' });
