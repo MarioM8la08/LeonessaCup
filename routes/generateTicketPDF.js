@@ -10,10 +10,13 @@ async function generateTicketPDF(html) {
     await page.setContent(html, { waitUntil: 'networkidle0' });
 
     console.log('Generating PDF...');
-    const pdfBuffer = await page.pdf({
+    const pdfUint8Array = await page.pdf({
         height: '40mm',
         printBackground: true
     });
+
+    // Convert Uint8Array to Buffer
+    const pdfBuffer = Buffer.from(pdfUint8Array);
     console.log('PDF Buffer:', pdfBuffer); // Debug PDF output
     console.log('PDF generated, is Buffer:', Buffer.isBuffer(pdfBuffer));
 
