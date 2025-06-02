@@ -7,6 +7,7 @@ router.post('/api/checkin', async (req, res) => {
     if (!qr) return res.status(400).json({ message: 'QR mancante.' });
 
     const [id, email] = qr.split('|');
+    console.log(`QR Code ricevuto: id=${id}, email=${email}`);
     try {
         const query = `
             SELECT * 
