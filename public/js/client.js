@@ -34,7 +34,7 @@ function menuHamb() {
         lineA.classList.add('rotate-right');
         lineC.classList.add('rotate-left');
         menu.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = 'visible';
     }
 }
 buttonHamb.addEventListener('click', function(){
