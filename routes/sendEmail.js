@@ -1,3 +1,15 @@
+const fs = require("fs");
+const FormData = require("form-data");
+const Mailgun = require("mailgun.js");
+const path = require("path");
+
+const mailgun = new Mailgun(FormData);
+const mg = mailgun.client({
+    username: "api",
+    key: "02984bee26dcda63516b21dd5a406c4c-08c79601-8853a447",
+    url: "https://api.eu.mailgun.net"
+});
+
 async function sendEmail(to, subject, content, isHtml = false, attachments = []) {
     try {
         const message = {
@@ -29,3 +41,5 @@ async function sendEmail(to, subject, content, isHtml = false, attachments = [])
         throw error;
     }
 }
+
+module.exports = sendEmail;
