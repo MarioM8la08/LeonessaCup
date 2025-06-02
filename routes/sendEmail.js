@@ -6,7 +6,7 @@ const transporter = nodemailer.createTransport({
     secure: false,
     auth: {
         user: "mariom8la@leonessacup.live",
-        pass: "ab870d50cd0df47fedb41e81f732cea4-7c5e3295-26ff23a8",
+        pass: "d30ad1df4704be0b0ad4022fa2dd7e8c-08c79601-72bf022a",
     }
 });
 
@@ -17,7 +17,7 @@ async function sendEmail(to, subject, content, isHtml = false, attachments = [])
         : [attachments];
 
     const mailOptions = {
-        from: '"Leonessa Cup" <71398061@itiscastelli.onmicrosoft.com>',
+        from: 'Leonessa Cup <mariom8la@leonessacup.live>',
         to,
         subject,
         [isHtml ? 'html' : 'text']: content,
