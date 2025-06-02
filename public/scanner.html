@@ -48,7 +48,8 @@
 <button id="startScanner">Start Scanner</button>
 <div id="reader"></div>
 <div id="result">Scansiona un QR Code...</div>
-
+<h6 id="nome"></h6>
+<p>Per favore, assicurati di avere il permesso di utilizzare la fotocamera.</p>
 <script>
   function isLoggedIn() {
     const loggedInAdmin = localStorage.getItem('loggedInAdmin');
@@ -92,6 +93,12 @@
                       .then(res => res.json())
                       .then(data => {
                         resultDiv.innerText = data.message;
+                        if (data.nome && data.data) {
+                          document.getElementById('nome').innerText = "Nome: " + data.name + " " + data.surname;
+                        } else {
+                          document.getElementById('nome').innerText = "";
+                          document.getElementById('data').innerText = "";
+                        }
                       })
                       .catch(err => {
                         resultDiv.innerText = "Errore: " + err.message;
