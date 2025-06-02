@@ -7,7 +7,6 @@ router.post('/api/checkin', async (req, res) => {
     if (!qr) return res.status(400).json({ message: 'QR mancante.' });
 
     const [id, email] = qr.split('|');
-    console.log(`QR Code ricevuto: id=${id}, email=${email}`);
     try {
         const query = `
             SELECT * 
@@ -17,7 +16,9 @@ router.post('/api/checkin', async (req, res) => {
               AND confirmed = true 
               AND used = false
         `;
+        console.log(`QR Code ricevuto: id=${id}, email=${email}`);
         const [rows] = await pool.query(query, [id, email]);
+        console.log(`QR Code ricevuto: id2=${id}, email2=${email}`);
         if (rows.length === 0) return res.status(400).json({ message: 'QR non valido o già usato.' });
 
         await pool.query('UPDATE bookings SET used = true WHERE id = ?', [id]);
