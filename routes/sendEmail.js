@@ -1,15 +1,3 @@
-const fs = require("fs");
-const FormData = require("form-data");
-const Mailgun = require("mailgun.js");
-const path = require("path");
-
-const mailgun = new Mailgun(FormData);
-const mg = mailgun.client({
-    username: "api",
-    key: "02984bee26dcda63516b21dd5a406c4c-08c79601-8853a447",
-    url: "https://api.eu.mailgun.net"
-});
-
 async function sendEmail(to, subject, content, isHtml = false, attachments = []) {
     try {
         const message = {
@@ -20,21 +8,24 @@ async function sendEmail(to, subject, content, isHtml = false, attachments = [])
         };
 
         if (attachments.length > 0) {
-            // Passa gli allegati direttamente come array di oggetti con data e filename
-            message.attachment = attachments.map(att => ({
-                data: att.content, // Usa il buffer del PDF
-                filename: att.filename,
-                contentType: att.contentType || 'application/pdf' // Default a PDF
-            }));
+            // Validate and format attachments
+            message.attachment = attachments.map(att => {
+                if (!Buffer.isBuffer(att.content)) {
+                    throw new TypeError('Attachment content must be a Buffer.');
+                }
+                return {
+                    data: att.content, // Ensure this is a Buffer
+                    filename: att.filename,
+                    contentType: att.contentType || 'application/pdf',
+                };
+            });
         }
 
         const result = await mg.messages.create("leonessacup.live", message);
-        console.log("Email inviata:", result);
+        console.log("Email sent successfully:", result);
         return result;
     } catch (error) {
-        console.error("Errore durante l'invio:", error);
+        console.error("Error during email sending:", error);
         throw error;
     }
 }
-
-module.exports = sendEmail;
