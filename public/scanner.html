@@ -90,19 +90,18 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ qr: qrMessage })
               })
-                      .then(res => res.json())
-                      .then(data => {
-                        resultDiv.innerText = data.message;
-                        if (data.nome && data.data) {
-                          document.getElementById('nome').innerText = "Nome: " + data.name + " " + data.surname;
-                        } else {
-                          document.getElementById('nome').innerText = "";
-                          document.getElementById('data').innerText = "";
-                        }
-                      })
-                      .catch(err => {
-                        resultDiv.innerText = "Errore: " + err.message;
-                      });
+              .then(res => res.json())
+              .then(data => {
+                resultDiv.innerText = data.message;
+                if (data.nome && data.data) {
+                  document.getElementById('nome').innerText = "Nome: " + data.name + " " + data.surname;
+                } else {
+                  document.getElementById('nome').innerText = "";
+                }
+              })
+              .catch(err => {
+                resultDiv.innerText = "Errore: " + err.message;
+              });
             },
             (errorMessage) => {
               // Handle scan errors (optional)
