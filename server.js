@@ -50,7 +50,6 @@ app.use(modificaClassifica);
 app.use(createEvent);
 app.use(updateEvent);
 app.use(prestazioni);
-
 app.use(bookRoute);
 app.use(confirmRoute);
 app.use(checkinRoute);
@@ -61,7 +60,7 @@ app.get('/*.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', req.path));
 });
 app.get('/', (req, res) => {
-    res.redirect('/chiSiamo');
+    res.redirect('/partite');
 });
 // Gestione singola rout inserimento
 app.get('/inserimento', (req, res) => {

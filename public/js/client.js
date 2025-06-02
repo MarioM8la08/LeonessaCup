@@ -2,7 +2,7 @@ let dataytMatch = [];
 function locationAs(){
     let url = window.location.href;
     if (url.startsWith("https://leonessacup.live") && !url.includes("/chiSiamo") && !url.includes("/squadre") && !url.includes("/partite") && !url.includes("/player") && !url.includes("/classifica") && !url.includes("/credits") && !url.includes("/regolamento") && !url.includes("/inserimenti") && !url.includes("/biglietti")) {
-        window.location.href = "https://leonessacup.live/chiSiamo";
+        window.location.href = "https://leonessacup.live/partite";
     }
 }
 locationAs();
