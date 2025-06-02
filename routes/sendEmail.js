@@ -1,10 +1,12 @@
+const fs = require("fs");
 const FormData = require("form-data");
 const Mailgun = require("mailgun.js");
+const path = require("path");
 
 const mailgun = new Mailgun(FormData);
 const mg = mailgun.client({
     username: "api",
-    key: "02984bee26dcda63516b21dd5a406c4c-08c79601-8853a447", // <-- Inserisci qui la tua vera API key di Mailgun
+    key: "02984bee26dcda63516b21dd5a406c4c-08c79601-8853a447",
     url: "https://api.eu.mailgun.net"
 });
 
@@ -18,7 +20,14 @@ async function sendEmail(to, subject, content, isHtml = false, attachments = [])
         };
 
         if (attachments.length > 0) {
-            message.attachment = attachments;
+            // Converti ogni attachment { filename, data, contentType } in un oggetto leggibile da mailgun.js
+            message.attachment = attachments.map(att => {
+                return new mg.Attachment({
+                    data: att.data,
+                    filename: att.filename,
+                    contentType: att.contentType
+                });
+            });
         }
 
         const result = await mg.messages.create("leonessacup.live", message);
