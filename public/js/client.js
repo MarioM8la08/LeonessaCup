@@ -903,7 +903,7 @@ function initBigliettiPage() {
             email: form.email.value.trim(),
         };
 
-        typeEffect('feedback', 'Invio in corso...', 50);
+        await typeEffect('feedback', 'Invio in corso...', 50);
 
         try {
             const response = await fetch('/api/book', {
@@ -915,12 +915,12 @@ function initBigliettiPage() {
             const result = await response.json();
 
             if (response.ok) {
-                typeEffect('feedback', 'Prenotazione inviata! Controlla la tua email.', 50);
+                await typeEffect('feedback', 'Prenotazione inviata! Controlla la tua email.', 50);
             } else {
-                typeEffect('feedback', `Errore: ${result.message}`, 50);
+                await typeEffect('feedback', `Errore: ${result.message}`, 50);
             }
         } catch (error) {
-            typeEffect('feedback', 'Errore di rete o server non raggiungibile.', 50);
+            await typeEffect('feedback', 'Errore di rete o server non raggiungibile.', 50);
         }
     });
 }
