@@ -20,14 +20,12 @@ async function sendEmail(to, subject, content, isHtml = false, attachments = [])
         };
 
         if (attachments.length > 0) {
-            // Converti ogni attachment { filename, data, contentType } in un oggetto leggibile da mailgun.js
-            message.attachment = attachments.map(att => {
-                return new mg.Attachment({
-                    data: att.data,
-                    filename: att.filename,
-                    contentType: att.contentType
-                });
-            });
+            // Passa gli allegati direttamente come array di oggetti con data e filename
+            message.attachment = attachments.map(att => ({
+                data: att.content, // Usa il buffer del PDF
+                filename: att.filename,
+                contentType: att.contentType || 'application/pdf' // Default a PDF
+            }));
         }
 
         const result = await mg.messages.create("leonessacup.live", message);
