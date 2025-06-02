@@ -465,6 +465,48 @@ function sliderMatch() {
         slideryt.style.transform = `translateX(${matchDayWidthyt}px)`;
     });
 }
+function loadMapAndGallery() {
+    console.log('Loading Google Maps and Gallery...');
+    const script = document.createElement('script');
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCb15fn0Bbk9VqajdTapTcdjiwvscDVRR0';
+    script.async = true;
+    script.defer = true;
+
+    script.onload = () => {
+        const campoCoords = { lat: 45.562326143747065, lng: 10.218082938660423 }; // Sostituisci con coordinate reali
+
+        const map = new google.maps.Map(document.getElementById("map-container"), {
+            zoom: 15,
+            center: campoCoords,
+        });
+
+        new google.maps.Marker({
+            position: campoCoords,
+            map: map,
+            title: "Campo Leonessa Cup"
+        });
+
+        // Immagini del campo
+        const imageUrls = [
+            "/img/campo (1).jpg",
+            "/img/campo (2).jpg",
+            "/img/campo (3).jpg",
+        ];
+
+        const galleryContainer = document.getElementById("gallery");
+        imageUrls.forEach((url) => {
+            const img = document.createElement("img");
+            img.src = url;
+            img.style.width = "200px";
+            img.style.borderRadius = "12px";
+            img.style.boxShadow = "0 4px 10px rgba(0, 0, 0, 0.2)";
+            img.alt = "Foto campo";
+            galleryContainer.appendChild(img);
+        });
+    };
+
+    document.head.appendChild(script);
+}
 async function initMatchSeason() {
     let dataPartite = [];
     // comunicazione con il server per dati classifica
@@ -573,10 +615,12 @@ async function initMatchSeason() {
     }
 }
 function initPartitePage() {
+    loadMapAndGallery();
     initMatchSeason().then(() => {});
     sliderMatch();
     loadytMatch().then(r => {});
     utube();
+
 }
 // Partita page
 async function initEventMatch(idCasa, ora) {
