@@ -41,10 +41,13 @@ router.get('/api/confirm/:token', async (req, res) => {
             'Il tuo biglietto per la Leonessa Cup',
             bigliettoTemplate,
             true,
-            {
-                filename: 'biglietto.pdf',
-                content: pdfBuffer
-            }
+            [
+                {
+                    filename: 'biglietto.pdf',
+                    content: pdfBuffer, // Passa il buffer del PDF
+                    contentType: 'application/pdf'
+                }
+            ]
         );
 
         res.send(htmlConferma);
