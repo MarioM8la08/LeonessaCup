@@ -11,7 +11,8 @@ async function generateTicketPDF(html) {
 
     console.log('Generating PDF...');
     const pdfUint8Array = await page.pdf({
-        height: '40mm',
+        width: '80mm', // Explicitly set the width
+        height: '40mm', // Explicitly set the height
         printBackground: true
     });
 
