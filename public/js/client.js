@@ -522,14 +522,15 @@ async function initMatchSeason() {
             console.log('Data partite:', dataPartite);
         })
         .catch(err => console.error('Error loading classifica data:', err));
-    const giornate = 4;
+    const giornate = 5;
     const slider = document.getElementById('matchSlider');
     slider.innerHTML = "";
     let gironi = {
         "1": [],
         "2": [],
         "3": [],
-        "4": []
+        "4": [],
+        "5": []
     };
     for (let i = 1; i <= giornate; i++) {
         if (i === 1) {
