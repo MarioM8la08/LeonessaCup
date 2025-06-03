@@ -557,11 +557,19 @@ async function initMatchSeason() {
                         <h4 class="nGiornate">Giornata ${i}</h4>
                     </div>
                 </div>`;
-        } else {
+        } else if (i === 4) {
             slider.innerHTML += `                
                 <div id="giornata${i}" class="giornata">
                     <div class="hGiornate">
                         <h1 id="finestraTempGirone${i}" class="titleGiornate">Domenica 1 Giugno</h1>
+                        <h4 class="nGiornate">Giornata ${i}</h4>
+                    </div>
+                </div>`;
+        } else if (i === 5) {
+            slider.innerHTML += `                
+                <div id="giornata${i}" class="giornata">
+                    <div class="hGiornate">
+                        <h1 id="finestraTempGirone${i}" class="titleGiornate">Martedì 3 Giugno</h1>
                         <h4 class="nGiornate">Giornata ${i}</h4>
                     </div>
                 </div>`;
