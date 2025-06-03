@@ -1877,7 +1877,7 @@ iframe{
     background-color: var(--second-color);
 }
 .secondasemifinale img, .primosemifinale img{
-    height: 100px; /* Set the desired height */
+    width: 100px; /* Set the desired height */
     object-fit: cover; /* Ensures the image covers the area without stretching */
     object-position: center;
 }
@@ -2204,6 +2204,7 @@ iframe{
     }
 }
 @media screen and (max-width: 650px){
+
     .contornopresentazioneDiv{
         max-width: 90vw;
         margin: 0;
@@ -2266,8 +2267,19 @@ iframe{
 
 }
 @media screen and (max-width: 480px){
+    .secondasemifinale img, .primosemifinale img{
+        width: 40px; /* Set the desired height */
+        object-fit: cover; /* Ensures the image covers the area without stretching */
+        object-position: center;
+    }
     .main_biglietti form {
         width: 90%;
+    }
+    .finale img {
+        width: 90px;
+    }
+    .finale{
+        padding: 10px 5px;
     }
     .contornopresentazioneDiv {
         max-width: 90vw;
