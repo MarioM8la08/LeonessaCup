@@ -1874,6 +1874,7 @@ iframe{
 .secondasemifinale, .primosemifinale{
     width: 200px;
     height: 400px;
+    text-decoration: none;
     background-color: var(--second-color);
 }
 .secondasemifinale img, .primosemifinale img{
@@ -1894,6 +1895,7 @@ iframe{
 .finale{
     width: 250px;
     height: 600px;
+    text-decoration: none;
     margin: 0 10px;
     background-color: var(--second-color);
     font-family: "Italianno", cursive;
@@ -2276,15 +2278,17 @@ iframe{
         width: 90%;
     }
     .finale img {
-        width: 90px;
+        width: 75px;
     }
     .finale{
-        padding: 10px 5px;
+        padding: 10px 25px;
+        gap: 10px;
     }
     .contornopresentazioneDiv {
         max-width: 90vw;
         margin: 10px 0 0 0;
     }
+
     .presentazioneDiv p{
         font-size: 1em;
     }

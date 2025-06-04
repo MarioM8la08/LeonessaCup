@@ -737,14 +737,14 @@ function initTimeline(data, idCasa, ora) {
                     <div class="Minuto">${minutoLive}''</div>
                     <div class="PointerLive"><div class="pallinoLive"></div></div>
                 </div>`;
-    } else if(minutoLive > 30 && minutoLive < 45) {
+    } else if(minutoLive > 30 && minutoLive < 35) {
         const minutoIntervallo = 30;
         timeline.innerHTML += `                
                 <div class="redLive" style="margin-top: ${minutoIntervallo - minutiPr - 3}0px;">
                     <div class="Minuto">Int</div>
                     <div class="PointerLive"><div class="live-dot"></div></div>
                 </div>`;
-    } else if(minutoLive >= 45 && minutoLive <= 75) {
+    } else if(minutoLive >= 35 && minutoLive <= 65) {
         timeline.innerHTML += `                
                 <div class="redLive" style="margin-top: ${(minutoLive - 15) - minutiPr - 3}0px;">
                     <div class="Minuto">${minutoLive - 15}''</div>
