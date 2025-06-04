@@ -1,6 +1,5 @@
 const express = require('express');
 const QRCode = require('qrcode');
-const PDFDocument = require('pdfkit');
 const router = express.Router();
 const pool = require('./db');
 const sendEmail = require('./sendEmail');
@@ -26,7 +25,7 @@ router.get('/api/confirm/:token', async (req, res) => {
         const qrImage = await QRCode.toDataURL(qrData);
         const ticketHtml = fs.readFileSync('ticketTemplate.html', 'utf8')
             .replace('{{name}}', booking.name + ' ' + booking.surname)
-            .replace('{{date}}', new Date().toLocaleDateString())
+            .replace('{{date}}', "05/06/2025")
             .replace('{{numeroPersone}}', booking.numero_persone)
             .replace('{{prezzo}}', booking.numero_persone * 2 + "€") // Assuming 10 is the price per person
             .replace('{{qrImage}}', qrImage);
@@ -35,7 +34,7 @@ router.get('/api/confirm/:token', async (req, res) => {
         console.log('pdfBuffer is Buffer:', Buffer.isBuffer(pdfBuffer)); // Should log true
         // Validate that pdfBuffer is a Buffer
         if (!Buffer.isBuffer(pdfBuffer)) {
-            throw new TypeError('Generated PDF is not a valid Buffer.');
+            new TypeError('Generated PDF is not a valid Buffer.');
         }
         await pool.query(
             'UPDATE bookings SET confirmed = true, qr_code = $1 WHERE id = $2',

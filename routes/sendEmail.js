@@ -1,7 +1,5 @@
-const fs = require("fs");
 const FormData = require("form-data");
 const Mailgun = require("mailgun.js");
-const path = require("path");
 
 const mailgun = new Mailgun(FormData);
 const mg = mailgun.client({

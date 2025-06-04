@@ -1,4 +1,4 @@
-let dataytMatch = [];
+
 function locationAs(){
     let url = window.location.href;
     if (url.startsWith("https://leonessacup.live") && !url.includes("/chiSiamo") && !url.includes("/squadre") && !url.includes("/partite") && !url.includes("/player") && !url.includes("/classifica") && !url.includes("/credits") && !url.includes("/regolamento") && !url.includes("/inserimenti") && !url.includes("/biglietti")) {
@@ -110,7 +110,7 @@ function insertStaff(dataStaff) {
     for (let i = 0; i < dataStaff.length; i++) {
         if (dataStaff[i]['nome_cognome'] === '00100') {
             list.innerHTML += `
-        <div href="#" class="" style="color: #fff;">
+        <div class="" style="color: #fff;">
                 <h4>Non disponibile lo staff tecnico.</h4>
             </div>
         </div>`;
@@ -119,7 +119,7 @@ function insertStaff(dataStaff) {
             let ruolo = dataStaff[i]['ruolo'];
             let id = dataStaff[i]['id_staff'];
             list.innerHTML += `
-        <div href="#" class="giocatore">
+        <div class="giocatore">
             <img alt="" src="/img/player/${id}.png">
             <div>
                 <h3>${nome}</h3>
@@ -131,7 +131,6 @@ function insertStaff(dataStaff) {
 }
 async function initSquadraPage() {
     let squadraID = document.getElementById('squadraID').innerText;
-    let dataGiocatori = {};
     // comunicazione server per giocatori in squadra
     await fetch(`/api/squadre/Giocatori?squadraID=${squadraID}`)
         .then(response => {
@@ -268,77 +267,76 @@ async function initClassificaPage() {
     }
 }
 // Partite page
-async function loadytMatch() {
-    await fetch('/api/partite/ytMatchs')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            dataytMatch = data;
-        })
-        .catch(err => console.error('Error loading classifica data:', err));
-}
-    // YT API
-function utube() {
-    function loadClient() {
-        gapi.client.setApiKey('AIzaSyBgcQk81g5HKGWadplpG4AHrxySVyDDcLQ');
-        return gapi.client.load('https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest')
-            .then(() => {
-                execute();
-            }, (err) => {
-                console.error('Error loading GAPI client for API', err);
-            });
-    }
-    function execute() {
-        return gapi.client.youtube.search.list({
-            'part': 'snippet',
-            'q': 'soccer highlights', // Modify the search query as needed
-            'type': 'video',
-            'maxResults': 1
-        }).then(async (response) => {
-            const videoContainer = document.getElementById('video-match');
-            const matchslideryt = document.getElementById('matchSlideryt');
-            if (videoContainer) {
-                response.result.items.forEach(item => {
-                    const videoId = item.id.videoId;
-                    const iframe = document.createElement('iframe');
-                    iframe.width = '1153';
-                    iframe.height = '649';
-                    iframe.src = `https://www.youtube.com/embed/6p_acerDKKI?si=_CUQH00zGIMQV6Ne`;
-                    iframe.frameBorder = '0';
-                    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-                    iframe.allowFullscreen = true;
-                    videoContainer.appendChild(iframe);
-                });
-            } else {
-                console.error('video-container element not found');
-            }
-            if (matchslideryt && dataytMatch.length > 0) {
-                let data = dataytMatch;
-                for (let i = 0; i < data.length; i++) {
-                    let link = data[i]["link_youtube"];
-                    response.result.items.forEach(item => {
-                        const videoId = link;
-                        const iframe = document.createElement('iframe');
-                        iframe.width = '250';
-                        iframe.height = '140';
-                        iframe.src = videoId;
-                        iframe.frameBorder = '0';
-                        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-                        iframe.allowFullscreen = true;
-                        matchslideryt.appendChild(iframe);
-                    });
-                }
-            }
-        }, (err) => {
-            console.error('Execute error', err);
-        });
-    }
-    gapi.load('client', loadClient);
-}
+// async function loadytMatch() {
+//     await fetch('/api/partite/ytMatchs')
+//         .then(response => {
+//             if (!response.ok) {
+//                 throw new Error('Network response was not ok');
+//             }
+//             return response.json();
+//         })
+//         .then(data => {
+//             dataytMatch = data;
+//         })
+//         .catch(err => console.error('Error loading classifica data:', err));
+// }
+//     // YT API
+// function utube() {
+//     function loadClient() {
+//         gapi.client.setApiKey('AIzaSyBgcQk81g5HKGWadplpG4AHrxySVyDDcLQ');
+//         return gapi.client.load('https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest')
+//             .then(() => {
+//                 execute();
+//             }, (err) => {
+//                 console.error('Error loading GAPI client for API', err);
+//             });
+//     }
+//     function execute() {
+//         return gapi.client.youtube.search.list({
+//             'part': 'snippet',
+//             'q': 'soccer highlights', // Modify the search query as needed
+//             'type': 'video',
+//             'maxResults': 1
+//         }).then(async (response) => {
+//             const videoContainer = document.getElementById('video-match');
+//             const matchslideryt = document.getElementById('matchSlideryt');
+//             if (videoContainer) {
+//                 response.result.items.forEach(item => {
+//                     const iframe = document.createElement('iframe');
+//                     iframe.width = '1153';
+//                     iframe.height = '649';
+//                     iframe.src = `https://www.youtube.com/embed/6p_acerDKKI?si=_CUQH00zGIMQV6Ne`;
+//                     iframe.frameBorder = '0';
+//                     iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+//                     iframe.allowFullscreen = true;
+//                     videoContainer.appendChild(iframe);
+//                 });
+//             } else {
+//                 console.error('video-container element not found');
+//             }
+//             if (matchslideryt && dataytMatch.length > 0) {
+//                 let data = dataytMatch;
+//                 for (let i = 0; i < data.length; i++) {
+//                     let link = data[i]["link_youtube"];
+//                     response.result.items.forEach(item => {
+//                         const videoId = link;
+//                         const iframe = document.createElement('iframe');
+//                         iframe.width = '250';
+//                         iframe.height = '140';
+//                         iframe.src = videoId;
+//                         iframe.frameBorder = '0';
+//                         iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+//                         iframe.allowFullscreen = true;
+//                         matchslideryt.appendChild(iframe);
+//                     });
+//                 }
+//             }
+//         }, (err) => {
+//             console.error('Execute error', err);
+//         });
+//     }
+//     gapi.load('client', loadClient);
+// }
 // tre stati della partita: 0 = in corso, 1 = finita, 2 = non iniziata      dal tempo dedurre lo stato le partite durano 60 minuti + 15 min intervallo
 // 0 = in corso, 1 = finita, 2 = non iniziata
 function checkStatus(orario) {
@@ -522,7 +520,7 @@ async function initMatchSeason() {
             console.log('Data partite:', dataPartite);
         })
         .catch(err => console.error('Error loading classifica data:', err));
-    const giornate = 5;
+    const giornate = 6;
     const slider = document.getElementById('matchSlider');
     slider.innerHTML = "";
     let gironi = {
@@ -530,7 +528,8 @@ async function initMatchSeason() {
         "2": [],
         "3": [],
         "4": [],
-        "5": []
+        "5": [],
+        "6": []
     };
     for (let i = 1; i <= giornate; i++) {
         if (i === 1) {
@@ -570,6 +569,14 @@ async function initMatchSeason() {
                 <div id="giornata${i}" class="giornata">
                     <div class="hGiornate">
                         <h1 id="finestraTempGirone${i}" class="titleGiornate">Martedì 3 Giugno</h1>
+                        <h4 class="nGiornate">Giornata ${i}</h4>
+                    </div>
+                </div>`;
+        } else if(i === 6) {
+            slider.innerHTML += `                
+                <div id="giornata${i}" class="giornata">
+                    <div class="hGiornate">
+                        <h1 id="finestraTempGirone${i}" class="titleGiornate">Giovedì 05 Giugno</h1>
                         <h4 class="nGiornate">Giornata ${i}</h4>
                     </div>
                 </div>`;
@@ -625,9 +632,9 @@ async function initMatchSeason() {
 }
 function initPartitePage() {
     loadMapAndGallery();
-    initMatchSeason().then(() => {});
+    initMatchSeason().then(div);
     sliderMatch();
-    loadytMatch().then(r => {});
+    loadytMatch().then(div);
     utube();
 
 }
@@ -650,7 +657,7 @@ async function returnDataMatch(idPartita) {
     try {
         const response = await fetch(`/api/partite/MatchStat?partitaID=${idPartita}`);
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            new Error('Network response was not ok');
         }
         const data = await response.json();
         console.log(data);
@@ -672,7 +679,7 @@ function countdownPartita(data) {
     let countdown = document.getElementById('countdown');
     countdown.innerHTML = `${giorni}d ${ore}h ${minuti}m ${secondi}s`;
 }
-function mediaMatch(dataMatch){
+function mediaMatch(){
     //interroghiamo server con id partita se ha video se non lo ha quindi status = false mostriamo un count down per la partita con dietro la diretta e il link al social
     let idPartita = window.location.search.split('=')[1];
     let media = document.getElementById('mediaMatch');
@@ -698,7 +705,6 @@ function initTimeline(data, idCasa, ora) {
         let gap = 0;
         let minuto = data[i]['minuto'];
         let evento = data[i]['evento'];
-        let squadra = data[i]['id_squadra'];
         let giocatore = data[i]['nome_cognome'];
         gap = minuto - minutiPr - 3;
         minutiPr = parseInt(minuto);
@@ -762,7 +768,7 @@ async function imagemSquadre() {
     console.log(idPartita, nImg);
     for (let i = 1; i <= nImg; i++) {
         idImg.innerHTML += `
-            <div class="slide" style="background-image:url('/img/Partite/${idPartita}/${i}.JPG');"></div>
+            <div class="slide" style="background-image:url('/img/Partite/${idPartita}/${i}.jpg');"></div>
         `;
     }
     const slides = document.getElementById('slides');
@@ -801,7 +807,7 @@ async function imagemSquadre() {
     showSlide(0);
 }
 function initStatPartita(data) {
-    imagemSquadre().then(r => {});
+    imagemSquadre().then(div);
     let logoCasa = document.getElementById('logoSquadraCasa');
     let logoOspite = document.getElementById('logoSquadraOspite');
     logoCasa.src = immaginiSquadre(GetSquadraById(data['squadra_casa']));
@@ -845,9 +851,9 @@ function initStatPartita(data) {
     risultatoCasa.innerText = risCasa;
     risultatoOspite.innerText = risOspite;
     if(status) {
-        initEventMatch(data['squadra_casa'], ora).then(r => {});
+        initEventMatch(data['squadra_casa'], ora).then(() => {});
         setInterval(() => {
-            initEventMatch(data['squadra_casa'], ora).then(r => {});
+            initEventMatch(data['squadra_casa'], ora).then(() => {});
         }, 10000);
     } else {
         let idTimDiv = document.getElementById('timelineTotal');
@@ -945,7 +951,6 @@ async function typeEffect(elementId, text, interval) {
 }
 function initBigliettiPage() {
     const form = document.getElementById('bookingForm');
-    const feedback = document.getElementById('feedback');
     const numeroPersone = document.getElementById('numeroPersone');
     const prezzo = document.getElementById('prezzo');
     numeroPersone.addEventListener('input', () => {
@@ -1031,15 +1036,15 @@ function loadContent(url) {
                 behavior: 'smooth'
             });
             if (squadreRoutes.includes(url)) {
-                initSquadraPage().then(() => {});
+                initSquadraPage().then(div);
             } else if (url === routes['/classifica']) {
-                initClassificaPage().then(() => {});
+                initClassificaPage().then(div);
             } else if (url === routes['/partite']) {
                 initPartitePage();
             } else if (url === routes['/player']) {
-                initPlayerPage().then(() => {});
+                initPlayerPage().then(div);
             } else if (url === routes['/partite/partita']) {
-                partitaPage().then(r => {});
+                partitaPage().then(() => {});
             } else if (url === routes['/biglietti']) {
                 initBigliettiPage();
             }
