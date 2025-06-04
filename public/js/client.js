@@ -632,9 +632,9 @@ async function initMatchSeason() {
 }
 function initPartitePage() {
     loadMapAndGallery();
-    initMatchSeason().then(div);
+    initMatchSeason().then(() => {});
     sliderMatch();
-    loadytMatch().then(div);
+    loadytMatch().then(() => {});
     utube();
 
 }
@@ -807,7 +807,7 @@ async function imagemSquadre() {
     showSlide(0);
 }
 function initStatPartita(data) {
-    imagemSquadre().then(div);
+    imagemSquadre().then(() => {});
     let logoCasa = document.getElementById('logoSquadraCasa');
     let logoOspite = document.getElementById('logoSquadraOspite');
     logoCasa.src = immaginiSquadre(GetSquadraById(data['squadra_casa']));
@@ -1036,13 +1036,13 @@ function loadContent(url) {
                 behavior: 'smooth'
             });
             if (squadreRoutes.includes(url)) {
-                initSquadraPage().then(div);
+                initSquadraPage().then(() => {});
             } else if (url === routes['/classifica']) {
-                initClassificaPage().then(div);
+                initClassificaPage().then(() => {});
             } else if (url === routes['/partite']) {
                 initPartitePage();
             } else if (url === routes['/player']) {
-                initPlayerPage().then(div);
+                initPlayerPage().then(() => {});
             } else if (url === routes['/partite/partita']) {
                 partitaPage().then(() => {});
             } else if (url === routes['/biglietti']) {
