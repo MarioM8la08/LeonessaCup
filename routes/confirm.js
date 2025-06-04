@@ -27,7 +27,7 @@ router.get('/api/confirm/:token', async (req, res) => {
             .replace('{{name}}', booking.name + ' ' + booking.surname)
             .replace('{{date}}', "05/06/2025")
             .replace('{{numeroPersone}}', booking.numero_persone)
-            .replace('{{prezzo}}', booking.numero_persone * 2 + "€") // Assuming 10 is the price per person
+            .replace('{{prezzo}}', booking.numero_persone * 3 + "€") // Assuming 10 is the price per person
             .replace('{{qrImage}}', qrImage);
 
         const pdfBuffer = await generateTicketPDF(ticketHtml);

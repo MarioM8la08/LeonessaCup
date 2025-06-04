@@ -954,7 +954,7 @@ function initBigliettiPage() {
     const numeroPersone = document.getElementById('numeroPersone');
     const prezzo = document.getElementById('prezzo');
     numeroPersone.addEventListener('input', () => {
-        prezzo.innerHTML = `All'ingresso si richiede un contributo di ${(numeroPersone.value * 2)}€`;
+        prezzo.innerHTML = `All'ingresso si richiede un contributo di ${(numeroPersone.value * 3)}€`;
     });
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
