@@ -66,6 +66,9 @@ app.get('/', (req, res) => {
 app.get('/inserimento', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'inserimenti.html'));
 });
+app.get('/privacy', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'privacy-policy.html'));
+});
 app.get("/scan", (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'scanner.html'));
 });

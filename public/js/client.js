@@ -6,6 +6,22 @@ function locationAs(){
     }
 }
 locationAs();
+window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+        palette: {
+            popup: { background: "rgba(26, 18, 86, 0.7)" },
+            button: { background: "#194896" },
+        },
+        theme: "classic",
+        position: "bottom",
+        content: {
+            message: "Questo sito utilizza i cookie per migliorare l’esperienza utente.",
+            dismiss: "Accetto",
+            link: "Leggi di più",
+            href: "/privacy-policy.html"
+        }
+    });
+});
 //image slider generale
 // hamburger menu
 const buttonHamb = document.getElementById('Hamburger');
@@ -815,7 +831,7 @@ function initStatPartita(data) {
     //risultati
     let risCasa = data['gol_casa']
     let risOspite = data['gol_ospite'];
-    let status = false;
+    let status;
     let ora = data['data_ora'];
     let statusMatch = checkStatus(ora);
     status = (statusMatch === 0 || statusMatch === 1);
@@ -878,6 +894,7 @@ async function partitaPage() {
         .catch(err => console.error('Error loading partita data:', err));
 }
 // Player page
+
 function insertDataPlayer(dataPlayer) {
     let imgPlayer = document.getElementById('imgPlayer');
     imgPlayer.src = `/img/player/${dataPlayer[0]['id_giocatore']}.png`;
