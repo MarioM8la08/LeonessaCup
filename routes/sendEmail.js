@@ -19,11 +19,19 @@ async function sendEmail(to, subject, content, isHtml = false, attachments = [])
 
         // Add attachments if provided
         if (attachments.length > 0) {
-            message.attachment = attachments.map(att => ({
-                data: att.data, // Buffer or file path
-                filename: att.filename,
-                contentType: att.contentType || "application/octet-stream"
-            }));
+            message.attachment = attachments.map(att => {
+                if (Buffer.isBuffer(att.data)) {
+                    return {
+                        data: att.data,
+                        filename: att.filename,
+                        contentType: att.contentType || "application/octet-stream"
+                    };
+                } else if (typeof att.data === "string") {
+                    return att.data; // File path
+                } else {
+                    throw new Error("Attachment data must be a Buffer or a file path.");
+                }
+            });
         }
 
         // Send the email
@@ -35,5 +43,4 @@ async function sendEmail(to, subject, content, isHtml = false, attachments = [])
         throw error;
     }
 }
-
 module.exports = sendEmail;
