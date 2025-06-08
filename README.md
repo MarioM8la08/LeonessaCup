@@ -47,4 +47,4 @@ Creare una piattaforma web interattiva per:
 
 ## 📄 Licenza
 
-Questo progetto è concesso in licenza sotto la Licenza MIT - vedi il file [LICENSE](LICENSE) per i dettagli.
+Questo progetto è concesso in licenza Apache - vedi il file [LICENSE](LICENSE) per i dettagli.
