@@ -48,7 +48,7 @@ router.get('/api/confirm/:token', async (req, res) => {
             [
                 {
                     filename: 'biglietto.pdf',
-                    content: pdfBuffer, // Ensure this is a Buffer
+                    data: pdfBuffer, // Corrected from `content` to `data`
                     contentType: 'application/pdf'
                 }
             ]
