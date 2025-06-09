@@ -343,6 +343,7 @@ nav .social{
 }
 main{
     flex: 1;
+    min-height: 100vh;
     padding-top: 123px;
 }
 /*footer*/
