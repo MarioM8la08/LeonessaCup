@@ -480,7 +480,7 @@ function sliderMatch() {
     });
 }
 function loadMapAndGallery() {
-    console.log('Loading Google Maps and Gallery...');
+    // console.log('Loading Google Maps and Gallery...');
     const script = document.createElement('script');
     script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCb15fn0Bbk9VqajdTapTcdjiwvscDVRR0';
     script.async = true;
@@ -512,6 +512,8 @@ function loadMapAndGallery() {
             const img = document.createElement("img");
             img.src = url;
             img.style.width = "200px";
+            img.style.height = "150px";
+            img.style.objectFit = "contain";
             img.style.borderRadius = "12px";
             img.style.boxShadow = "0 4px 10px rgba(0, 0, 0, 0.2)";
             img.alt = "Foto campo";
@@ -533,7 +535,7 @@ async function initMatchSeason() {
         })
         .then(data => {
             dataPartite = data;
-            console.log('Data partite:', dataPartite);
+            // console.log('Data partite:', dataPartite);
         })
         .catch(err => console.error('Error loading classifica data:', err));
     const giornate = 6;
@@ -608,7 +610,7 @@ async function initMatchSeason() {
                     gironi[`${i}`].push(dataPartite[j]["data_ora"]);
                 }
             } else {
-                console.log(dataPartite[j]['giornata'], i);
+                // console.log(dataPartite[j]['giornata'], i);
                 if(dataPartite[j]['giornata'] === i) {
                     matchDay.innerHTML += `
                     <a href="/partite/partita?partiteId=${dataPartite[j]["id_partita"]}" class="matchDay">
@@ -676,7 +678,7 @@ async function returnDataMatch(idPartita) {
             new Error('Network response was not ok');
         }
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         return data;
     } catch (err) {
         console.error('Error loading partita data:', err);
@@ -779,9 +781,9 @@ async function imagemSquadre() {
     let matchData = await returnDataMatch(idPartita);
     let nImg = matchData['nImg'];
     let idImg = document.getElementById('slides');
-    console.log(idImg);
+    // console.log(idImg);
     idImg.innerHTML = "";
-    console.log(idPartita, nImg);
+    // console.log(idPartita, nImg);
     for (let i = 1; i <= nImg; i++) {
         idImg.innerHTML += `
             <div class="slide" style="background-image:url('/img/Partite/${idPartita}/${i}.jpg');"></div>

@@ -1,33 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Leonessa Cup</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Lexend+Deca:wght@100..900&family=Oswald:wght@200..700&family=Permanent+Marker&family=Quicksand:wght@300..700&family=Righteous&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/djrlf1tos/image/upload/v1748104650/favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-duotone-thin.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-duotone-solid.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-duotone-regular.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-duotone-light.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-thin.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-solid.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-regular.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-light.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone-thin.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone-regular.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone-light.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
-    <script src="https://apis.google.com/js/api.js"></script>
+
+    <!-- CSS locale critico -->
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <!-- Preconnect font hosting -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Fonts: usa font-display=swap per evitare layout shift -->
+    <link
+            href="https://fonts.googleapis.com/css2?family=Italianno&family=Quicksand:wght@300..700&family=Righteous&display=swap"
+            rel="stylesheet"
+    />
+
+    <!-- Preload font usati frequentemente -->
+    <link
+            rel="preload"
+            href="https://site-assets.fontawesome.com/releases/v6.7.2/webfonts/fa-solid-900.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+    />
+
+    <!-- FontAwesome (blocca il rendering, usa media="print" + onload) -->
+    <link
+            rel="stylesheet"
+            href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"
+            media="print"
+            onload="this.media='all'"
+    />
+    <link
+            rel="stylesheet"
+            href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-thin.css"
+            media="print"
+            onload="this.media='all'"
+    />
+
+    <!-- Cookie Consent (non critico, ritarda il caricamento) -->
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"
+            media="print"
+            onload="this.media='all'"
+    />
+    <script
+            src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"
+            defer
+    ></script>
+
+    <!-- Google API Script (non critico) -->
+    <script src="https://apis.google.com/js/api.js" defer></script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
 </head>
+
 <body>
   <nav>
     <div class="logo">

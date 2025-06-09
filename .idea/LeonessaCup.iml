@@ -20,5 +20,7 @@
     <orderEntry type="library" name="Python 3.12 (LeonessaCup) interpreter library" level="application" />
     <orderEntry type="library" name="html5-qrcode" level="application" />
     <orderEntry type="library" name="cookieconsent" level="application" />
+    <orderEntry type="library" name="sharp-thin" level="application" />
+    <orderEntry type="library" name="all" level="application" />
   </component>
 </module>
