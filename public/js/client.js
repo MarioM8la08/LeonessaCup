@@ -432,6 +432,7 @@ function sliderMatch() {
     let idLeft = document.getElementById('btnLeft');
     let idRight = document.getElementById('btnRight');
     let slider = document.getElementById('matchSlider');
+    if (!idLeft || !idRight || !slider) return;
     let matchDayWidth = 0;
     idLeft.addEventListener('click', function() {
         if(matchDayWidth === -300) {
@@ -457,6 +458,7 @@ function sliderMatch() {
     let idLeftyt = document.getElementById('btnLyt');
     let idRightyt = document.getElementById('btnRyt');
     let slideryt = document.getElementById('matchSlideryt');
+    if (!idLeftyt || !idRightyt || !slideryt) return;
     let matchDayWidthyt = 0;
     idLeftyt.addEventListener('click', function() {
         if(matchDayWidthyt === -160) {
@@ -480,47 +482,59 @@ function sliderMatch() {
     });
 }
 function loadMapAndGallery() {
-    // console.log('Loading Google Maps and Gallery...');
-    const script = document.createElement('script');
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCb15fn0Bbk9VqajdTapTcdjiwvscDVRR0';
-    script.async = true;
-    script.defer = true;
+    // Evita di caricare più volte lo script
+    if (document.getElementById('google-maps-script')) return;
 
-    script.onload = () => {
-        const campoCoords = { lat: 45.562326143747065, lng: 10.218082938660423 }; // Sostituisci con coordinate reali
-
-        const map = new google.maps.Map(document.getElementById("map-container"), {
+    // Definisci la funzione di callback globale
+    window.initMapAndGallery = function() {
+        const campoCoords = { lat: 45.562326143747065, lng: 10.218082938660423 };
+        const mapContainer = document.getElementById("map-container");
+        if (!mapContainer) {
+            console.error("Contenitore mappa non trovato.");
+            return;
+        }
+        const map = new google.maps.Map(mapContainer, {
             zoom: 15,
             center: campoCoords,
         });
 
-        new google.maps.Marker({
-            position: campoCoords,
-            map: map,
-            title: "Campo Leonessa Cup"
-        });
+        if (google.maps.marker && google.maps.marker.AdvancedMarkerElement) {
+            new google.maps.marker.AdvancedMarkerElement({
+                map: map,
+                position: campoCoords,
+                title: "Campo Leonessa Cup"
+            });
+        }
 
-        // Immagini del campo
+        // Galleria immagini
         const imageUrls = [
             "/img/campo (1).jpg",
             "/img/campo (2).jpg",
             "/img/campo (3).jpg",
         ];
-
         const galleryContainer = document.getElementById("gallery");
-        imageUrls.forEach((url) => {
-            const img = document.createElement("img");
-            img.src = url;
-            img.style.width = "200px";
-            img.style.height = "150px";
-            img.style.objectFit = "contain";
-            img.style.borderRadius = "12px";
-            img.style.boxShadow = "0 4px 10px rgba(0, 0, 0, 0.2)";
-            img.alt = "Foto campo";
-            galleryContainer.appendChild(img);
-        });
+        if (galleryContainer) {
+            galleryContainer.innerHTML = "";
+            imageUrls.forEach((url) => {
+                const img = document.createElement("img");
+                img.src = url;
+                img.style.width = "200px";
+                img.style.height = "150px";
+                img.style.objectFit = "contain";
+                img.style.borderRadius = "12px";
+                img.style.boxShadow = "0 4px 10px rgba(0, 0, 0, 0.2)";
+                img.alt = "Foto campo";
+                galleryContainer.appendChild(img);
+            });
+        }
     };
 
+    // Carica lo script Google Maps con callback
+    const script = document.createElement('script');
+    script.id = 'google-maps-script';
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCb15fn0Bbk9VqajdTapTcdjiwvscDVRR0&callback=initMapAndGallery&loading=async';
+    script.async = true;
+    script.defer = true;
     document.head.appendChild(script);
 }
 async function initMatchSeason() {
@@ -652,9 +666,8 @@ function initPartitePage() {
     loadMapAndGallery();
     initMatchSeason().then(() => {});
     sliderMatch();
-    loadytMatch().then(() => {});
-    utube();
-
+    // loadytMatch().then(() => {});
+    // utube();
 }
 // Partita page
 async function initEventMatch(idCasa, ora) {
